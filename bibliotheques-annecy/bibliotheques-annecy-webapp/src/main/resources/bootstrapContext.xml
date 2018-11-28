@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <!-- On va scanner les annotations dans tous les packages de base com.bibliotheques.appliweb -->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.bibliotheques.appliweb"/>
+     
+	<!-- On va récupérer les adresses des web services figurant dans le fichier META-INF/context.xml
+	et les mettre dans les attributs correspondants de la classe AbstractDaoImpl.Pour cela, on utilise
+	la classe MethodInvokingFactoryBean de Spring. -->
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.bibliotheques.appliweb.consumer.impl.dao.AbstractDaoImpl"/>		
+		<property name="targetMethod" value="setAdresseEditionService"/>
+		<property name="arguments">
+			<jee:jndi-lookup jndi-name="java:comp/env/editionServiceAdresse" />
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.bibliotheques.appliweb.consumer.impl.dao.AbstractDaoImpl"/>		
+		<property name="targetMethod" value="setAdresseUtilisateurService"/>
+		<property name="arguments">
+			<jee:jndi-lookup jndi-name="java:comp/env/utilisateurServiceAdresse" />
+		</property>
+	</bean>
+
+</beans>

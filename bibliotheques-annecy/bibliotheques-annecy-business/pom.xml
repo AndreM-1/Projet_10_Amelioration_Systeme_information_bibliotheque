@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+  
+	<!-- =============================================================== -->
+	<!-- Informations du projet -->
+	<!-- =============================================================== -->  
+    <!-- ===== Projet Parent Maven ===== -->
+	<parent>
+		<groupId>com.bibliotheques.appliweb</groupId>
+		<artifactId>bibliotheques-annecy</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	
+	<!-- ===== Informations Maven ===== -->
+  	<artifactId>bibliotheques-annecy-business</artifactId>
+
+    <!-- ===== Informations générales ===== -->
+	<name>${projectName} - Business</name>
+
+    <!-- =============================================================== -->
+    <!-- Dépendances -->
+    <!-- =============================================================== -->	
+  	<dependencies>
+    	<!-- ===== Modules ===== -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>bibliotheques-annecy-consumer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>bibliotheques-annecy-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>bibliotheques-annecy-technical</artifactId>
+        </dependency>    	
+        
+        <!-- ===== Bibliothèques tierces ===== -->
+ 		
+ 		<!-- Implémentation de référence de l'API de validation de Bean-->
+ 		<dependency>
+	    	<groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator-annotation-processor</artifactId>
+		</dependency>
+		
+		<!-- Dépendances vis-à-vis des expression Language liées à la JSR 380 -->
+		<dependency>
+    		<groupId>javax.el</groupId>
+    		<artifactId>javax.el-api</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.web</groupId>
+		    <artifactId>javax.el</artifactId>
+		</dependency>
+		
+		<!-- Dépendance vis-à-vis du Framework Spring -->
+		<dependency>
+       		<groupId>org.springframework</groupId>
+        	<artifactId>spring-tx</artifactId> 
+        </dependency>
+        
+        <!-- JSR-250 utilisée dans le cadre de l'injection de dépendances avec Spring --> 
+        <dependency>
+        	<groupId>javax.annotation</groupId>
+        	<artifactId>javax.annotation-api</artifactId> 
+        </dependency>
+        
+        <!-- JSR-330 utilisée dans le cadre de l'injection de dépendances avec Spring -->
+        <dependency>
+        	<groupId>javax.inject</groupId>
+        	<artifactId>javax.inject</artifactId> 
+        </dependency>	
+	
+		<!-- Bibliothèque de tests unitaires utile uniquement pour la phase de test -->
+	    <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+    	</dependency>
+  	</dependencies>
+</project>

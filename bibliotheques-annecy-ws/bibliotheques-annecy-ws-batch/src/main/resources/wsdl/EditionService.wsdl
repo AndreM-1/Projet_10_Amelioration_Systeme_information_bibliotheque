@@ -1,0 +1,723 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.org/EditionService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="EditionService" targetNamespace="http://www.example.org/EditionService/">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.org/EditionService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:Q1="http://www.example.org/beans" targetNamespace="http://www.example.org/EditionService/">
+            
+  <xsd:import namespace="http://www.example.org/beans" schemaLocation="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition?xsd=../beans.xsd"/>
+            
+  <xsd:element name="getListEdition">
+        
+    <xsd:complexType>
+          
+      <xsd:sequence>
+
+          	
+        <xsd:element maxOccurs="1" minOccurs="1" name="nbEdition" type="xsd:int"/>
+          
+      </xsd:sequence>
+        
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="getListEditionResponse">
+        
+    <xsd:complexType>
+          
+      <xsd:sequence>
+
+          	
+        <xsd:element maxOccurs="unbounded" minOccurs="1" name="edition" type="Q1:Edition"/>
+          
+      </xsd:sequence>
+        
+    </xsd:complexType>
+      
+  </xsd:element>
+
+      
+  <xsd:element name="getListExemplaire">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="editionId" type="xsd:int"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="getListExemplaireResponse">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="unbounded" minOccurs="1" name="exemplaire" type="Q1:Exemplaire"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="getListExemplaireFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="rechercheEdition">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="titre" type="xsd:string"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="rechercheEditionResponse">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="unbounded" minOccurs="1" name="edition" type="Q1:Edition"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="rechercheAvanceeEdition">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="titre" type="xsd:string">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="nomAuteur" type="xsd:string">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="nomEditeur" type="xsd:string">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="anneeParution" type="xsd:string">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="genre" type="xsd:string"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="rechercheAvanceeEditionResponse">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="unbounded" minOccurs="1" name="edition" type="Q1:Edition"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="rechercheEditionFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="rechercheAvanceeEditionFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="gestionPret">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="utilisateurId" type="xsd:int"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="gestionPretResponse">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="unbounded" minOccurs="1" name="emprunt" type="Q1:Emprunt"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="gestionPretFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="emprunterEdition">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="utilisateurId" type="xsd:int">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="bibliothequeId" type="xsd:int">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="editionId" type="xsd:int"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="emprunterEditionResponse">
+      	
+    <xsd:complexType>
+
+      	</xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="emprunterEditionFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="prolongerEmprunt">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="utilisateurId" type="xsd:int">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="bibliothequeId" type="xsd:int">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="editionId" type="xsd:int"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="prolongerEmpruntResponse">
+      	
+    <xsd:complexType>
+
+      	</xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="prolongerEmpruntFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="getListEmpruntEnRetard">
+      	
+    <xsd:complexType>
+
+      	</xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="getListEmpruntEnRetardResponse">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="unbounded" minOccurs="1" name="emprunt" type="Q1:Emprunt"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="getListEmpruntEnRetardFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+    
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="emprunterEditionResponse">
+    <wsdl:part element="tns:emprunterEditionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheEditionFault">
+    <wsdl:part element="tns:rechercheEditionFault" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="emprunterEditionFault">
+    <wsdl:part element="tns:emprunterEditionFault" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListExemplaireResponse">
+    <wsdl:part element="tns:getListExemplaireResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prolongerEmpruntRequest">
+    <wsdl:part element="tns:prolongerEmprunt" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="gestionPretResponse">
+    <wsdl:part element="tns:gestionPretResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheEditionResponse">
+    <wsdl:part element="tns:rechercheEditionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="gestionPretRequest">
+    <wsdl:part element="tns:gestionPret" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheEditionRequest">
+    <wsdl:part element="tns:rechercheEdition" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListExemplaireRequest">
+    <wsdl:part element="tns:getListExemplaire" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntEnRetardRequest">
+    <wsdl:part element="tns:getListEmpruntEnRetard" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEditionRequest">
+    <wsdl:part element="tns:getListEdition" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prolongerEmpruntFault">
+    <wsdl:part element="tns:prolongerEmpruntFault" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheAvanceeEditionFault">
+    <wsdl:part element="tns:rechercheAvanceeEditionFault" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEditionResponse">
+    <wsdl:part element="tns:getListEditionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListExemplaireFault">
+    <wsdl:part element="tns:getListExemplaireFault" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="gestionPretFault">
+    <wsdl:part element="tns:gestionPretFault" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntEnRetardResponse">
+    <wsdl:part element="tns:getListEmpruntEnRetardResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheAvanceeEditionResponse">
+    <wsdl:part element="tns:rechercheAvanceeEditionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="emprunterEditionRequest">
+    <wsdl:part element="tns:emprunterEdition" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntEnRetardFault">
+    <wsdl:part element="tns:getListEmpruntEnRetardFault" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheAvanceeEditionRequest">
+    <wsdl:part element="tns:rechercheAvanceeEdition" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prolongerEmpruntResponse">
+    <wsdl:part element="tns:prolongerEmpruntResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="EditionService">
+    <wsdl:operation name="getListEdition">
+      <wsdl:input message="tns:getListEditionRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getListEditionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListExemplaire">
+      <wsdl:input message="tns:getListExemplaireRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getListExemplaireResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:getListExemplaireFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheEdition">
+      <wsdl:input message="tns:rechercheEditionRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:rechercheEditionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:rechercheEditionFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheAvanceeEdition">
+      <wsdl:input message="tns:rechercheAvanceeEditionRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:rechercheAvanceeEditionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:rechercheAvanceeEditionFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="gestionPret">
+      <wsdl:input message="tns:gestionPretRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:gestionPretResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:gestionPretFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="emprunterEdition">
+      <wsdl:input message="tns:emprunterEditionRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:emprunterEditionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:emprunterEditionFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prolongerEmprunt">
+      <wsdl:input message="tns:prolongerEmpruntRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:prolongerEmpruntResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:prolongerEmpruntFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getListEmpruntEnRetard">
+      <wsdl:input message="tns:getListEmpruntEnRetardRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getListEmpruntEnRetardResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:getListEmpruntEnRetardFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EditionServiceSoapBinding" type="tns:EditionService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getListEdition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListExemplaire">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheEdition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheAvanceeEdition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="gestionPret">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="emprunterEdition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prolongerEmprunt">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getListEmpruntEnRetard">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EditionServiceSOAP" type="tns:EditionService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getListEdition">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListExemplaire">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheEdition">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheAvanceeEdition">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="gestionPret">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="emprunterEdition">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prolongerEmprunt">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getListEmpruntEnRetard">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EditionService">
+    <wsdl:port binding="tns:EditionServiceSOAP" name="EditionServiceSOAP">
+      <soap:address location="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="EditionServiceService">
+    <wsdl:port binding="tns:EditionServiceSoapBinding" name="EditionServicePort">
+      <soap:address location="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

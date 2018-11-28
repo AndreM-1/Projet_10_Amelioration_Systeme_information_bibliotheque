@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<package name="default" extends="struts-default">
+	
+		<!-- Définition des intercepteurs -->
+		<interceptors>
+			<!-- Définition de l'intercepteur permettant de bloquer l'accès à la page de connexion et à la page de création de compte pour un utilisateur déjà connecté -->
+			<interceptor name="RefusAPC" class="com.bibliotheques.appliweb.webapp.interceptor.RefusAPCInterceptor"/>
+			<interceptor-stack name="RefusAccesPageConnexionStack">
+				<interceptor-ref name="RefusAPC"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			
+			<!-- Définition de l'intercepteur permettant de bloquer l'accès à la page de profil et d'emprunt pour un utilisateur non connecté -->
+			<interceptor name="Auth" class="com.bibliotheques.appliweb.webapp.interceptor.AuthInterceptor"></interceptor>
+			<interceptor-stack name="AuthenticatedStack">
+				<interceptor-ref name="Auth"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+	
+		<!-- Action par défaut -->
+		<default-action-ref name="index" />
+
+		<!-- Action "index" -->
+		<action name="index" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doList">
+			<result>/jsp/index.jsp</result>
+		</action>
+		
+		<!-- Action "page_generique_qsn" -->
+		<action name="page_generique_qsn" class="com.bibliotheques.appliweb.webapp.action.GestionPageGeneriqueAction">
+			<result>/jsp/pages_generiques/quisommesnous.jsp</result>
+		</action>	
+		
+		<!-- Action "page_generique_it" -->
+		<action name="page_generique_it" class="com.bibliotheques.appliweb.webapp.action.GestionPageGeneriqueAction">
+			<result>/jsp/pages_generiques/inscriptionstarifs.jsp</result>
+		</action>	
+		
+		<!-- Action "page_generique_lh" -->
+		<action name="page_generique_lh" class="com.bibliotheques.appliweb.webapp.action.GestionPageGeneriqueAction">
+			<result>/jsp/pages_generiques/localisationhoraires.jsp</result>
+		</action>
+		
+		<!-- Action "page_generique_cp" -->
+		<action name="page_generique_cp" class="com.bibliotheques.appliweb.webapp.action.GestionPageGeneriqueAction">
+			<result>/jsp/pages_generiques/conditionspret.jsp</result>
+		</action>
+		
+		<!-- Action "page_generique_ml" -->
+		<action name="page_generique_ml" class="com.bibliotheques.appliweb.webapp.action.GestionPageGeneriqueAction">
+			<result>/jsp/pages_generiques/mentionslegales.jsp</result>
+		</action>
+		
+		<!-- Action "page_creation_compte" -->
+		<action name="page_creation_compte" class="com.bibliotheques.appliweb.webapp.action.GestionCreationCompteAction" method="doCreationCompte">
+			<!-- Référence à l'intercepteur permettant de bloquer l'accès à la page de création de compte pour un utilisateur déjà connecté -->
+			<interceptor-ref name="RefusAccesPageConnexionStack" />
+			<result name="refus-acces-page-connexion" type="redirectAction">index</result>
+			<result name="input">/jsp/authentification/creationcompte.jsp</result>
+			<result name="success" type="redirectAction">index</result>
+		</action>
+
+		<!-- Action "page_utilisateur_coord" -->
+		<action name="page_utilisateur_coord" class="com.bibliotheques.appliweb.webapp.action.GestionProfilUtilisateurAction"  method="doUpdateCoord">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="input">/jsp/utilisateur/utilisateurcoord.jsp</result>
+			<result name="success">/jsp/utilisateur/utilisateurcoord.jsp</result>
+		</action>
+
+		<!-- Action "page_utilisateur_mdp" -->
+		<action name="page_utilisateur_mdp" class="com.bibliotheques.appliweb.webapp.action.GestionProfilUtilisateurAction"  method="doUpdateMdp">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="input">/jsp/utilisateur/utilisateurmdp.jsp</result>
+			<result name="success">/jsp/utilisateur/utilisateurmdp.jsp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
+		<!-- Action page_utilisateur_gdp -->
+		<action name="page_utilisateur_gdp" class="com.bibliotheques.appliweb.webapp.action.GestionProfilUtilisateurAction"  method="doGestionPret">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="success">/jsp/utilisateur/utilisateurgdp.jsp</result>
+		</action>		
+		
+		<!-- Action "page_detail_edition" -->
+		<action name="page_detail_edition" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doDetail">
+			<result name="success">/jsp/edition/detailedition.jsp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
+		<!-- Action "recherche_edition" -->
+		<action name="recherche_edition" class="com.bibliotheques.appliweb.webapp.action.GestionRechercheAction" method="doRecherche">
+			<result name="success">/jsp/recherche/resultatrecherche.jsp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
+		<!-- Action "recherche_edition_avancee" -->
+		<action name="recherche_edition_avancee" class="com.bibliotheques.appliweb.webapp.action.GestionRechercheAction" method="doRechercheAvancee">
+			<result name="input">/jsp/recherche/pagerechercheavancee.jsp</result>
+			<result name="success">/jsp/recherche/resultatrecherche.jsp</result>
+		</action>
+		
+		<!-- Action emprunter_edition -->
+		<action name="emprunter_edition" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doEmprunt">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="success" type="redirectAction">page_utilisateur_gdp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
+		<!-- Action prolonger_emprunt -->
+		<action name="prolonger_emprunt" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doProlongerEmprunt">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="success" type="redirectAction">page_utilisateur_gdp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
+		 <!-- Actions connexion/deconnexion -->
+		<action name="connexion" class="com.bibliotheques.appliweb.webapp.action.GestionConnexionAction" method="doLogin">
+ 			<!-- Référence à l'intercepteur permettant de bloquer l'accès à la page de connexion pour un utilisateur déjà connecté -->
+ 			<interceptor-ref name="RefusAccesPageConnexionStack" />
+ 			<result name="refus-acces-page-connexion" type="redirectAction">index</result>
+			<result name="input">/jsp/authentification/connexion.jsp</result>
+			<result name="success" type="redirectAction">index</result>
+		</action>	
+		
+		<action name="deconnexion" class="com.bibliotheques.appliweb.webapp.action.GestionConnexionAction" method="doLogout">
+       		<result type="redirectAction">index</result>
+        </action>
+			
+	</package>
+</struts>

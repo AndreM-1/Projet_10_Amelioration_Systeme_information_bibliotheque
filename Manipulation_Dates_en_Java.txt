@@ -1,0 +1,23 @@
+//Manipulation Dates en Java
+
+//On définit un DateFormat.
+DateFormat dfTest = new SimpleDateFormat("dd/MM/yyyy");
+
+//On récupère un objet de type XMLGregorianCalendar.
+XMLGregorianCalendar dateTest=listEdition.get(0).getDateParution();
+
+//On convertit l'objet XMLGregorianCalendar en GregorianCalendar qui hérite de la classe Calendar.
+Calendar calDateTest= dateTest.toGregorianCalendar();
+
+//On peut ensuite ajouter (ou soustraire) des jours.
+calDateTest.add(Calendar.DATE, 7);
+
+//Grâce au Dateformat, on affiche la date en format chaîne de caractères pour vérifier si on a le résultat attendu.
+//Calendar.getInstance() permet de récupérer la date d'aujourd'hui.
+String strTest=dfTest.format(calDateTest.getTime());
+LOGGER.info("Manipulation Date : "+strTest);
+LOGGER.info("Manipulation Date - Date aujourd'hui : "+dfTest.format(Calendar.getInstance().getTime()));
+
+//On utilise la fonction compareTo qui renvoie un entier négatif, nul ou positif suivant le résultat de la comparaison entre les deux dates.
+//En l'occurence, on compare la date reçue avec celle d'aujourd'hui.
+LOGGER.info("Résultat fonction compareTo : " +calDateTest.compareTo(Calendar.getInstance()));

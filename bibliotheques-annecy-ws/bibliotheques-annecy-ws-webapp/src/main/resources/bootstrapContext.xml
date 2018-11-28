@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="
+       	http://cxf.apache.org/transports/http/configuration 
+       	http://cxf.apache.org/schemas/configuration/http-conf.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+     	http://cxf.apache.org/jaxws
+        http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <!-- On va scanner les annotations dans tous les packages de base com.bibliotheques.ws -->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.bibliotheques.ws"/>
+
+	<!-- ATTENTION : A partir de CXF 2.4, il ne faut importer que la resource cxf.xml, sinon une erreur sera générée -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	
+    <!-- Inclusion d'autres fichiers de contexte Spring -->
+    <import resource="classpath:/com/bibliotheques/ws/webapp/webappContext.xml" />
+    <import resource="classpath:/com/bibliotheques/ws/business/businessContext.xml" />
+</beans>

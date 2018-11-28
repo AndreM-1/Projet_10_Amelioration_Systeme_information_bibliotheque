@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="
+       	http://cxf.apache.org/transports/http/configuration 
+       	http://cxf.apache.org/schemas/configuration/http-conf.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee.xsd
+     	http://cxf.apache.org/jaxws
+        http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<!-- Déclaration des web services -->
+	
+	<!-- Déclaration du web service EditionService -->
+	<jaxws:server
+		serviceClass="com.bibliotheques.ws.webapp.editionservice.generated.EditionService"
+		address="/edition" serviceBean="#edition"
+		wsdlLocation="wsdl/EditionService.wsdl">
+	</jaxws:server>
+	
+	<bean id="edition" class="com.bibliotheques.ws.webapp.editionservice.impl.EditionServiceImpl" />
+	
+	<!-- Déclaration du web service UtilisateurService -->
+	<jaxws:server
+		serviceClass="com.bibliotheques.ws.webapp.utilisateurservice.generated.UtilisateurService"
+		address="/utilisateur" serviceBean="#utilisateur"
+		wsdlLocation="wsdl/UtilisateurService.wsdl">
+	</jaxws:server>
+	
+	<bean id="utilisateur" class="com.bibliotheques.ws.webapp.utilisateurservice.impl.UtilisateurServiceImpl" />
+	
+		<!-- Ressources JNDI -->
+	<bean id="dataSourceBibliotheque" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:comp/env/jdbc/DB_BIBLIOTHEQUE"/>
+	</bean>
+</beans>

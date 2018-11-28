@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?><schema xmlns:tns="http://www.example.org/beans" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.example.org/beans">
+
+    <complexType name="Edition">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+    		<element maxOccurs="1" minOccurs="1" name="isbn" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="dateParution" type="date">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="nbPages" type="int">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="format" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="ouvrage" type="tns:Ouvrage">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="photo" type="tns:Photo">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="editeur" type="tns:Editeur">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="genre" type="tns:Genre">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Editeur">
+    	<sequence>
+            <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+            <element maxOccurs="1" minOccurs="1" name="nomEditeur" type="string">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Photo">
+    	<sequence>
+            <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+            <element maxOccurs="1" minOccurs="1" name="nomPhoto" type="string">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Ouvrage">
+    	<sequence>
+            <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+            <element maxOccurs="1" minOccurs="1" name="titre" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="resume" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="auteur" type="tns:Auteur">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Auteur">
+    	<sequence>
+            <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+            <element maxOccurs="1" minOccurs="1" name="nom" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="prenom" type="string">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Genre">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+    		<element maxOccurs="1" minOccurs="1" name="genre" type="string"/>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Utilisateur">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+    		<element maxOccurs="1" minOccurs="1" name="civilite" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="nom" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="prenom" type="string">
+    		</element>
+            <element maxOccurs="1" minOccurs="1" name="pseudo" type="string"/>
+            <element maxOccurs="1" minOccurs="1" name="adresseMail" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="salt" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="motDePasseSecurise" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="telephone" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="dateNaissance" type="date">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="adresse" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="codePostal" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="ville" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="pays" type="string">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Bibliotheque">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+    		<element maxOccurs="1" minOccurs="1" name="nomBibliotheque" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="telephone" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="adresse" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="codePostal" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="ville" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="pays" type="string"/>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Exemplaire">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="1" name="bibliotheque" type="tns:Bibliotheque">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="edition" type="tns:Edition">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="nbExemplaires" type="int"/>
+    	</sequence>
+    </complexType>
+
+    <complexType name="StatutEmprunt">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+    		<element maxOccurs="1" minOccurs="1" name="statutEmprunt" type="string"/>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Emprunt">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+    		<element maxOccurs="1" minOccurs="1" name="dateDeDebut" type="date">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="dateDeFin" type="date">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="prolongation" type="boolean">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="dateDeProlongation" type="date">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="dureeProlongation" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="0" name="dateDeRetourEffective" type="date">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="utilisateur" type="tns:Utilisateur">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="statutEmprunt" type="tns:StatutEmprunt">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="exemplaire" type="tns:Exemplaire"/>
+    	</sequence>
+    </complexType>
+</schema>

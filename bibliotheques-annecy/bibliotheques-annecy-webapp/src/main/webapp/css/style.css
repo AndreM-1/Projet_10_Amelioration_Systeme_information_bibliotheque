@@ -1,0 +1,379 @@
+body{
+	margin-top:5px;
+	background-color:#EEEEEE;
+}	
+
+.container{
+	background-color:#FFF;
+}
+
+#barre-navigation{
+	margin-right:0px;
+	border-bottom :1px solid grey;
+	margin-bottom:5px;
+}
+
+/***************************************************************************************
+ * Attention à ne pas oublier le deuxième container contenu dans la barre de navigation.
+ * Il faut bien lui mettre une largeur auto sinon il dépassera du premier container.
+ * *************************************************************************************/
+#container-barre-navigation{
+	width:auto;
+}
+
+.navbar-toggle {
+  padding: 10px;
+  margin: 30px 0 25px 0;
+}
+
+.icon-bar{
+	 background-color:#4C76FF;
+}
+
+.navbar-brand {
+  padding: 0px;
+  height: 100px;
+}
+
+.navbar-brand>img {
+  height: 100%;
+  padding: 10px 0 10px 0; /*Haut-Droite-Bas-Gauche*/
+  width: auto;
+}
+
+.nav >li >a {
+  margin-top: 23px;
+  
+}
+
+#barre-navigation li ul li a:hover {
+	background-color:transparent;
+}
+
+#barre-navigation .bouton-connexion:hover{
+	background-color:#286090;
+}
+
+#banniere-image{
+	background: url('../jsp/assets/images/fondEcranBibliotheque1.jpg') no-repeat;
+	border-radius :5px;
+	height:500px;
+	opacity:0.8;
+	position: relative;
+	box-shadow: 0px 4px 4px #1c1a19;
+}
+
+#zone-recherche{
+	position: absolute;
+	bottom:42%;
+	width: 40%;
+	left : 30%;
+}
+
+#zone-recherche #recherche-avancee a{
+	color:inherit;
+}
+
+/********************************Media query pour le header******************************/
+@media all and (min-width: 992px) and (max-width: 1200px){
+	#zone-recherche{
+		width: 44%;
+		left : 28%;
+	}
+}
+
+@media all and (max-width: 992px){
+	#zone-recherche{
+		width: 58%;
+		left : 21%;
+	}
+}
+/****************************************************************************************/
+
+section{
+	border-bottom :1px solid grey;
+	margin-bottom: 5px;
+}
+
+#edition-accueil,#detail-edition,#resultat-recherche-edition,#gdp-edition-nr,#gdp-edition-ec,#gdp-edition-r{
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-left:0px;
+	border-bottom:1px solid grey;
+	border-right:1px solid grey;
+	margin-bottom: 10px;
+	box-shadow: 0px 1px 1px #1c1a19;
+}
+
+#row-accueil{
+	margin-left:0px;
+	margin-right:0px;
+}
+
+/********************************Media query pour la page d'accueil**********************/
+@media all and (min-width: 470px){
+	#edition-accueil-titre{
+		font-size:1.2em;
+	}
+}
+
+@media all and (max-width: 470px){
+	#edition-accueil-titre{
+		font-size:1em;
+	}
+	#edition-accueil-editeur, #edition-accueil-genre{
+		display:none;
+	}
+}
+/*****************************************************************************************/
+
+#edition-detaillee, #resultat-recherche{
+	margin-top:25px;
+}
+
+#row-edition-detaillee{
+	margin-left:0px;
+	margin-right:0px;
+}
+
+#edition-detaillee-titre{
+	font-weight:bold;
+}
+
+/*Gestion automatique de la scrollbar */
+#edition-detaillee-resume{
+	height:178px;
+	overflow:auto;
+}
+
+/********************************Media query pour la page detail edition******************/
+@media all and (min-width: 550px){
+	#edition-detaillee-titre{
+		font-size:1.2em;
+	}
+}
+
+@media all and (min-width: 992px) and (max-width: 1200px){
+	#edition-detaillee-resume{
+		height:120px;
+	}
+}
+
+@media all and (min-width: 768px) and (max-width: 992px){
+	#edition-detaillee-resume{
+		height:100px;
+	}
+}
+
+@media all and (min-width: 720px) and (max-width: 768px){
+	#edition-detaillee-resume{
+		height:80px;
+	}
+}
+
+@media all and (max-width: 720px){
+	#edition-detaillee-resume{
+		display:none;
+	}
+}
+
+@media all and (max-width: 520px){
+	#edition-detaillee-editeur,#edition-detaillee-genre,#edition-detaillee-isbn,#edition-detaillee-nb-pages{
+		display:none;
+	}
+}
+/*****************************************************************************************/
+
+#row-resultat-recherche{
+	margin-left:0px;
+	margin-right:0px;
+}
+
+/********************************Media query pour la page résultat de recherche**********/
+@media all and (min-width: 470px){
+	#ed-res-rech-titre{
+		font-size:1.2em;
+	}
+}
+@media all and (min-width: 390px) and (max-width: 470px){
+	#ed-res-rech-titre{
+		font-size:1em;
+	}
+}
+
+@media all and (max-width: 390px){
+	#ed-res-rech-titre,#ed-res-rech-auteur{
+		font-size:0.8em;
+	}
+}
+
+@media all and (max-width: 695px){
+	#ed-res-rech-editeur, #ed-res-rech-genre,#ed-res-rech-isbn,#ed-res-rech-nb-pages{
+		display:none;
+	}
+}
+/*****************************************************************************************/
+#div-connexion,#div-recherche-avancee{
+	border:1px solid grey;
+	margin-top:25px;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	box-shadow: 0px 4px 4px #1c1a19;
+}
+
+#row-connexion,#row-creation-compte{
+	margin-left:0px;
+	margin-right:0px;
+}
+
+#nav-profil-utilisateur ul{
+	margin-top:25px;
+	list-style-type:none;
+	display:flex;
+	border-bottom: 1px solid grey;
+	padding-left:0px;
+}
+
+
+#nav-profil-utilisateur li{
+	margin-right:30px;
+}
+
+
+#nav-profil-utilisateur a{
+	font-size: 1.5em;
+    color: #181818;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+#nav-profil-utilisateur a:hover{
+	color: #181818;
+    border-bottom: 4px solid #181818;
+}
+
+#form-utilisateur-coord,#form-utilisateur-mdp{
+	margin-bottom:10px;
+}
+
+
+#mes-coordonnees, #mon-mot-de-passe, #gestion-prets{
+	border-bottom: 4px solid #181818;	
+}
+
+.statut-pret{
+	border-bottom: 3px solid grey;
+	padding-top :5px;
+	padding-bottom :5px;
+}
+
+#row-gdp-edition-nr,#row-gdp-edition-ec,#row-gdp-edition-r{
+	margin-left:0px;
+	margin-right:0px;
+}
+
+#gdp-edition-nr-titre,#gdp-edition-ec-titre,#gdp-edition-r-titre{
+	font-weight:bold;
+}
+
+/********************************Media query pour pages profil utilisateur****************/
+@media all and (min-width: 610px) and (max-width: 725px){
+	#nav-profil-utilisateur a{
+		font-size: 1.2em;
+	}
+	#nav-profil-utilisateur a:hover{
+		 border-bottom: 3px solid #181818;
+	}
+	#mes-coordonnees, #mon-mot-de-passe, #gestion-prets{
+	border-bottom: 3px solid #181818;	
+	}
+}
+
+@media all and (max-width: 610px){
+	#nav-profil-utilisateur a{
+		font-size: 1em;
+	}
+	#nav-profil-utilisateur a:hover{
+		 border-bottom: 2px solid #181818;
+	}
+	#mes-coordonnees, #mon-mot-de-passe, #gestion-prets{
+	border-bottom: 2px solid #181818;	
+	}
+}
+
+@media all and (max-width: 768px){
+	#gdp-edition-nr-editeur,#gdp-edition-nr-genre,#gdp-edition-nr-isbn,#gdp-edition-nr-nb-pages,#gdp-edition-ec-editeur,#gdp-edition-ec-genre,#gdp-edition-ec-isbn,#gdp-edition-ec-nb-pages,
+	#gdp-edition-r-editeur,#gdp-edition-r-genre,#gdp-edition-r-isbn,#gdp-edition-r-nb-pages{
+		display:none;
+	}
+}
+
+@media all and (max-width: 610px){
+	#gdp-edition-nr-auteur,#gdp-edition-nr-statut-pret,#gdp-edition-ec-auteur,#gdp-edition-ec-statut-pret{
+		display:none;
+	}
+}
+
+@media all and (max-width: 520px){
+	#gdp-edition-nr-prolong-pret-2,#gdp-edition-ec-prolong-pret-2{
+		display:none;
+	}
+}
+@media all and (min-width: 520px){
+	#gdp-edition-nr-prolong-pret-2-reduit,#gdp-edition-ec-prolong-pret-2-reduit{
+		display:none;
+	}
+}
+
+@media all and (max-width: 520px){
+	#gdp-edition-nr-titre,#gdp-edition-ec-titre,#gdp-edition-r-titre{
+		font-size:1em;
+	}
+	#gdp-edition-nr-periode-emprunt,#gdp-edition-ec-periode-emprunt,#gdp-edition-r-periode-emprunt,#gdp-edition-r-auteur{
+		display:none;
+	}
+}
+/*****************************************************************************************/
+
+#row-recherche-avancee{
+	margin-left:0px;
+	margin-right:0px;
+}
+
+#section-qsn{
+	display:flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+#sous-section-qsn{
+	display:flex;
+	align-items: flex-end;
+}
+
+#sous-section-qsn p{
+	font-size: 1.5em;
+}
+
+.local-horaires{
+	margin-bottom :10px;
+}
+
+/********************************Media query pour pages génériques ****************/
+@media all and (max-width: 992px){
+	#sous-section-qsn{
+		display:none;
+	}
+}
+
+@media all and (max-width: 570px){
+	.adresse-bibliotheque,.horaire-bibliotheque{
+		display:none;
+	}
+}
+
+/*****************************************************************************************/
+
+footer{
+	margin-bottom:5px;
+}

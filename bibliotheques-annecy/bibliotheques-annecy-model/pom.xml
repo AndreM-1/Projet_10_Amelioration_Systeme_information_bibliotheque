@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+  
+ 	<!-- =============================================================== -->
+    <!-- Informations du projet -->
+    <!-- =============================================================== -->
+    <!-- ===== Projet Parent Maven ===== --> 
+	<parent>
+		<groupId>com.bibliotheques.appliweb</groupId>
+		<artifactId>bibliotheques-annecy</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<!-- ===== Informations Maven ===== -->
+  	<artifactId>bibliotheques-annecy-model</artifactId>
+  
+    <!-- ===== Informations générales ===== -->
+	<name>${projectName} - Model</name>
+
+    <!-- =============================================================== -->
+    <!-- Dépendances -->
+    <!-- =============================================================== -->
+	<dependencies>
+    	<!-- ===== Bibliothèques tierces ===== -->
+    	
+		<!-- API de validation de Bean (JSR 380). On va privilégier la JSR 380 qui est plus récente que la JSR 303 -->
+    	<dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+		</dependency>   
+        
+		<!-- Bibliothèque comportant des fonctionnalités pour la gestion des dates -->
+      	<dependency>
+		    <groupId>joda-time</groupId>
+		    <artifactId>joda-time</artifactId>
+		</dependency>
+       	
+       	<!-- Bibliothèque de tests unitaires utile uniquement pour la phase de test -->
+    	<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+    	</dependency>
+	</dependencies>
+</project>

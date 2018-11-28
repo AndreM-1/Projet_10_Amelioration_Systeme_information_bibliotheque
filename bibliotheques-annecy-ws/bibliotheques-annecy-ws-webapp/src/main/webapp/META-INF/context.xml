@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Configuration des ressources JNDI directement dans le WAR de déploiement des web services -->
+<Context>
+    <Resource name="jdbc/DB_BIBLIOTHEQUE"
+              auth="Container"
+              type="javax.sql.DataSource"
+			
+              url="jdbc:postgresql://localhost:5432/SystemeInformationBibliotheque"
+              driverClassName="org.postgresql.Driver"
+              username="postgres"
+              password="admin"
+              defaultAutoCommit="false"
+              defaultTransactionIsolation="READ_COMMITTED"
+
+              initialSize="1"
+              maxTotal="30"
+              maxIdle="10"
+              maxWaitMillis="60000"
+              minIdle="1"
+              removeAbandonedTimeout="60"
+              removeAbandonedOnBorrow="true"
+              logAbandoned="true"
+              minEvictableIdleTimeMillis="10000"
+              timeBetweenEvictionRunsMillis="30000"
+              validationQuery="SELECT 1"
+              testWhileIdle="true"
+              testOnBorrow="true"
+    />
+    
+    <!-- Valeur acceptée pour la durée max de l'emprunt : 1 semaine, 2 semaines, 3 semaines et 4 semaines -->
+    <Environment
+    	name="dureeMaxEmprunt"
+    	value="4 semaines"
+    	type="java.lang.String"  
+   />
+</Context>

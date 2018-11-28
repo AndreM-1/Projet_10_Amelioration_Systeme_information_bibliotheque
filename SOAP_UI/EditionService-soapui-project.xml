@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="c414864c-6c04-4ec7-a8a1-c9841df1fc9f" activeEnvironment="Default" name="EditionService" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="b3b94f16-949a-4e8c-9cd3-c18fb5bc7ccf" wsaVersion="NONE" name="EditionServiceSoapBinding" type="wsdl" bindingName="{http://www.example.org/EditionService/}EditionServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint></con:endpoints><con:operation id="723a218d-e8d4-4cdf-bb3e-a899baf70722" isOneWay="false" action="" name="emprunterEdition" bindingOperationName="emprunterEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fa12cf43-d094-4461-8890-2e2e71034f85" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:emprunterEdition>\r
+         <utilisateurId>?</utilisateurId>\r
+         <bibliothequeId>?</bibliothequeId>\r
+         <editionId>?</editionId>\r
+      </edit:emprunterEdition>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/emprunterEditionRequest"/></con:call></con:operation><con:operation id="95003f5f-68a8-4ccc-89ff-02edf963522a" isOneWay="false" action="" name="gestionPret" bindingOperationName="gestionPret" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f526a967-0895-404b-a3c3-97e66789f649" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:gestionPret>\r
+         <utilisateurId>?</utilisateurId>\r
+      </edit:gestionPret>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/gestionPretRequest"/></con:call></con:operation><con:operation id="892df03f-bcb6-40c8-8427-630ffd963e7c" isOneWay="false" action="" name="getListEdition" bindingOperationName="getListEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="79d5bd03-eee8-4d2a-9242-8953159fad57" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:getListEdition>\r
+         <nbEdition>?</nbEdition>\r
+      </edit:getListEdition>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListEditionRequest"/></con:call></con:operation><con:operation id="ebf8cdfd-e4bc-4bfe-9fff-659a5d89a41e" isOneWay="false" action="" name="getListEmpruntEnRetard" bindingOperationName="getListEmpruntEnRetard" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3669fc53-038b-4ff8-9b85-0376f7726643" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:getListEmpruntEnRetard/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListEmpruntEnRetardRequest"/></con:call></con:operation><con:operation id="7bd89072-554c-449e-8b86-adcced0930e5" isOneWay="false" action="" name="getListExemplaire" bindingOperationName="getListExemplaire" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9b38840d-7d3c-4319-b7e5-50e7f5dea937" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:getListExemplaire>\r
+         <editionId>?</editionId>\r
+      </edit:getListExemplaire>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListExemplaireRequest"/></con:call></con:operation><con:operation id="21d5dacb-5832-4370-9251-a56c9d8ba795" isOneWay="false" action="" name="prolongerEmprunt" bindingOperationName="prolongerEmprunt" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2152fa28-8d4f-4745-958b-1abad9bd4d39" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:prolongerEmprunt>\r
+         <utilisateurId>?</utilisateurId>\r
+         <bibliothequeId>?</bibliothequeId>\r
+         <editionId>?</editionId>\r
+      </edit:prolongerEmprunt>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/prolongerEmpruntRequest"/></con:call></con:operation><con:operation id="fd6a4fa2-4a57-4b83-8bf1-d98aa3923782" isOneWay="false" action="" name="rechercheAvanceeEdition" bindingOperationName="rechercheAvanceeEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4b4ac5fe-d2d5-4721-b86e-1a0529ef6377" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:rechercheAvanceeEdition>\r
+         <titre>?</titre>\r
+         <nomAuteur>?</nomAuteur>\r
+         <nomEditeur>?</nomEditeur>\r
+         <anneeParution>?</anneeParution>\r
+         <genre>?</genre>\r
+      </edit:rechercheAvanceeEdition>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/rechercheAvanceeEditionRequest"/></con:call></con:operation><con:operation id="b5e3ac6f-694d-4d6f-a8fd-ebd7472ee751" isOneWay="false" action="" name="rechercheEdition" bindingOperationName="rechercheEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4be6b6c4-83fb-48fd-a860-bd73be1b9bd7" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:rechercheEdition>\r
+         <titre>?</titre>\r
+      </edit:rechercheEdition>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/rechercheEditionRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="8fd2de6b-5a4a-4914-ba78-c72e58a5a6e9" wsaVersion="NONE" name="EditionServiceSOAP" type="wsdl" bindingName="{http://www.example.org/EditionService/}EditionServiceSOAP" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition?wsdl"><con:part><con:url>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="EditionService" targetNamespace="http://www.example.org/EditionService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.org/EditionService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/EditionService/" xmlns:Q1="http://www.example.org/beans">
+      <xsd:import namespace="http://www.example.org/beans" schemaLocation="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition?xsd=../beans.xsd"/>
+      <xsd:element name="getListEdition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="nbEdition" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListEditionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="edition" type="Q1:Edition"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListExemplaire">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="editionId" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListExemplaireResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="exemplaire" type="Q1:Exemplaire"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListExemplaireFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="rechercheEdition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="titre" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="rechercheEditionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="edition" type="Q1:Edition"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="rechercheAvanceeEdition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="titre" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="nomAuteur" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="nomEditeur" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="anneeParution" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="genre" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="rechercheAvanceeEditionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="edition" type="Q1:Edition"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="rechercheEditionFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="rechercheAvanceeEditionFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="gestionPret">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="utilisateurId" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="gestionPretResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="emprunt" type="Q1:Emprunt"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="gestionPretFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="emprunterEdition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="utilisateurId" type="xsd:int"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="bibliothequeId" type="xsd:int"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="editionId" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="emprunterEditionResponse">
+        <xsd:complexType></xsd:complexType>
+      </xsd:element>
+      <xsd:element name="emprunterEditionFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="prolongerEmprunt">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="utilisateurId" type="xsd:int"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="bibliothequeId" type="xsd:int"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="editionId" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="prolongerEmpruntResponse">
+        <xsd:complexType></xsd:complexType>
+      </xsd:element>
+      <xsd:element name="prolongerEmpruntFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListEmpruntEnRetard">
+        <xsd:complexType></xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListEmpruntEnRetardResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="emprunt" type="Q1:Emprunt"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListEmpruntEnRetardFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="emprunterEditionResponse">
+    <wsdl:part element="tns:emprunterEditionResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheEditionFault">
+    <wsdl:part element="tns:rechercheEditionFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="emprunterEditionFault">
+    <wsdl:part element="tns:emprunterEditionFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListExemplaireResponse">
+    <wsdl:part element="tns:getListExemplaireResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prolongerEmpruntRequest">
+    <wsdl:part element="tns:prolongerEmprunt" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="gestionPretResponse">
+    <wsdl:part element="tns:gestionPretResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheEditionResponse">
+    <wsdl:part element="tns:rechercheEditionResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="gestionPretRequest">
+    <wsdl:part element="tns:gestionPret" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheEditionRequest">
+    <wsdl:part element="tns:rechercheEdition" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListExemplaireRequest">
+    <wsdl:part element="tns:getListExemplaire" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntEnRetardRequest">
+    <wsdl:part element="tns:getListEmpruntEnRetard" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEditionRequest">
+    <wsdl:part element="tns:getListEdition" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prolongerEmpruntFault">
+    <wsdl:part element="tns:prolongerEmpruntFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheAvanceeEditionFault">
+    <wsdl:part element="tns:rechercheAvanceeEditionFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEditionResponse">
+    <wsdl:part element="tns:getListEditionResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListExemplaireFault">
+    <wsdl:part element="tns:getListExemplaireFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="gestionPretFault">
+    <wsdl:part element="tns:gestionPretFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntEnRetardResponse">
+    <wsdl:part element="tns:getListEmpruntEnRetardResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheAvanceeEditionResponse">
+    <wsdl:part element="tns:rechercheAvanceeEditionResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="emprunterEditionRequest">
+    <wsdl:part element="tns:emprunterEdition" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntEnRetardFault">
+    <wsdl:part element="tns:getListEmpruntEnRetardFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercheAvanceeEditionRequest">
+    <wsdl:part element="tns:rechercheAvanceeEdition" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prolongerEmpruntResponse">
+    <wsdl:part element="tns:prolongerEmpruntResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="EditionService">
+    <wsdl:operation name="getListEdition">
+      <wsdl:input message="tns:getListEditionRequest"></wsdl:input>
+      <wsdl:output message="tns:getListEditionResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListExemplaire">
+      <wsdl:input message="tns:getListExemplaireRequest"></wsdl:input>
+      <wsdl:output message="tns:getListExemplaireResponse"></wsdl:output>
+      <wsdl:fault message="tns:getListExemplaireFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheEdition">
+      <wsdl:input message="tns:rechercheEditionRequest"></wsdl:input>
+      <wsdl:output message="tns:rechercheEditionResponse"></wsdl:output>
+      <wsdl:fault message="tns:rechercheEditionFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheAvanceeEdition">
+      <wsdl:input message="tns:rechercheAvanceeEditionRequest"></wsdl:input>
+      <wsdl:output message="tns:rechercheAvanceeEditionResponse"></wsdl:output>
+      <wsdl:fault message="tns:rechercheAvanceeEditionFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="gestionPret">
+      <wsdl:input message="tns:gestionPretRequest"></wsdl:input>
+      <wsdl:output message="tns:gestionPretResponse"></wsdl:output>
+      <wsdl:fault message="tns:gestionPretFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="emprunterEdition">
+      <wsdl:input message="tns:emprunterEditionRequest"></wsdl:input>
+      <wsdl:output message="tns:emprunterEditionResponse"></wsdl:output>
+      <wsdl:fault message="tns:emprunterEditionFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prolongerEmprunt">
+      <wsdl:input message="tns:prolongerEmpruntRequest"></wsdl:input>
+      <wsdl:output message="tns:prolongerEmpruntResponse"></wsdl:output>
+      <wsdl:fault message="tns:prolongerEmpruntFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getListEmpruntEnRetard">
+      <wsdl:input message="tns:getListEmpruntEnRetardRequest"></wsdl:input>
+      <wsdl:output message="tns:getListEmpruntEnRetardResponse"></wsdl:output>
+      <wsdl:fault message="tns:getListEmpruntEnRetardFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EditionServiceSoapBinding" type="tns:EditionService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getListEdition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListExemplaire">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheEdition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheAvanceeEdition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="gestionPret">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="emprunterEdition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prolongerEmprunt">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getListEmpruntEnRetard">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EditionServiceSOAP" type="tns:EditionService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getListEdition">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListExemplaire">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheEdition">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rechercheAvanceeEdition">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="gestionPret">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="emprunterEdition">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prolongerEmprunt">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getListEmpruntEnRetard">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EditionService">
+    <wsdl:port binding="tns:EditionServiceSOAP" name="EditionServiceSOAP">
+      <soap:address location="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="EditionServiceService">
+    <wsdl:port binding="tns:EditionServiceSoapBinding" name="EditionServicePort">
+      <soap:address location="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition?xsd=../beans.xsd</con:url><con:content><![CDATA[<schema elementFormDefault="qualified" targetNamespace="http://www.example.org/beans" xmlns:tns="http://www.example.org/beans" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="Edition">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="isbn" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="dateParution" type="date"></element>
+      <element maxOccurs="1" minOccurs="1" name="nbPages" type="int"></element>
+      <element maxOccurs="1" minOccurs="1" name="format" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="ouvrage" type="tns:Ouvrage"></element>
+      <element maxOccurs="1" minOccurs="1" name="photo" type="tns:Photo"></element>
+      <element maxOccurs="1" minOccurs="1" name="editeur" type="tns:Editeur"></element>
+      <element maxOccurs="1" minOccurs="1" name="genre" type="tns:Genre"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Editeur">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="nomEditeur" type="string"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Photo">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="nomPhoto" type="string"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Ouvrage">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="titre" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="resume" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="auteur" type="tns:Auteur"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Auteur">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="nom" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="prenom" type="string"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Genre">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="genre" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="Utilisateur">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="civilite" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="nom" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="prenom" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="pseudo" type="string"/>
+      <element maxOccurs="1" minOccurs="1" name="adresseMail" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="salt" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="motDePasseSecurise" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="telephone" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="dateNaissance" type="date"></element>
+      <element maxOccurs="1" minOccurs="0" name="adresse" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="codePostal" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="ville" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="pays" type="string"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Bibliotheque">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="nomBibliotheque" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="telephone" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="adresse" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="codePostal" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="ville" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="pays" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="Exemplaire">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="bibliotheque" type="tns:Bibliotheque"></element>
+      <element maxOccurs="1" minOccurs="1" name="edition" type="tns:Edition"></element>
+      <element maxOccurs="1" minOccurs="1" name="nbExemplaires" type="int"/>
+    </sequence>
+  </complexType>
+  <complexType name="StatutEmprunt">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="statutEmprunt" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="Emprunt">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="dateDeDebut" type="date"></element>
+      <element maxOccurs="1" minOccurs="1" name="dateDeFin" type="date"></element>
+      <element maxOccurs="1" minOccurs="1" name="prolongation" type="boolean"></element>
+      <element maxOccurs="1" minOccurs="0" name="dateDeProlongation" type="date"></element>
+      <element maxOccurs="1" minOccurs="0" name="dureeProlongation" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="dateDeRetourEffective" type="date"></element>
+      <element maxOccurs="1" minOccurs="1" name="utilisateur" type="tns:Utilisateur"></element>
+      <element maxOccurs="1" minOccurs="1" name="statutEmprunt" type="tns:StatutEmprunt"></element>
+      <element maxOccurs="1" minOccurs="1" name="exemplaire" type="tns:Exemplaire"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint></con:endpoints><con:operation id="9621b941-c4aa-4e02-9e15-de962328e84a" isOneWay="false" action="" name="emprunterEdition" bindingOperationName="emprunterEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="003f0807-076b-4f61-b896-b6199f88c86e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:emprunterEdition>\r
+         <utilisateurId>?</utilisateurId>\r
+         <bibliothequeId>?</bibliothequeId>\r
+         <editionId>?</editionId>\r
+      </edit:emprunterEdition>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/emprunterEditionRequest"/></con:call></con:operation><con:operation id="993369e6-b7ca-425f-a001-da8172fc81ca" isOneWay="false" action="" name="gestionPret" bindingOperationName="gestionPret" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0390a7d0-4685-4253-a869-e628235ee90a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:gestionPret>\r
+         <utilisateurId>?</utilisateurId>\r
+      </edit:gestionPret>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/gestionPretRequest"/></con:call></con:operation><con:operation id="686ad9ba-8462-4d5c-9693-954947a35c8a" isOneWay="false" action="" name="getListEdition" bindingOperationName="getListEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9815de40-ed26-47e1-bb01-e3d478f38109" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:getListEdition>\r
+         <nbEdition>?</nbEdition>\r
+      </edit:getListEdition>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListEditionRequest"/></con:call></con:operation><con:operation id="0eb86cd8-eabc-4188-a994-ba460bedf2b2" isOneWay="false" action="" name="getListEmpruntEnRetard" bindingOperationName="getListEmpruntEnRetard" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a8ecb127-f6e2-4c4e-b914-2071e64c733b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:getListEmpruntEnRetard/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListEmpruntEnRetardRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="66d3712c-aca8-4d9f-bea6-56e1c0f9c9f1" isOneWay="false" action="" name="getListExemplaire" bindingOperationName="getListExemplaire" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e17eaf60-12ef-435e-a8f0-4bf9009fd2a8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:getListExemplaire>\r
+         <editionId>?</editionId>\r
+      </edit:getListExemplaire>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListExemplaireRequest"/></con:call></con:operation><con:operation id="7d309909-93ac-4980-9305-a88d1d9ea12f" isOneWay="false" action="" name="prolongerEmprunt" bindingOperationName="prolongerEmprunt" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8450691d-5a4e-4e50-932b-0500c4738722" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:prolongerEmprunt>\r
+         <utilisateurId>?</utilisateurId>\r
+         <bibliothequeId>?</bibliothequeId>\r
+         <editionId>?</editionId>\r
+      </edit:prolongerEmprunt>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/prolongerEmpruntRequest"/></con:call></con:operation><con:operation id="f7560f7a-fea9-402b-845f-b5264e7f951a" isOneWay="false" action="" name="rechercheAvanceeEdition" bindingOperationName="rechercheAvanceeEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="02d080cb-ec38-4674-9007-8c7ee65d28cf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:rechercheAvanceeEdition>\r
+         <titre>?</titre>\r
+         <nomAuteur>?</nomAuteur>\r
+         <nomEditeur>?</nomEditeur>\r
+         <anneeParution>?</anneeParution>\r
+         <genre>?</genre>\r
+      </edit:rechercheAvanceeEdition>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/rechercheAvanceeEditionRequest"/></con:call></con:operation><con:operation id="574b4bce-dda3-4846-a79d-5583e0edc30e" isOneWay="false" action="" name="rechercheEdition" bindingOperationName="rechercheEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2f4b0d2b-cbc6-4ac3-88ec-6fa04b274790" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <edit:rechercheEdition>\r
+         <titre>?</titre>\r
+      </edit:rechercheEdition>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/rechercheEditionRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

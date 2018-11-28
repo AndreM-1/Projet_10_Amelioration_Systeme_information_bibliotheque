@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+  	<!-- =============================================================== -->
+	<!-- Informations du projet -->
+	<!-- =============================================================== -->  
+    <!-- ===== Projet Parent Maven ===== -->  	
+	<parent>
+		<groupId>com.bibliotheques.ws</groupId>
+		<artifactId>bibliotheques-annecy-ws</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+    <!-- ===== Informations Maven ===== -->
+  	<artifactId>bibliotheques-annecy-ws-webapp</artifactId>
+	<packaging>war</packaging>
+
+    <!-- ===== Informations générales ===== --> 
+	<name>${projectName} - Application web</name>
+
+    <!-- =============================================================== -->
+    <!-- Propriétés -->
+    <!-- =============================================================== -->
+	<properties>
+        <application.name>Bibliotheques-Annecy-ws</application.name>
+        <maven.build.timestamp.format>dd/MM/yyyy</maven.build.timestamp.format>
+        <build.timestamp>${maven.build.timestamp}</build.timestamp>
+       	<maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+    <!-- =============================================================== -->
+    <!-- Dépendances -->
+    <!-- =============================================================== -->
+	<dependencies>
+    	<!-- ===== Modules ===== -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.parent.artifactId}-business</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.parent.artifactId}-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.parent.artifactId}-technical</artifactId>
+        </dependency> 	
+	
+        <!-- ===== Bibliothèques tierces ===== -->
+        
+		<!-- Bibliothèque permettant de créer une servlet utile lors de la compilation --> 
+        <dependency>
+       		<groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>	
+        
+        <!-- Dépendance vis-à-vis du Framework Spring -->
+        <dependency>
+        	<groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        
+        <!-- JSR-250 utilisée dans le cadre de l'injection de dépendances avec Spring -->     
+        <dependency>
+        	<groupId>javax.annotation</groupId>
+        	<artifactId>javax.annotation-api</artifactId> 
+        </dependency>
+        
+        <!-- JSR-330 utilisée dans le cadre de l'injection de dépendances avec Spring -->        
+        <dependency>
+        	<groupId>javax.inject</groupId>
+        	<artifactId>javax.inject</artifactId> 
+        </dependency>
+        
+        <!-- Dépendance vis-à-vis du Framework Apache Struts -->
+        <dependency>
+       		<groupId>org.apache.struts</groupId>
+        	<artifactId>struts2-core</artifactId>
+        </dependency>
+        
+        <!-- Dépendance vers le plugin Spring de Struts2. Ce plugin déclare automatiquement
+        Spring comme fabrique d'objet Struts. Et donc, permet d'injecter les dépendances 
+        dans les composants Struts avec Spring. -->
+        <dependency>
+	        <groupId>org.apache.struts</groupId>
+	        <artifactId>struts2-spring-plugin</artifactId>
+        </dependency>
+        
+    	<!-- Dépendance liée au plugin bootstrap de Struts 2-->
+        <dependency>
+	        <groupId>com.jgeppert.struts2.bootstrap</groupId>
+	        <artifactId>struts2-bootstrap-plugin</artifactId>
+   		</dependency>
+        
+        <!-- Dépendance vers le plugin json de Struts2 afin de gérer le format JSON
+        et pouvoir automatiquement sérialiser des objets Java en JSON -->
+        <dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-json-plugin</artifactId>
+		</dependency>
+       	<dependency>
+			<groupId>org.apache.struts.xwork</groupId>
+			<artifactId>xwork-core</artifactId>
+		</dependency>            
+
+		<!-- Bibliothèque de tests unitaires utile uniquement pour la phase de test -->   
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		
+        <!-- Drivers JDBC PostgreSQL -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>  
+        
+		<!-- Dépendances vers apache-cxf -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-databinding-jaxb</artifactId>
+		</dependency>
+	   	<dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+	    </dependency>
+        <dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-transports-http</artifactId>
+    	</dependency> 
+    	 
+		<!-- Dépendance vers la librairie JAX-WS-->
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>javax.jws</artifactId>
+		</dependency>    		     
+	</dependencies>
+
+    <!-- =============================================================== -->
+    <!-- Build -->
+    <!-- =============================================================== -->
+	<build>
+		<finalName>bibliotheques-annecy-ws-webapp</finalName>
+		<plugins>
+		</plugins>
+	</build>
+	
+	
+    <!-- =============================================================================================================================================================== -->
+    
+    <!-- Profils : Le but de ce profil est de générer les classes Java via le plugin Apache-CXF à partir des contrats WSDL.
+	Pour cela, il faut exécuter la commande mvn clean compile -Pgenerate-sources-web-services. A noter que la même commande avec la phase generate-sources échoue à cause
+	des dépendances du module. Il faut bien utiliser la phase compile. Par défaut, ces classes sont générés dans le répertoire target/generated-sources/cxf qui n'est pas 
+	inclu dans le build path (i.e. qui n'est pas un source folder), donc pas d'erreurs supplémentaires. Il suffit ensuite de recopier ces classes dans le(s) package(s) 
+	voulu(s). L'avantage d'utiliser un profil est que lorsque l'on va packager le projet avec la commande mvn clean package, les opérations de ce profil ne seront
+	pas traitées. -->
+
+    <!-- =============================================================================================================================================================== -->	
+	<profiles>
+		<profile>
+			 <id>generate-sources-web-services</id>	
+			 <build>
+				 <plugins>
+				 	<!-- Generate sources with Apache-CXF plugin from wsdl file -->
+				 	<plugin>
+						<groupId>org.apache.cxf</groupId> 
+						<artifactId>cxf-codegen-plugin</artifactId> 
+                        <executions>
+                            <execution>
+                                <id>generate-sources_EditionService</id>
+                                <goals>
+                                    <goal>wsdl2java</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                                <configuration>
+									<wsdlRoot>${basedir}/src/main/resources/wsdl</wsdlRoot> 
+									<wsdlOptions> 
+										<wsdlOption> 
+											<wsdl>${basedir}/src/main/resources/wsdl/EditionService.wsdl</wsdl> 
+										</wsdlOption> 
+		 							</wsdlOptions>
+                                </configuration>
+                            </execution>
+		 					<execution> 
+								<id>generate-sources_UtilisateurService</id> 
+								<goals> 
+									<goal>wsdl2java</goal> 
+								</goals> 
+								<phase>generate-sources</phase> 
+								<configuration> 
+									<wsdlRoot>${basedir}/src/main/resources/wsdl</wsdlRoot> 
+									<wsdlOptions> 
+										<wsdlOption> 
+											<wsdl>${basedir}/src/main/resources/wsdl/UtilisateurService.wsdl</wsdl> 
+										</wsdlOption> 
+									</wsdlOptions> 
+								</configuration> 
+							</execution>                           
+                        </executions>				 	
+				 	</plugin>
+				 </plugins>
+			 </build>
+		</profile>
+	</profiles>
+</project>

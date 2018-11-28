@@ -1,0 +1,37 @@
+2 projets sont à créer dans le cadre du P7.
+
+Création de l'appli web :
+
+mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.appliweb -DartifactId=bibliotheques-annecy.com -Dversion=1.0-SNAPSHOT
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=com.bibliotheques.appliweb -DartifactId=bibliotheques-annecy-webapp -Dpackage=com.bibliotheques.appliweb.webapp
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.appliweb -DartifactId=bibliotheques-annecy-business -Dpackage=com.bibliotheques.appliweb.business
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.appliweb -DartifactId=bibliotheques-annecy-consumer -Dpackage=com.bibliotheques.appliweb.consumer
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.appliweb -DartifactId=bibliotheques-annecy-model -Dpackage=com.bibliotheques.appliweb.model
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.appliweb -DartifactId=bibliotheques-annecy-technical -Dpackage=com.bibliotheques.appliweb.technical
+
+Création du serveur de services :
+
+mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.ws -DartifactId=bibliotheques-annecy-ws -Dversion=1.0-SNAPSHOT
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.ws -DartifactId=bibliotheques-annecy-ws-batch -Dpackage=com.bibliotheques.ws.batch
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=com.bibliotheques.ws -DartifactId=bibliotheques-annecy-ws-webapp -Dpackage=com.bibliotheques.ws.webapp
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.ws -DartifactId=bibliotheques-annecy-ws-business -Dpackage=com.bibliotheques.ws.business
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.ws -DartifactId=bibliotheques-annecy-ws-consumer -Dpackage=com.bibliotheques.ws.consumer
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.ws -DartifactId=bibliotheques-annecy-ws-model -Dpackage=com.bibliotheques.ws.model
+
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.bibliotheques.ws -DartifactId=bibliotheques-annecy-ws-technical -Dpackage=com.bibliotheques.ws.technical
+
+
+
+mvn clean package -P with-sources site
+mvn javadoc:aggregate
+mvn clean package -P with-sources site site:stage

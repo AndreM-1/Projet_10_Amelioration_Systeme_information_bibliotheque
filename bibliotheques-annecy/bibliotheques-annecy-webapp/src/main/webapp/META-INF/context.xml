@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Configuration des adresses des web services -->
+<Context>
+	<Environment
+		name="editionServiceAdresse"
+		value="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition"
+		type="java.lang.String"
+	/>
+
+	<Environment
+		name="utilisateurServiceAdresse"
+		value="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur"
+		type="java.lang.String"
+	/>
+</Context>
