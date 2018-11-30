@@ -7,6 +7,7 @@ import com.bibliotheques.ws.consumer.contract.dao.ExemplaireDao;
 import com.bibliotheques.ws.consumer.contract.dao.GenreDao;
 import com.bibliotheques.ws.consumer.contract.dao.OuvrageDao;
 import com.bibliotheques.ws.consumer.contract.dao.PhotoDao;
+import com.bibliotheques.ws.consumer.contract.dao.ReservationDao;
 import com.bibliotheques.ws.consumer.contract.dao.UtilisateurDao;
 
 
@@ -47,4 +48,8 @@ public interface DaoFactory {
 	void setEmpruntDao(EmpruntDao empruntDao);
 
 	EmpruntDao getEmpruntDao();
+
+	void setReservationDao(ReservationDao reservationDao);
+
+	ReservationDao getReservationDao();
 }

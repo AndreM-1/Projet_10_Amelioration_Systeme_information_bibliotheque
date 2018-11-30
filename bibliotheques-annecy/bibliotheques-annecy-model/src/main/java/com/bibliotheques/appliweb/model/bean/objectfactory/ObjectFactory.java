@@ -12,6 +12,7 @@ import com.bibliotheques.appliweb.model.bean.edition.Exemplaire;
 import com.bibliotheques.appliweb.model.bean.edition.Genre;
 import com.bibliotheques.appliweb.model.bean.edition.Ouvrage;
 import com.bibliotheques.appliweb.model.bean.edition.Photo;
+import com.bibliotheques.appliweb.model.bean.edition.Reservation;
 import com.bibliotheques.appliweb.model.bean.edition.StatutEmprunt;
 import com.bibliotheques.appliweb.model.bean.utilisateur.Utilisateur;
 
@@ -127,6 +128,14 @@ public class ObjectFactory {
      */
     public Emprunt createEmprunt() {
         return new Emprunt();
+    }
+
+    /**
+     * Create an instance of {@link Reservation }
+     * 
+     */
+    public Reservation createReservation() {
+        return new Reservation();
     }
 
 }

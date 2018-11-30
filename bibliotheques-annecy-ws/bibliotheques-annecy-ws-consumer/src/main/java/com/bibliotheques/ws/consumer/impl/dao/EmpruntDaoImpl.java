@@ -86,8 +86,8 @@ public class EmpruntDaoImpl extends AbstractDaoImpl implements EmpruntDao {
 		try {
 			vJdbcTemplate.update(vSQL, dateDeDebut,dateDeFin,prolongation,utilisateurId,statutEmpruntId,bibliothequeId,editionId);
 		} catch (DuplicateKeyException e) {
-			LOGGER.info("Vous avez déjà réservé cette édition dans une des bibliothèques de notre réseau.");
-			throw new FunctionalException("Vous avez déjà réservé cette édition dans une des bibliothèques de notre réseau.");
+			LOGGER.info("Vous avez déjà emprunté cette édition dans une des bibliothèques de notre réseau.");
+			throw new FunctionalException("Vous avez déjà emprunté cette édition dans une des bibliothèques de notre réseau.");
 		}	
 	}
 	
@@ -173,4 +173,22 @@ public class EmpruntDaoImpl extends AbstractDaoImpl implements EmpruntDao {
 		else
 			throw new NotFoundException("Aucun emprunt en retard dans l'ensemble du réseau de bibliothèques!!!");
 	}
+	
+	@Override
+	public List<Emprunt> getListEmprunt(int bibliothequeId,int editionId) throws NotFoundException{
+		LOGGER.info("Web Service : EditionService - Couche Consumer - Méthode getListEmprunt()");
+		String vSQL = "SELECT * FROM public.emprunt WHERE exemplaire_bibliotheque_id="+bibliothequeId+" AND exemplaire_edition_id="+editionId+" AND statut_emprunt_id IN (1,2) ORDER by date_de_fin ASC";
+		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource()); 
+		
+		RowMapper<Emprunt> vRowMapper=new EmpruntRM(utilisateurDao,statutEmpruntDao,exemplaireDao);
+		List<Emprunt> vListEmprunt=vJdbcTemplate.query(vSQL, vRowMapper);
+
+		if(vListEmprunt.size()!=0){
+			return vListEmprunt;
+		}
+		else
+			throw new NotFoundException("Aucun emprunt pour l'édition concernée dans l'ensemble du réseau de bibliothèques!!!");
+	}
+	
+	
 }

@@ -152,7 +152,7 @@ public class GestionEditionAction extends ActionSupport implements SessionAware 
 			listExemplaire=managerFactory.getExemplaireManager().getListExemplaire(id);
 			
 			for (Exemplaire vExemplaire : listExemplaire) {
-				if(vExemplaire.getNbExemplaires()!=0) {
+				if(vExemplaire.getNbExemplairesDispo()!=0) {
 					exemplaireTrouve=true;
 				}
 			}

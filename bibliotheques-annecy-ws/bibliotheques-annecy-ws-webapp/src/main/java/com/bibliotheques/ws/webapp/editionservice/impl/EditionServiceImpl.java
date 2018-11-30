@@ -12,24 +12,37 @@ import com.bibliotheques.ws.business.contract.ManagerFactory;
 import com.bibliotheques.ws.model.bean.edition.Edition;
 import com.bibliotheques.ws.model.bean.edition.Emprunt;
 import com.bibliotheques.ws.model.bean.edition.Exemplaire;
+import com.bibliotheques.ws.model.bean.edition.Reservation;
 import com.bibliotheques.ws.model.exception.FunctionalException;
 import com.bibliotheques.ws.model.exception.NotFoundException;
 import com.bibliotheques.ws.model.exception.TechnicalException;
+import com.bibliotheques.ws.webapp.editionservice.generated.AnnulerReservationFault;
+import com.bibliotheques.ws.webapp.editionservice.generated.AnnulerReservationFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.EditionService;
 import com.bibliotheques.ws.webapp.editionservice.generated.EmprunterEditionFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.EmprunterEditionFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GestionPretFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GestionPretFault_Exception;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListAllReservationFault;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListAllReservationFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntEnRetardFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntEnRetardFault_Exception;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntFault;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListExemplaireFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListExemplaireFault_Exception;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationFault;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationFault_Exception;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationUtilisateurFault;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationUtilisateurFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.ProlongerEmpruntFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.ProlongerEmpruntFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.RechercheAvanceeEditionFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.RechercheAvanceeEditionFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.RechercheEditionFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.RechercheEditionFault_Exception;
+import com.bibliotheques.ws.webapp.editionservice.generated.ReserverEditionFault;
+import com.bibliotheques.ws.webapp.editionservice.generated.ReserverEditionFault_Exception;
 
 
 public class EditionServiceImpl implements EditionService{
@@ -41,6 +54,7 @@ public class EditionServiceImpl implements EditionService{
 	private List<Edition> listEdition;
 	private List<Exemplaire> listExemplaire;
 	private List<Emprunt> listEmprunt;
+	private List<Reservation> listReservation;
 	
 	//Définition du LOGGER
 	private static final Logger LOGGER=(Logger) LogManager.getLogger(EditionServiceImpl.class);
@@ -171,5 +185,101 @@ public class EditionServiceImpl implements EditionService{
 			throw new GetListEmpruntEnRetardFault_Exception(e.getMessage(),getListEmpruntEnRetardFault);
 		}
 		return listEmprunt;
+	}
+
+	@Override
+	public List<Emprunt> getListEmprunt(int utilisateurId, int bibliothequeId, int editionId)
+			throws GetListEmpruntFault_Exception {
+		LOGGER.info("Web Service : EditionService - Couche Webapp - Méthode getListEmprunt()");
+		listEmprunt=new ArrayList<>();
+		try {
+			listEmprunt=managerFactory.getEmpruntManager().getListEmprunt(utilisateurId,bibliothequeId,editionId);
+		} catch (FunctionalException e) {
+			LOGGER.info(e.getMessage());
+			GetListEmpruntFault getListEmpruntFault=new GetListEmpruntFault();
+			getListEmpruntFault.setFaultMessageErreur(e.getMessage());
+			throw new GetListEmpruntFault_Exception(e.getMessage(),getListEmpruntFault);
+		} catch (TechnicalException e) {
+			LOGGER.info(e.getMessage());
+			GetListEmpruntFault getListEmpruntFault=new GetListEmpruntFault();
+			getListEmpruntFault.setFaultMessageErreur(e.getMessage());
+			throw new GetListEmpruntFault_Exception(e.getMessage(),getListEmpruntFault);
+		}
+		return listEmprunt;
+	}
+	
+	@Override
+	public List<Reservation> getListReservation(int utilisateurId, int bibliothequeId, int editionId,
+			int nbExemplairesInit) throws GetListReservationFault_Exception {
+		LOGGER.info("Web Service : EditionService - Couche Webapp - Méthode getListReservation()");
+		listReservation=new ArrayList<>();
+		try {
+			listReservation=managerFactory.getReservationManager().getListReservation(utilisateurId,bibliothequeId,editionId,nbExemplairesInit);
+		} catch (FunctionalException e) {
+			LOGGER.info(e.getMessage());
+			GetListReservationFault getListReservationFault=new GetListReservationFault();
+			getListReservationFault.setFaultMessageErreur(e.getMessage());
+			throw new GetListReservationFault_Exception(e.getMessage(),getListReservationFault);
+		} 	
+		return listReservation;
+	}
+	
+	@Override
+	public void reserverEdition(int utilisateurId, int bibliothequeId, int editionId)
+			throws ReserverEditionFault_Exception {
+		LOGGER.info("Web Service : EditionService - Couche Webapp - Méthode reserverEdition()");
+		try {
+			managerFactory.getReservationManager().reserverEdition(utilisateurId, bibliothequeId, editionId);
+		} catch (TechnicalException e) {
+			LOGGER.info(e.getMessage());
+			ReserverEditionFault reserverEditionFault =new ReserverEditionFault();
+			reserverEditionFault.setFaultMessageErreur(e.getMessage());
+			throw new ReserverEditionFault_Exception(e.getMessage(),reserverEditionFault);
+		}
+	}
+	
+	@Override
+	public List<Reservation> getListReservationUtilisateur(int utilisateurId)
+			throws GetListReservationUtilisateurFault_Exception {
+		LOGGER.info("Web Service : EditionService - Couche Webapp - Méthode getListReservationUtilisateur()");
+		listReservation=new ArrayList<>();
+		try {
+			listReservation=managerFactory.getReservationManager().getListReservationUtilisateur(utilisateurId);
+		} catch (NotFoundException e) {
+			LOGGER.info(e.getMessage());
+			GetListReservationUtilisateurFault getListReservationUtilisateurFault= new GetListReservationUtilisateurFault();
+			getListReservationUtilisateurFault.setFaultMessageErreur(e.getMessage());
+			throw new GetListReservationUtilisateurFault_Exception(e.getMessage(),getListReservationUtilisateurFault);
+		}
+		return listReservation;
+	}
+
+	@Override
+	public void annulerReservation(int utilisateurId, int bibliothequeId, int editionId)
+			throws AnnulerReservationFault_Exception {
+		LOGGER.info("Web Service : EditionService - Couche Webapp - Méthode annulerReservation()");
+		try {
+			managerFactory.getReservationManager().annulerReservation(utilisateurId, bibliothequeId, editionId);
+		} catch (TechnicalException e) {
+			LOGGER.info(e.getMessage());
+			AnnulerReservationFault annulerReservationFault =new AnnulerReservationFault();
+			annulerReservationFault.setFaultMessageErreur(e.getMessage());
+			throw new AnnulerReservationFault_Exception(e.getMessage(),annulerReservationFault);
+		}
+	}
+
+	@Override
+	public List<Reservation> getListAllReservation() throws GetListAllReservationFault_Exception {
+		LOGGER.info("Web Service : EditionService - Couche Webapp - Méthode getListAllReservation()");
+		listReservation=new ArrayList<>();	
+		try {
+			listReservation=managerFactory.getReservationManager().getListAllReservation();
+		} catch (NotFoundException e) {
+			LOGGER.info(e.getMessage());
+			GetListAllReservationFault getListAllReservationFault=new GetListAllReservationFault();
+			getListAllReservationFault.setFaultMessageErreur(e.getMessage());
+			throw new GetListAllReservationFault_Exception(e.getMessage(),getListAllReservationFault);	
+		}
+		return listReservation;
 	}
 }

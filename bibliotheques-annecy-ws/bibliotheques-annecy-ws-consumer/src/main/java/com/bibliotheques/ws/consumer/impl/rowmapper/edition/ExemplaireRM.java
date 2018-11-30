@@ -37,7 +37,8 @@ public class ExemplaireRM implements RowMapper<Exemplaire> {
 		Exemplaire vExemplaire=new Exemplaire();
 		vExemplaire.setBibliotheque(bibliothequeDao.getBibliotheque(pRS.getInt("bibliotheque_id")));
 		vExemplaire.setEdition(editionDao.getEdition(pRS.getInt("edition_id")));
-		vExemplaire.setNbExemplaires(pRS.getInt("nb_exemplaires"));
+		vExemplaire.setNbExemplairesInit(pRS.getInt("nb_exemplaires_init"));
+		vExemplaire.setNbExemplairesDispo(pRS.getInt("nb_exemplaires_dispo"));
 		return vExemplaire;
 	}
 }

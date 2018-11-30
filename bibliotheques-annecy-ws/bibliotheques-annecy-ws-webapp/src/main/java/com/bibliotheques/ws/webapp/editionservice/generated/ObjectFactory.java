@@ -213,4 +213,148 @@ public class ObjectFactory {
         return new GetListEmpruntEnRetardFault();
     }
 
+    /**
+     * Create an instance of {@link ReserverEdition }
+     * 
+     */
+    public ReserverEdition createReserverEdition() {
+        return new ReserverEdition();
+    }
+
+    /**
+     * Create an instance of {@link ReserverEditionResponse }
+     * 
+     */
+    public ReserverEditionResponse createReserverEditionResponse() {
+        return new ReserverEditionResponse();
+    }
+
+    /**
+     * Create an instance of {@link ReserverEditionFault }
+     * 
+     */
+    public ReserverEditionFault createReserverEditionFault() {
+        return new ReserverEditionFault();
+    }
+
+    /**
+     * Create an instance of {@link GetListEmprunt }
+     * 
+     */
+    public GetListEmprunt createGetListEmprunt() {
+        return new GetListEmprunt();
+    }
+
+    /**
+     * Create an instance of {@link GetListEmpruntResponse }
+     * 
+     */
+    public GetListEmpruntResponse createGetListEmpruntResponse() {
+        return new GetListEmpruntResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListEmpruntFault }
+     * 
+     */
+    public GetListEmpruntFault createGetListEmpruntFault() {
+        return new GetListEmpruntFault();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservation }
+     * 
+     */
+    public GetListReservation createGetListReservation() {
+        return new GetListReservation();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservationResponse }
+     * 
+     */
+    public GetListReservationResponse createGetListReservationResponse() {
+        return new GetListReservationResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservationFault }
+     * 
+     */
+    public GetListReservationFault createGetListReservationFault() {
+        return new GetListReservationFault();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservationUtilisateur }
+     * 
+     */
+    public GetListReservationUtilisateur createGetListReservationUtilisateur() {
+        return new GetListReservationUtilisateur();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservationUtilisateurResponse }
+     * 
+     */
+    public GetListReservationUtilisateurResponse createGetListReservationUtilisateurResponse() {
+        return new GetListReservationUtilisateurResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservationUtilisateurFault }
+     * 
+     */
+    public GetListReservationUtilisateurFault createGetListReservationUtilisateurFault() {
+        return new GetListReservationUtilisateurFault();
+    }
+
+    /**
+     * Create an instance of {@link AnnulerReservation }
+     * 
+     */
+    public AnnulerReservation createAnnulerReservation() {
+        return new AnnulerReservation();
+    }
+
+    /**
+     * Create an instance of {@link AnnulerReservationResponse }
+     * 
+     */
+    public AnnulerReservationResponse createAnnulerReservationResponse() {
+        return new AnnulerReservationResponse();
+    }
+
+    /**
+     * Create an instance of {@link AnnulerReservationFault }
+     * 
+     */
+    public AnnulerReservationFault createAnnulerReservationFault() {
+        return new AnnulerReservationFault();
+    }
+
+    /**
+     * Create an instance of {@link GetListAllReservation }
+     * 
+     */
+    public GetListAllReservation createGetListAllReservation() {
+        return new GetListAllReservation();
+    }
+
+    /**
+     * Create an instance of {@link GetListAllReservationResponse }
+     * 
+     */
+    public GetListAllReservationResponse createGetListAllReservationResponse() {
+        return new GetListAllReservationResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListAllReservationFault }
+     * 
+     */
+    public GetListAllReservationFault createGetListAllReservationFault() {
+        return new GetListAllReservationFault();
+    }
+
 }

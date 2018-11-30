@@ -41,7 +41,7 @@ public interface EmpruntDao {
 	 * Méthode permettant de renvoyer un emprunt d'une édition effectué par un utilisateur.
 	 * @param utilisateurId : L'identifiant de l'utilisateur
 	 * @param editionId : L'identifiant de l'édition
-	 * @return : Un objet de type {@link Emprunt}
+	 * @return Un objet de type {@link Emprunt}
 	 * @throws NotFoundException
 	 */
 	Emprunt getEmprunt(int utilisateurId, int editionId) throws NotFoundException;
@@ -94,5 +94,14 @@ public interface EmpruntDao {
 	 * @throws TechnicalException
 	 */
 	void updateEmprunt(int statutEmpruntId, int utilisateurId, int bibliothequeId, int editionId) throws TechnicalException;
+
+	/**
+	 * Méthode permettant de renvoyer la liste des emprunts en cours ou non rendu à temps d'une édition dans une bibliothèque.
+	 * @param bibliothequeId : L'identifiant de la bibliothèque
+	 * @param editionId : L'identifiant de l'édition
+	 * @return List
+	 * @throws NotFoundException
+	 */
+	List<Emprunt> getListEmprunt(int bibliothequeId, int editionId) throws NotFoundException;
 
 }

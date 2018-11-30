@@ -47,10 +47,10 @@
 								</thead>
 								<tbody>
 									<s:iterator value="listExemplaire">
-										<s:if test="%{nbExemplaires!=0}">
+										<s:if test="%{nbExemplairesDispo!=0}">
 											<tr>
 												<td class="text-center"><s:property value="bibliotheque.nomBibliotheque"/></td>
-												<td class="text-center"><s:property value="nbExemplaires"/></td>
+												<td class="text-center"><s:property value="nbExemplairesDispo"/></td>
 												<td class="text-center">
 												<s:a action="emprunter_edition" class="btn btn-primary">
 													<s:param name="bibliothequeId" value="bibliotheque.id"/>
