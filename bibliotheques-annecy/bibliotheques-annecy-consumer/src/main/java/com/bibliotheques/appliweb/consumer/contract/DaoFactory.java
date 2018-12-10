@@ -3,6 +3,7 @@ package com.bibliotheques.appliweb.consumer.contract;
 import com.bibliotheques.appliweb.consumer.contract.dao.EditionDao;
 import com.bibliotheques.appliweb.consumer.contract.dao.EmpruntDao;
 import com.bibliotheques.appliweb.consumer.contract.dao.ExemplaireDao;
+import com.bibliotheques.appliweb.consumer.contract.dao.ReservationDao;
 import com.bibliotheques.appliweb.consumer.contract.dao.UtilisateurDao;
 
 /**
@@ -26,4 +27,8 @@ public interface DaoFactory {
 	void setEmpruntDao(EmpruntDao empruntDao);
 
 	EmpruntDao getEmpruntDao();
+
+	void setReservationDao(ReservationDao reservationDao);
+
+	ReservationDao getReservationDao();
 }

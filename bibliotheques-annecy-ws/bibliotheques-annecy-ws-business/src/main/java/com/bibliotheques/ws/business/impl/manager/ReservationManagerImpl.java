@@ -44,7 +44,8 @@ public class ReservationManagerImpl extends AbstractManager implements Reservati
 			LOGGER.info(e.getMessage());
 			try {
 				listReservation=getDaoFactory().getReservationDao().getListReservation(bibliothequeId,editionId);
-				
+				LOGGER.info("Taille Liste réservations : "+listReservation.size());
+				LOGGER.info("nbExemplairesInit : "+nbExemplairesInit);
 				if(listReservation.size()>=2*nbExemplairesInit) {
 					//Cas où la liste d'attente est complète, on lève donc une FunctionalException.
 					throw new FunctionalException("Désolé, mais la liste d'attente des réservations pour cette édition est complète.");
@@ -57,6 +58,7 @@ public class ReservationManagerImpl extends AbstractManager implements Reservati
 				//On retourne une liste de réservation vide.
 				LOGGER.info(e1.getMessage());
 				LOGGER.info("Liste réservations :"+listReservation);
+				LOGGER.info("Taille Liste réservations :"+listReservation.size());
 				return listReservation;
 			}	
 		}

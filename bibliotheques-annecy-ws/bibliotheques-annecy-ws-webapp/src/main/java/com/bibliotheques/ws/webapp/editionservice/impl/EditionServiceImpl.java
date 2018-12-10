@@ -199,7 +199,7 @@ public class EditionServiceImpl implements EditionService{
 			GetListEmpruntFault getListEmpruntFault=new GetListEmpruntFault();
 			getListEmpruntFault.setFaultMessageErreur(e.getMessage());
 			throw new GetListEmpruntFault_Exception(e.getMessage(),getListEmpruntFault);
-		} catch (TechnicalException e) {
+		} catch (NotFoundException e) {
 			LOGGER.info(e.getMessage());
 			GetListEmpruntFault getListEmpruntFault=new GetListEmpruntFault();
 			getListEmpruntFault.setFaultMessageErreur(e.getMessage());

@@ -83,7 +83,7 @@
 		</action>
 		
 		<!-- Action page_utilisateur_gdp -->
-		<action name="page_utilisateur_gdp" class="com.bibliotheques.appliweb.webapp.action.GestionProfilUtilisateurAction"  method="doGestionPret">
+		<action name="page_utilisateur_gdp" class="com.bibliotheques.appliweb.webapp.action.GestionProfilUtilisateurAction"  method="doGestionPretReservation">
 			<interceptor-ref name="AuthenticatedStack" />
 			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
 			<result name="success">/jsp/utilisateur/utilisateurgdp.jsp</result>
@@ -117,6 +117,30 @@
 		
 		<!-- Action prolonger_emprunt -->
 		<action name="prolonger_emprunt" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doProlongerEmprunt">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="success" type="redirectAction">page_utilisateur_gdp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
+		<!-- Action reserver_edition -->
+		<action name="reserver_edition" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doReservation">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="success">/jsp/edition/pageconfirmationreservation.jsp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
+		<!-- Action confirmer_reservation -->
+		<action name="confirmer_reservation" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doConfirmerReservation">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="success" type="redirectAction">page_utilisateur_gdp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
+		<!-- Action annuler_reservation -->
+		<action name="annuler_reservation" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doAnnulerReservation">
 			<interceptor-ref name="AuthenticatedStack" />
 			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
 			<result name="success" type="redirectAction">page_utilisateur_gdp</result>

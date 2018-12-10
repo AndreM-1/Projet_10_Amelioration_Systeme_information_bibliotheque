@@ -57,7 +57,7 @@ public interface EmpruntManager {
 	 * @param editionId : L'identifiant de l'édition
 	 * @return List
 	 * @throws FunctionalException
-	 * @throws TechnicalException
+	 * @throws NotFoundException
 	 */
-	List<Emprunt> getListEmprunt(int utilisateurId, int bibliothequeId, int editionId) throws FunctionalException, TechnicalException;
+	List<Emprunt> getListEmprunt(int utilisateurId, int bibliothequeId, int editionId) throws FunctionalException, NotFoundException;
 }

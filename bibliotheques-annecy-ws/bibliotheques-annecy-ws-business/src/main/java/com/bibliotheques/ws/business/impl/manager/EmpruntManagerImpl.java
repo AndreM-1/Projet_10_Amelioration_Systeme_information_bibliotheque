@@ -238,7 +238,7 @@ public class EmpruntManagerImpl extends AbstractManager implements EmpruntManage
 	}
 	
 	@Override
-	public List<Emprunt> getListEmprunt(int utilisateurId,int bibliothequeId,int editionId) throws FunctionalException, TechnicalException{
+	public List<Emprunt> getListEmprunt(int utilisateurId,int bibliothequeId,int editionId) throws FunctionalException, NotFoundException{
 		LOGGER.info("Web Service : EditionService - Couche Business - Méthode getListEmprunt()");
 		
 		//On vérifie que l'utilisateur n'a pas déjà emprunté l'édition qu'il souhaite réserver.
@@ -254,7 +254,8 @@ public class EmpruntManagerImpl extends AbstractManager implements EmpruntManage
 			try {
 				listEmprunt=getDaoFactory().getEmpruntDao().getListEmprunt(bibliothequeId,editionId);
 			} catch (NotFoundException e1) {
-				throw new TechnicalException ("Erreur technique lors de l'accès en base de données.");	
+				LOGGER.info(e1.getMessage());
+				throw new NotFoundException (e1.getMessage());
 			}	
 		}
 		return listEmprunt;

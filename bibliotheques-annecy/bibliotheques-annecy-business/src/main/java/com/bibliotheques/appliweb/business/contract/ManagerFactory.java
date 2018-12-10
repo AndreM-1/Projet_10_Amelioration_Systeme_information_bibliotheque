@@ -3,6 +3,7 @@ package com.bibliotheques.appliweb.business.contract;
 import com.bibliotheques.appliweb.business.contract.manager.EditionManager;
 import com.bibliotheques.appliweb.business.contract.manager.EmpruntManager;
 import com.bibliotheques.appliweb.business.contract.manager.ExemplaireManager;
+import com.bibliotheques.appliweb.business.contract.manager.ReservationManager;
 import com.bibliotheques.appliweb.business.contract.manager.UtilisateurManager;
 
 /**
@@ -26,4 +27,8 @@ public interface ManagerFactory {
 	void setEmpruntManager(EmpruntManager empruntManager);
 
 	EmpruntManager getEmpruntManager();
+
+	void setReservationManager(ReservationManager reservationManager);
+
+	ReservationManager getReservationManager();
 }

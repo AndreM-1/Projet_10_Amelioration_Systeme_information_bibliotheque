@@ -7,6 +7,7 @@ import com.bibliotheques.appliweb.consumer.contract.DaoFactory;
 import com.bibliotheques.appliweb.consumer.contract.dao.EditionDao;
 import com.bibliotheques.appliweb.consumer.contract.dao.EmpruntDao;
 import com.bibliotheques.appliweb.consumer.contract.dao.ExemplaireDao;
+import com.bibliotheques.appliweb.consumer.contract.dao.ReservationDao;
 import com.bibliotheques.appliweb.consumer.contract.dao.UtilisateurDao;
 
 
@@ -27,6 +28,10 @@ public class DaoFactoryImpl implements DaoFactory{
 	
 	@Inject
 	private EmpruntDao empruntDao;
+	
+	@Inject
+	private ReservationDao reservationDao;
+
 
 	@Override
 	public EditionDao getEditionDao() {
@@ -66,5 +71,15 @@ public class DaoFactoryImpl implements DaoFactory{
 	@Override
 	public void setEmpruntDao(EmpruntDao empruntDao) {
 		this.empruntDao = empruntDao;
+	}
+	
+	@Override
+	public ReservationDao getReservationDao() {
+		return reservationDao;
+	}
+
+	@Override
+	public void setReservationDao(ReservationDao reservationDao) {
+		this.reservationDao = reservationDao;
 	}
 }

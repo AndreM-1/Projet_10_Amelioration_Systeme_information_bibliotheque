@@ -95,7 +95,7 @@ section{
 	margin-bottom: 5px;
 }
 
-#edition-accueil,#detail-edition,#resultat-recherche-edition,#gdp-edition-nr,#gdp-edition-ec,#gdp-edition-r{
+#edition-accueil,#detail-edition,#resultat-recherche-edition,#gdp-edition-nr,#gdp-edition-ec,#gdp-edition-r,#gdp-reservation-ec{
 	padding-top:2px;
 	padding-bottom:2px;
 	padding-left:0px;
@@ -127,16 +127,16 @@ section{
 }
 /*****************************************************************************************/
 
-#edition-detaillee, #resultat-recherche{
+#edition-detaillee, #resultat-recherche, #page-confirmation-reservation{
 	margin-top:25px;
 }
 
-#row-edition-detaillee{
+#row-edition-detaillee, #row-page-confirmation-reservation{
 	margin-left:0px;
 	margin-right:0px;
 }
 
-#edition-detaillee-titre{
+#edition-detaillee-titre,#page-confirmation-reservation-titre{
 	font-weight:bold;
 }
 
@@ -267,12 +267,12 @@ section{
 	padding-bottom :5px;
 }
 
-#row-gdp-edition-nr,#row-gdp-edition-ec,#row-gdp-edition-r{
+#row-gdp-edition-nr,#row-gdp-edition-ec,#row-gdp-edition-r,#row-gdp-reservation-ec{
 	margin-left:0px;
 	margin-right:0px;
 }
 
-#gdp-edition-nr-titre,#gdp-edition-ec-titre,#gdp-edition-r-titre{
+#gdp-edition-nr-titre,#gdp-edition-ec-titre,#gdp-edition-r-titre,#gdp-reservation-ec-titre{
 	font-weight:bold;
 }
 
@@ -303,7 +303,14 @@ section{
 
 @media all and (max-width: 768px){
 	#gdp-edition-nr-editeur,#gdp-edition-nr-genre,#gdp-edition-nr-isbn,#gdp-edition-nr-nb-pages,#gdp-edition-ec-editeur,#gdp-edition-ec-genre,#gdp-edition-ec-isbn,#gdp-edition-ec-nb-pages,
-	#gdp-edition-r-editeur,#gdp-edition-r-genre,#gdp-edition-r-isbn,#gdp-edition-r-nb-pages{
+	#gdp-edition-r-editeur,#gdp-edition-r-genre,#gdp-edition-r-isbn,#gdp-edition-r-nb-pages,#gdp-reservation-ec-isbn,
+	#gdp-reservation-ec-nb-pages{
+		display:none;
+	}
+}
+
+@media all and (max-width: 660px){
+	#gdp-reservation-ec-editeur,#gdp-reservation-ec-genre{
 		display:none;
 	}
 }
@@ -314,11 +321,24 @@ section{
 	}
 }
 
+@media all and (max-width: 570px){
+	#gdp-reservation-ec-auteur{
+		display:none;
+	}
+}
+
 @media all and (max-width: 520px){
 	#gdp-edition-nr-prolong-pret-2,#gdp-edition-ec-prolong-pret-2{
 		display:none;
 	}
 }
+
+@media all and (max-width: 490px){
+	#gdp-reservation-ec-date-retour,#gdp-reservation-ec-pos-liste{
+		display:none;
+	}
+}
+
 @media all and (min-width: 520px){
 	#gdp-edition-nr-prolong-pret-2-reduit,#gdp-edition-ec-prolong-pret-2-reduit{
 		display:none;
@@ -326,7 +346,7 @@ section{
 }
 
 @media all and (max-width: 520px){
-	#gdp-edition-nr-titre,#gdp-edition-ec-titre,#gdp-edition-r-titre{
+	#gdp-edition-nr-titre,#gdp-edition-ec-titre,#gdp-edition-r-titre,#gdp-reservation-ec-titre{
 		font-size:1em;
 	}
 	#gdp-edition-nr-periode-emprunt,#gdp-edition-ec-periode-emprunt,#gdp-edition-r-periode-emprunt,#gdp-edition-r-auteur{
@@ -359,6 +379,46 @@ section{
 	margin-bottom :10px;
 }
 
+/********************************Media query pour la page de confirmation de la réservation******************/
+@media all and (min-width: 550px){
+	#page-confirmation-reservation-titre{
+		font-size:1.2em;
+	}
+}
+
+@media all and (max-width: 750px){
+	#page-confirmation-reservation-isbn,#page-confirmation-reservation-nb-pages{
+		display:none;
+	}
+}
+
+@media all and (max-width: 630px){
+	#page-confirmation-reservation-editeur,#page-confirmation-reservation-genre{
+		display:none;
+	}
+}
+
+@media all and (max-width: 550px){
+	#page-confirmation-reservation-auteur{
+		display:none;
+	}
+}
+
+@media all and (max-width: 520px){
+	#page-confirmation-reservation-nb-reservations{
+		display:none;
+	}
+}
+
+@media all and (max-width: 480px){
+	#page-confirmation-reservation-date-retour{
+		display:none;
+	}
+}
+/*****************************************************************************************/
+
+
+
 /********************************Media query pour pages génériques ****************/
 @media all and (max-width: 992px){
 	#sous-section-qsn{
@@ -371,7 +431,6 @@ section{
 		display:none;
 	}
 }
-
 /*****************************************************************************************/
 
 footer{
