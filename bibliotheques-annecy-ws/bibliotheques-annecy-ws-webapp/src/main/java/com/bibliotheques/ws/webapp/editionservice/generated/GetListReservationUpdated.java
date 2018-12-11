@@ -25,8 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "getListAllReservation")
-public class GetListAllReservation {
+@XmlRootElement(name = "getListReservationUpdated")
+public class GetListReservationUpdated {
 
 
 }

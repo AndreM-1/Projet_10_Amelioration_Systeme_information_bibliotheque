@@ -363,11 +363,12 @@
       		</xsd:sequence>
       	</xsd:complexType>
       </xsd:element>
-      <xsd:element name="getListAllReservation">
+      
+      <xsd:element name="getListReservationUpdated">
       	<xsd:complexType>
       	</xsd:complexType>
       </xsd:element>
-      <xsd:element name="getListAllReservationResponse">
+      <xsd:element name="getListReservationUpdatedResponse">
       	<xsd:complexType>
       		<xsd:sequence>
 
@@ -375,15 +376,18 @@
       		</xsd:sequence>
       	</xsd:complexType>
       </xsd:element>
-      <xsd:element name="getListAllReservationFault">
+      
+      <xsd:element name="getListReservationUpdatedFault">
       	<xsd:complexType>
    	  		<xsd:sequence>
 		      	<xsd:element name="faultMessageErreur"
       				type="xsd:string" minOccurs="1" maxOccurs="1">
       			</xsd:element>
 	      	</xsd:sequence>
-      	</xsd:complexType>
+      	</xsd:complexType>    
       </xsd:element>
+      
+      
         </xsd:schema>
   </wsdl:types>
   <wsdl:message name="getListEditionRequest">
@@ -500,14 +504,15 @@
   <wsdl:message name="annulerReservationFault">
   	<wsdl:part name="parameters" element="tns:annulerReservationFault"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getListAllReservationRequest">
-  	<wsdl:part name="parameters" element="tns:getListAllReservation"></wsdl:part>
+
+  <wsdl:message name="getListReservationUpdatedRequest">
+  	<wsdl:part name="parameters" element="tns:getListReservationUpdated"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getListAllReservationResponse">
-  	<wsdl:part name="parameters" element="tns:getListAllReservationResponse"></wsdl:part>
+  <wsdl:message name="getListReservationUpdatedResponse">
+  	<wsdl:part name="parameters" element="tns:getListReservationUpdatedResponse"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getListAllReservationFault">
-  	<wsdl:part name="parameters" element="tns:getListAllReservationFault"></wsdl:part>
+  <wsdl:message name="getListReservationUpdatedFault">
+  	<wsdl:part name="fault" element="tns:getListReservationUpdatedFault"></wsdl:part>
   </wsdl:message>
   <wsdl:portType name="EditionService">
     <wsdl:operation name="getListEdition">
@@ -574,10 +579,10 @@
     	<wsdl:output message="tns:annulerReservationResponse"></wsdl:output>
             <wsdl:fault name="fault" message="tns:annulerReservationFault"></wsdl:fault>
         </wsdl:operation>
-    <wsdl:operation name="getListAllReservation">
-    	<wsdl:input message="tns:getListAllReservationRequest"></wsdl:input>
-    	<wsdl:output message="tns:getListAllReservationResponse"></wsdl:output>
-            <wsdl:fault name="fault" message="tns:getListAllReservationFault"></wsdl:fault>
+    <wsdl:operation name="getListReservationUpdated">
+    	<wsdl:input message="tns:getListReservationUpdatedRequest"></wsdl:input>
+    	<wsdl:output message="tns:getListReservationUpdatedResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:getListReservationUpdatedFault"></wsdl:fault>
         </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EditionServiceSOAP" type="tns:EditionService">
@@ -677,8 +682,7 @@
   		</wsdl:fault>
   	</wsdl:operation>
   	<wsdl:operation name="reserverEdition">
-  		<soap:operation
-  			soapAction="" />
+  		<soap:operation soapAction="" />
   		<wsdl:input>
   			<soap:body use="literal" />
   		</wsdl:input>
@@ -690,8 +694,7 @@
   		</wsdl:fault>
   	</wsdl:operation>
   	<wsdl:operation name="getListEmprunt">
-  		<soap:operation
-  			soapAction="" />
+  		<soap:operation soapAction="" />
   		<wsdl:input>
   			<soap:body use="literal" />
   		</wsdl:input>
@@ -703,8 +706,7 @@
   		</wsdl:fault>
   	</wsdl:operation>
   	<wsdl:operation name="getListReservation">
-  		<soap:operation
-  			soapAction="" />
+  		<soap:operation soapAction="" />
   		<wsdl:input>
   			<soap:body use="literal" />
   		</wsdl:input>
@@ -716,8 +718,7 @@
   		</wsdl:fault>
   	</wsdl:operation>
   	<wsdl:operation name="getListReservationUtilisateur">
-  		<soap:operation
-  			soapAction="" />
+  		<soap:operation soapAction="" />
   		<wsdl:input>
   			<soap:body use="literal" />
   		</wsdl:input>
@@ -729,8 +730,7 @@
   		</wsdl:fault>
   	</wsdl:operation>
   	<wsdl:operation name="annulerReservation">
-  		<soap:operation
-  			soapAction="" />
+  		<soap:operation soapAction="" />
   		<wsdl:input>
   			<soap:body use="literal" />
   		</wsdl:input>
@@ -741,9 +741,9 @@
   			<soap:fault use="literal" name="fault" />
   		</wsdl:fault>
   	</wsdl:operation>
-  	<wsdl:operation name="getListAllReservation">
-  		<soap:operation
-  			soapAction="" />
+
+  	<wsdl:operation name="getListReservationUpdated">
+  		<soap:operation soapAction="" />
   		<wsdl:input>
   			<soap:body use="literal" />
   		</wsdl:input>

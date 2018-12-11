@@ -104,4 +104,13 @@ public interface EmpruntDao {
 	 */
 	List<Emprunt> getListEmprunt(int bibliothequeId, int editionId) throws NotFoundException;
 
+	/**
+	 * Méthode permettant de renvoyer la liste des emprunts en fonction de la date de retour effective et du statut de l'emprunt.
+	 * @param dateDeRetourEffective : La date de retour effective de l'emprunt.
+	 * @param statutEmpruntId : L'identifiant du statut de l'emprunt
+	 * @return List
+	 * @throws NotFoundException
+	 */
+	List<Emprunt> getListEmprunt(Date dateDeRetourEffective, int statutEmpruntId) throws NotFoundException;
+
 }

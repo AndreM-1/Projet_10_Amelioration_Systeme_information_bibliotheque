@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "faultMessageErreur"
 })
-@XmlRootElement(name = "getListAllReservationFault")
-public class GetListAllReservationFault {
+@XmlRootElement(name = "getListReservationUpdatedFault")
+public class GetListReservationUpdatedFault {
 
     @XmlElement(required = true)
     protected String faultMessageErreur;

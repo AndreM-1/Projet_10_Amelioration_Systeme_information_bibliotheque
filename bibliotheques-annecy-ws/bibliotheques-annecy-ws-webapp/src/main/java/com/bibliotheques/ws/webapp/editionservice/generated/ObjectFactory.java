@@ -334,27 +334,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetListAllReservation }
+     * Create an instance of {@link GetListReservationUpdated }
      * 
      */
-    public GetListAllReservation createGetListAllReservation() {
-        return new GetListAllReservation();
+    public GetListReservationUpdated createGetListReservationUpdated() {
+        return new GetListReservationUpdated();
     }
 
     /**
-     * Create an instance of {@link GetListAllReservationResponse }
+     * Create an instance of {@link GetListReservationUpdatedResponse }
      * 
      */
-    public GetListAllReservationResponse createGetListAllReservationResponse() {
-        return new GetListAllReservationResponse();
+    public GetListReservationUpdatedResponse createGetListReservationUpdatedResponse() {
+        return new GetListReservationUpdatedResponse();
     }
 
     /**
-     * Create an instance of {@link GetListAllReservationFault }
+     * Create an instance of {@link GetListReservationUpdatedFault }
      * 
      */
-    public GetListAllReservationFault createGetListAllReservationFault() {
-        return new GetListAllReservationFault();
+    public GetListReservationUpdatedFault createGetListReservationUpdatedFault() {
+        return new GetListReservationUpdatedFault();
     }
 
 }

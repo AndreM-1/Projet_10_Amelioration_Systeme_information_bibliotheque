@@ -77,4 +77,13 @@ public interface ReservationDao {
 	 */
 	List<Reservation> getListAllReservation() throws NotFoundException;
 
+	/**
+	 * Méthode permettant de mettre à jour les champs priorite_reservation et date_reception_mail à partir de l'id de la réservation.
+	 * @param id : L'id de la réservation
+	 * @param prioriteReservation : La priorité de la réservation
+	 * @param dateReceptionMail : La date de réception du mail
+	 * @throws TechnicalException
+	 */
+	void updateReservation(int id, int prioriteReservation, Date dateReceptionMail) throws TechnicalException;
+
 }

@@ -63,4 +63,25 @@ public interface ReservationManager {
 	 */
 	List<Reservation> getListAllReservation() throws NotFoundException;
 
+	
+	/**
+	 * Méthode permettant de mettre à jour la table reservation et renvoyant une liste de réservation relatifs 
+	 * aux utilisateurs qui doivent recevoir un mail leur indiquant qu'ils peuvent venir emprunter leur édition
+	 * car l'utilisateur précédent n'est pas venu emprunter l'édition dans le délai de 48h.
+	 * @return List
+	 * @throws NotFoundException
+	 * @throws TechnicalException
+	 */
+	List<Reservation> getListReservationUpdated() throws NotFoundException, TechnicalException;
+
+	/**
+	 * Méthode permettant de mettre à jour la table reservation et renvoyant une liste de réservation relatifs 
+	 * aux utilisateurs qui doivent recevoir un mail leur indiquant qu'ils peuvent venir emprunter leur édition
+	 * qui a été restituée le jour d'avant à la bibliothèque.
+	 * @return List
+	 * @throws NotFoundException
+	 * @throws TechnicalException
+	 */
+	List<Reservation> getListReservationUpdatedRetourEmprunt() throws NotFoundException, TechnicalException;
+
 }

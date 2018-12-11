@@ -23,8 +23,6 @@ import com.bibliotheques.ws.webapp.editionservice.generated.EmprunterEditionFaul
 import com.bibliotheques.ws.webapp.editionservice.generated.EmprunterEditionFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GestionPretFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GestionPretFault_Exception;
-import com.bibliotheques.ws.webapp.editionservice.generated.GetListAllReservationFault;
-import com.bibliotheques.ws.webapp.editionservice.generated.GetListAllReservationFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntEnRetardFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntEnRetardFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntFault;
@@ -33,6 +31,8 @@ import com.bibliotheques.ws.webapp.editionservice.generated.GetListExemplaireFau
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListExemplaireFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationFault_Exception;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationUpdatedFault;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationUpdatedFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationUtilisateurFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationUtilisateurFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.ProlongerEmpruntFault;
@@ -269,17 +269,39 @@ public class EditionServiceImpl implements EditionService{
 	}
 
 	@Override
-	public List<Reservation> getListAllReservation() throws GetListAllReservationFault_Exception {
-		LOGGER.info("Web Service : EditionService - Couche Webapp - Méthode getListAllReservation()");
-		listReservation=new ArrayList<>();	
+	public List<Reservation> getListReservationUpdated() throws GetListReservationUpdatedFault_Exception {
+		LOGGER.info("Web Service : EditionService - Couche Webapp - getListReservationUpdated()");
+		listReservation=new ArrayList<>();
 		try {
-			listReservation=managerFactory.getReservationManager().getListAllReservation();
+			listReservation=managerFactory.getReservationManager().getListReservationUpdated();
 		} catch (NotFoundException e) {
 			LOGGER.info(e.getMessage());
-			GetListAllReservationFault getListAllReservationFault=new GetListAllReservationFault();
-			getListAllReservationFault.setFaultMessageErreur(e.getMessage());
-			throw new GetListAllReservationFault_Exception(e.getMessage(),getListAllReservationFault);	
+		} catch (TechnicalException e) {
+			LOGGER.info(e.getMessage());
+			GetListReservationUpdatedFault getListReservationUpdatedFault =new GetListReservationUpdatedFault();
+			getListReservationUpdatedFault.setFaultMessageErreur(e.getMessage());
+			throw new GetListReservationUpdatedFault_Exception(e.getMessage(),getListReservationUpdatedFault);
 		}
-		return listReservation;
+		
+		try {
+			listReservation.addAll(managerFactory.getReservationManager().getListReservationUpdatedRetourEmprunt());
+		} catch (NotFoundException e) {
+			LOGGER.info(e.getMessage());
+		} catch (TechnicalException e) {
+			LOGGER.info(e.getMessage());
+			GetListReservationUpdatedFault getListReservationUpdatedFault =new GetListReservationUpdatedFault();
+			getListReservationUpdatedFault.setFaultMessageErreur(e.getMessage());
+			throw new GetListReservationUpdatedFault_Exception(e.getMessage(),getListReservationUpdatedFault);
+		}
+		
+		if(listReservation.size()==0) {
+			String message="Liste réservation globale vide : rien à traiter.";
+			LOGGER.info(message);
+			GetListReservationUpdatedFault getListReservationUpdatedFault =new GetListReservationUpdatedFault();
+			getListReservationUpdatedFault.setFaultMessageErreur(message);
+			throw new GetListReservationUpdatedFault_Exception(message,getListReservationUpdatedFault);
+		}else {
+			return listReservation;
+		}
 	}
 }

@@ -141,4 +141,20 @@ public class ReservationDaoImpl extends AbstractDaoImpl implements ReservationDa
 		}
 	}
 	
+	@Override
+	public void updateReservation(int id,int prioriteReservation, Date dateReceptionMail) throws TechnicalException{
+		LOGGER.info("Web Service : EditionService - Couche Consumer - Méthode updateReservation()");
+		
+		//ATTENTION, il faut bien procéder ainsi en utilisant une requête préparée pour éviter les problèmes d'injection SQL même si le cas ne devrait
+		//pas se présenter ici.
+		String vSQL="UPDATE public.reservation SET priorite_reservation=?, date_reception_mail=? WHERE id=?";
+		JdbcTemplate vJdbcTemplate=new JdbcTemplate(getDataSource());
+		
+		try {
+			vJdbcTemplate.update(vSQL,prioriteReservation,dateReceptionMail,id);
+		} catch (DataAccessException e) {
+			throw new TechnicalException("Erreur technique lors de l'accès en base de données.");
+		}
+	}
+	
 }

@@ -1,5 +1,7 @@
 package com.bibliotheques.ws.consumer.impl.dao;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -188,6 +190,20 @@ public class EmpruntDaoImpl extends AbstractDaoImpl implements EmpruntDao {
 		}
 		else
 			throw new NotFoundException("Aucun emprunt pour l'édition concernée dans l'ensemble du réseau de bibliothèques!!!");
+	}
+	
+	@Override
+	public List<Emprunt> getListEmprunt(Date dateDeRetourEffective, int statutEmpruntId) throws NotFoundException{
+		LOGGER.info("Web Service : EditionService - Couche Consumer - Méthode getListEmprunt()");
+		String vSQL = "SELECT * FROM public.emprunt WHERE date_de_retour_effective=? AND statut_emprunt_id=? ORDER by utilisateur_id,id";
+		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource()); 
+		RowMapper<Emprunt> vRowMapper=new EmpruntRM(utilisateurDao,statutEmpruntDao,exemplaireDao);
+		List<Emprunt> vListEmprunt=vJdbcTemplate.query(vSQL, vRowMapper,dateDeRetourEffective,statutEmpruntId);
+		
+		if(vListEmprunt.size()!=0){
+			return vListEmprunt;
+		}else
+			throw new NotFoundException("Aucun emprunt correspondant à la date et au statut demandés.");
 	}
 	
 	

@@ -35,8 +35,8 @@ import com.bibliotheques.ws.model.bean.edition.Reservation;
 @XmlType(name = "", propOrder = {
     "reservation"
 })
-@XmlRootElement(name = "getListAllReservationResponse")
-public class GetListAllReservationResponse {
+@XmlRootElement(name = "getListReservationUpdatedResponse")
+public class GetListReservationUpdatedResponse {
 
     @XmlElement(required = true)
     protected List<Reservation> reservation;
