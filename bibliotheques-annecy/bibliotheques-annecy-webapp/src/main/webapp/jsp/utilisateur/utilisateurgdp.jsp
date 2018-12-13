@@ -47,23 +47,12 @@
 									<p id="gdp-edition-nr-nb-pages"><em>Nombre de pages :</em> <s:property value="exemplaire.edition.nbPages"/> pages</p>
 									<p id="gdp-edition-nr-periode-emprunt"><em>Période de l'emprunt :</em> Du <s:property value="dateDeDebut"/> au <s:property value="dateDeFin"/></p>
 									<p id="gdp-edition-nr-statut-pret"><em>Statut du prêt :</em> <s:property value="statutEmprunt.statutEmprunt"/></p>
-									<s:if test="%{prolongation==true}">
-										<p id="gdp-edition-nr-prolong-pret-1"><em>Prolongation du prêt :</em> 
-											<s:a action="prolonger_emprunt" class="btn btn-primary ">
-												<s:param name="bibliothequeId" value="exemplaire.bibliotheque.id"/>
-												<s:param name="editionId" value="exemplaire.edition.id"/>
-												Prolonger
-											</s:a>
-										</p>
-									</s:if>
-									<s:else>
-										<p class="text-justify" id="gdp-edition-nr-prolong-pret-2"><em>Prolongation du prêt :</em> 
-											Vous avez déjà prolongé le prêt de cet ouvrage ou dépassé la date limite pour le prolonger. N'oubliez pas de le rendre dès que possible.
-										</p>
-										<p id="gdp-edition-nr-prolong-pret-2-reduit"><em>Prolongation du prêt :</em> 
-											Déjà effectué.
-										</p>
-									</s:else>
+									<p class="text-justify" id="gdp-edition-nr-prolong-pret-2"><em>Prolongation du prêt :</em> 
+										Vous avez déjà prolongé le prêt de cet ouvrage ou dépassé la date limite pour le prolonger. N'oubliez pas de le rendre dès que possible.
+									</p>
+									<p id="gdp-edition-nr-prolong-pret-2-reduit"><em>Prolongation du prêt :</em> 
+										Déjà effectué.
+									</p>		
 								</div>
 							</div>
 						</s:iterator>

@@ -169,18 +169,10 @@ public class EmpruntManagerImpl extends AbstractManager implements EmpruntManage
 		}
 		
 		//Avant de renvoyer la liste des emprunts en retard, on va d'abord mettre à jour le champs statut_emprunt_id et également 
-		//le champs prolongation dans le cas où on dépasse la date de fin de prêt de plus de la durée max du prêt.
-		Calendar calDateDuJour=Calendar.getInstance();
+		//le champs prolongation dans le cas où on dépasse la date de fin de prêt.
 		Date dateDuJour=new Date();
 		//On définit un SimpleDateFormat.
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		
-		//On récupère la durée max de l'emprunt convertit en jours.
-		int dureeMaxEmpruntJours=this.getConversionJourDureeMaxEmprunt();
-		LOGGER.info("Durée max de l'emprunt convertit en jours : "+dureeMaxEmpruntJours);
-		
-		//On ajoute 1 jour à la durée max de l'emprunt pour se faciliter la vie lors de la comparaison.
-		dureeMaxEmpruntJours+=1;
 		
 		LOGGER.info("Taille de la liste d'emprunt avant update : "+listEmprunt.size());
 		LOGGER.info("Date du jour : "+df.format(dateDuJour));
@@ -206,22 +198,15 @@ public class EmpruntManagerImpl extends AbstractManager implements EmpruntManage
 					throw new TechnicalException(e.getMessage());
 				}
 				
-				//La fonction compareTo peut être utilisée pour comparer les objets Date mais aussi Calendar.
-				//Cela peut même s'avérer plus simple en ajoutant juste 1 jour à la durée max de l'emprunt.
-				Calendar calDateFin=emprunt.getDateDeFin().toGregorianCalendar();
-				calDateFin.add(Calendar.DATE, dureeMaxEmpruntJours);
-				LOGGER.info("Date de fin + durée max prêt + 1 : "+df.format(calDateFin.getTime()));
-				if(calDateDuJour.compareTo(calDateFin)>0) {
-					LOGGER.info("Mise à jour du champ prolongation à false requis pour Emprunt id = "+emprunt.getId());
-					try {
-						getDaoFactory().getEmpruntDao().updateEmprunt(prolongation,emprunt.getUtilisateur().getId(),emprunt.getExemplaire().getBibliotheque().getId(),
-								emprunt.getExemplaire().getEdition().getId());
-					} catch (TechnicalException e) {
-						LOGGER.info(e.getMessage());
-						getPlatformTransactionManager().rollback(vTransactionStatus);
-						throw new TechnicalException(e.getMessage());
-					}
-				}
+				LOGGER.info("Mise à jour du champ prolongation à false requis pour Emprunt id = "+emprunt.getId());
+				try {
+					getDaoFactory().getEmpruntDao().updateEmprunt(prolongation,emprunt.getUtilisateur().getId(),emprunt.getExemplaire().getBibliotheque().getId(),
+							emprunt.getExemplaire().getEdition().getId());
+				} catch (TechnicalException e) {
+					LOGGER.info(e.getMessage());
+					getPlatformTransactionManager().rollback(vTransactionStatus);
+					throw new TechnicalException(e.getMessage());
+				}	
 			}
 		}
 		
