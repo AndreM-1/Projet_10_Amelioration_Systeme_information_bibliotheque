@@ -12,7 +12,7 @@
 		
 			<section id="edition-detaillee">
 				<div class="row" id="row-edition-detaillee">
-					<s:iterator value="listExemplaire" begin ="1" end ="1">
+					<s:iterator value="listExemplaire" begin ="0" end ="0">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="detail-edition">	
 							<!-- Les images doivent être responsives. Pour cela : 
 					     	- Il ne faut surtout pas leur imposer une taille.
@@ -34,41 +34,41 @@
 						</div>
 					</s:iterator>
 				</div>
-				<s:if test="%{exemplaireTrouve==true}">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 table-responsive">
-							<table class="table table-bordered table-striped table-condensed">
-								<thead>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 table-responsive">
+						<table class="table table-bordered table-striped table-condensed">
+							<thead>
+								<tr>
+									<th class="text-center">Bibliothèque</th>
+									<th class="text-center">Nombre d'exemplaires disponibles</th>
+									<th class="text-center">Emprunt/Réservation</th>
+								</tr>
+							</thead>
+							<tbody>
+								<s:iterator value="listExemplaire">
 									<tr>
-										<th class="text-center">Bibliothèque</th>
-										<th class="text-center">Nombre d'exemplaires disponibles</th>
-										<th class="text-center">Emprunt</th>
-									</tr>
-								</thead>
-								<tbody>
-									<s:iterator value="listExemplaire">
-										<s:if test="%{nbExemplaires!=0}">
-											<tr>
-												<td class="text-center"><s:property value="bibliotheque.nomBibliotheque"/></td>
-												<td class="text-center"><s:property value="nbExemplaires"/></td>
-												<td class="text-center">
-												<s:a action="emprunter_edition" class="btn btn-primary">
+										<td class="text-center"><s:property value="bibliotheque.nomBibliotheque"/></td>
+										<s:if test="%{nbExemplairesDispo!=0}">
+											<td class="text-center"><s:property value="nbExemplairesDispo"/></td>
+											<td class="text-center">Emprunt à effectuer sur place</td>
+										</s:if>
+										<s:else>
+											<td class="text-center">Pas d'exemplaires disponibles pour le moment</td>
+											<td class="text-center">
+												<s:a action="reserver_edition" class="btn btn-primary">
 													<s:param name="bibliothequeId" value="bibliotheque.id"/>
 													<s:param name="editionId" value="edition.id"/>
-													Emprunter
+													<s:param name="nbExemplairesInit" value="nbExemplairesInit"/>
+													Réserver
 												</s:a>
-												</td>
-											</tr>
-										</s:if>
-									</s:iterator>
-								</tbody>	
-							</table>
-						</div>
+											</td>
+										</s:else>
+									</tr>
+								</s:iterator>
+							</tbody>	
+						</table>
 					</div>
-				</s:if>	
-				<s:else>
-					<h3 class="text-center">Aucun exemplaire de cet ouvrage n'est disponible pour le moment. Veuillez revenir plus tard.</h3>
-				</s:else>
+				</div>
 			</section>
 		
 			<!-- Footer -->

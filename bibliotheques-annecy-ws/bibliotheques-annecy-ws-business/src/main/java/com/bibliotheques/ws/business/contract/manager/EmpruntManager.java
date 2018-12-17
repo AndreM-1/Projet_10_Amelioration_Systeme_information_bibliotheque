@@ -48,4 +48,16 @@ public interface EmpruntManager {
 	 * @throws TechnicalException
 	 */
 	List<Emprunt> getListEmpruntEnRetard() throws NotFoundException,TechnicalException;
+
+	/**
+	 * Méthode permettant de renvoyer la liste des emprunts en cours ou non rendu à temps d'une édition dans une bibliothèque
+	 * si l'utilisateur ne l'a pas déjà emprunté.
+	 * @param utilisateurId : L'identifiant de l'utilisateur
+	 * @param bibliothequeId : L'identifiant de la bibliothèque
+	 * @param editionId : L'identifiant de l'édition
+	 * @return List
+	 * @throws FunctionalException
+	 * @throws NotFoundException
+	 */
+	List<Emprunt> getListEmprunt(int utilisateurId, int bibliothequeId, int editionId) throws FunctionalException, NotFoundException;
 }

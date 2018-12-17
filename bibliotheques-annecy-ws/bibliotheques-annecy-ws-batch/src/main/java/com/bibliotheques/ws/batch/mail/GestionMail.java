@@ -21,7 +21,9 @@ import org.springframework.stereotype.Component;
 import com.bibliotheques.ws.batch.Configuration;
 import com.bibliotheques.ws.batch.generated.editionservice.EditionService;
 import com.bibliotheques.ws.batch.generated.editionservice.GetListEmpruntEnRetardFault_Exception;
+import com.bibliotheques.ws.batch.generated.editionservice.GetListReservationUpdatedFault_Exception;
 import com.bibliotheques.ws.model.bean.edition.Emprunt;
+import com.bibliotheques.ws.model.bean.edition.Reservation;
 import com.bibliotheques.ws.model.bean.utilisateur.Utilisateur;
 
 
@@ -32,20 +34,22 @@ import com.bibliotheques.ws.model.bean.utilisateur.Utilisateur;
  */
 @Component
 public class GestionMail {
-	
+
 	//Définition du LOGGER
 	private static final Logger LOGGER=(Logger) LogManager.getLogger(GestionMail.class);
-	
+
 	private EditionService editionService;
-	
+
 	private Configuration configuration;
-	
+
 	private JavaMailSenderImpl eMailSenderImpl=new JavaMailSenderImpl();
-	
+
 	private List<Emprunt> listEmpruntEnRetard;
-	
+
+	private List<Reservation> listReservation;
+
 	private List<Utilisateur> listUtilisateur;
-	
+
 	/**
 	 * Constructeur avec paramètres.
 	 * @param configuration : On récupère le bean configuration
@@ -73,18 +77,18 @@ public class GestionMail {
 		LOGGER.info("Mail - Conclusion : "+configuration.getConclusion());
 		LOGGER.info("Mail - Signature : "+configuration.getSignature());
 		LOGGER.info("--------------------------------------------");
-		
+
 		//Appel au web service.
 		JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
 		factory.setAddress(configuration.getAdresseEditionService());
 		factory.setServiceClass(EditionService.class);
 		editionService=(EditionService)factory.create();
 		try {
-			
+
 			//On récupère une liste d'emprunt correspondant aux emprunts avec le statut non rendu à temps classé par utilisateurId puis id.
 			listEmpruntEnRetard=editionService.getListEmpruntEnRetard();
 			LOGGER.info("Taille liste Emprunt en retard : "+listEmpruntEnRetard.size());
-			
+
 			//A partir de là, on récupère les utilisateurs concernés.
 			listUtilisateur=new ArrayList<>();
 			int utilisateurId=-1;
@@ -95,7 +99,7 @@ public class GestionMail {
 				}
 			}
 			LOGGER.info("Taille liste utilisateur : "+listUtilisateur.size());
-			
+
 			//On va envoyer un mail avec la liste de tous les livres non rendus à temps par utilisateur.
 			for(Utilisateur vUtilisateur:listUtilisateur) {
 				LOGGER.info("--------------------------------------------");
@@ -108,17 +112,17 @@ public class GestionMail {
 				mail.setTo(vUtilisateur.getAdresseMail());
 				//Objet du mail.
 				mail.setSubject(configuration.getTitre());
-				
+
 				//Construction du contenu du mail avec des balises HTML
 				String contenuMail="<html><body>";
 				contenuMail+="Bonjour "+vUtilisateur.getCivilite()+" "+vUtilisateur.getPrenom()+" "+vUtilisateur.getNom()+",";
 				contenuMail+="<p>";
 				contenuMail+=configuration.getPremierMessage();
 				contenuMail+="</p>";
-				
+
 				//Définition du DateFormat pour l'affichage des dates dans le mail.
 				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-				
+
 				int vUtilisateurId=vUtilisateur.getId();
 				for(Emprunt emprunt:listEmpruntEnRetard) {
 					if(emprunt.getUtilisateur().getId()==vUtilisateurId) {
@@ -169,7 +173,106 @@ public class GestionMail {
 			LOGGER.info(e.getMessage());
 		}
 	}
+
+	/**
+	 * Méthode permettant d'envoyer des mails aux utilisateurs pour leur indiquer que les livres
+	 * qu'ils ont réservés sont maintenant disponibles à l'emprunt.
+	 */
+	@Scheduled(cron = "${mail.cron}")
+	public void sendMailReservation() {
+		//Définition du DateFormat pour l'affichage de la date d'envoie du mail.
+		DateFormat dfEnvoiMailReservation = new SimpleDateFormat("dd/MM/yyyy HH mm ss SSS");
+		LOGGER.info("--------------------------------------------");	
+		LOGGER.info("Entrée dans la méthode d'envoi des mails le "+dfEnvoiMailReservation.format(new Date()));
+		LOGGER.info("--------------------------------------------");
+
+		//Appel au web service.
+		JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+		factory.setAddress(configuration.getAdresseEditionService());
+		factory.setServiceClass(EditionService.class);
+		editionService=(EditionService)factory.create();
+
+		//On récupère une liste de réservations comportant les utilisateurs qui doivent recevoir un mail
+		try {
+			listReservation=editionService.getListReservationUpdated();
+			LOGGER.info("Taille liste réservation : "+listReservation.size());
+
+			//A partir de là, on récupère les utilisateurs concernés.
+			listUtilisateur=new ArrayList<>();
+			int utilisateurId=-1;
+			for(Reservation vReservation:listReservation) {
+				if(vReservation.getUtilisateur().getId()!=utilisateurId) {
+					listUtilisateur.add(vReservation.getUtilisateur());
+					utilisateurId=vReservation.getUtilisateur().getId();
+				}
+			}
+
+			LOGGER.info("Taille liste utilisateur : "+listUtilisateur.size());
+
+			//On va envoyer un mail avec la liste de toutes les réservations à venir emprunter par utilisateur.
+			for(Utilisateur vUtilisateur:listUtilisateur) {
+				//Instanciation du bean mail.
+				Mail mail=new Mail();
+				//Adresse mail du destinataire.
+				mail.setTo(vUtilisateur.getAdresseMail());
+				//Objet du mail.
+				mail.setSubject(configuration.getTitreReservation());
+				
+				//Construction du contenu du mail avec des balises HTML
+				String contenuMail="<html><body>";
+				contenuMail+="Bonjour "+vUtilisateur.getCivilite()+" "+vUtilisateur.getPrenom()+" "+vUtilisateur.getNom()+",";
+				contenuMail+="<p>";
+				contenuMail+=configuration.getPremierMessageReservation();
+				contenuMail+="</p>";
+				
+				int vUtilisateurId=vUtilisateur.getId();
+				for(Reservation vReservation:listReservation) {
+					if(vReservation.getUtilisateur().getId()==vUtilisateurId) {
+						LOGGER.info("Titre : "+vReservation.getExemplaire().getEdition().getOuvrage().getTitre());
+						LOGGER.info("Bibliothèque : "+vReservation.getExemplaire().getBibliotheque().getNomBibliotheque());
+						LOGGER.info("ISBN : "+vReservation.getExemplaire().getEdition().getIsbn());
+						LOGGER.info("Auteur : "+vReservation.getExemplaire().getEdition().getOuvrage().getAuteur().getPrenom()+" "+vReservation.getExemplaire().getEdition().getOuvrage().getAuteur().getNom());
+						LOGGER.info("Editeur : "+vReservation.getExemplaire().getEdition().getEditeur().getNomEditeur());
 	
+						contenuMail+="<p>";
+						contenuMail+="Intitulé de l'ouvrage : ";
+						contenuMail+=vReservation.getExemplaire().getEdition().getOuvrage().getTitre()+" ";
+						contenuMail+="<br/>";
+						contenuMail+="Bibliothèque : ";
+						contenuMail+=vReservation.getExemplaire().getBibliotheque().getNomBibliotheque();
+						contenuMail+="<br/>";							
+						contenuMail+="ISBN : ";
+						contenuMail+=vReservation.getExemplaire().getEdition().getIsbn()+" ";
+						contenuMail+="<br/>";
+						contenuMail+="Auteur : ";
+						contenuMail+=vReservation.getExemplaire().getEdition().getOuvrage().getAuteur().getPrenom()+" "+vReservation.getExemplaire().getEdition().getOuvrage().getAuteur().getNom()+" ";
+						contenuMail+="<br/>";
+						contenuMail+="Editeur : ";
+						contenuMail+=vReservation.getExemplaire().getEdition().getEditeur().getNomEditeur()+" ";
+						contenuMail+="</p>";
+					}
+				}	
+				contenuMail+="<p>";
+				contenuMail+=configuration.getDeuxiemeMessageReservation();
+				contenuMail+="</p>";
+				contenuMail+="<p>";
+				contenuMail+=configuration.getConclusion();
+				contenuMail+="</p>";
+				contenuMail+="<p>";
+				contenuMail+=configuration.getSignature();
+				contenuMail+="</p>";
+				contenuMail+="</body></html>";
+				mail.setBody(contenuMail);
+				this.sendMimeMessage(mail);		
+			}
+		} catch (GetListReservationUpdatedFault_Exception e) {
+			//Soit il n'y a aucun mail à envoyer (pas de mail dépassé de 48H dans la table reservation, exemplaires rendus non réservés, pas d'exemplaires rendus J-1, etc...)
+			//Ou une erreur technique lors de l'accès en base de données.
+			//Dans ces cas là, on n'envoie pas de mails.
+			LOGGER.info(e.getMessage());
+		}
+	}
+
 	/**
 	 * Multipurpose Internet Mail Extensions (MIME) ou Extensions multifonctions du courrier Internet est un standard internet qui étend le format de données
 	 * des courriels pour supporter des textes en différents codage de caractères autres que l'ASCII, des contenus non textuels, des contenus multiples, et des 
@@ -195,7 +298,7 @@ public class GestionMail {
 		LOGGER.info("Serveur SMTP Gmail - Debug : "+configuration.getServeurSmtpDebug());
 		LOGGER.info("Serveur SMTP Gmail - Default Encoding : "+configuration.getServeurSmtpDefaultEncoding());
 		LOGGER.info("--------------------------------------------");	
-		
+
 		eMailSenderImpl.setHost(configuration.getServeurSmtpHost());
 		eMailSenderImpl.setPort(configuration.getServeurSmtpPort());
 		eMailSenderImpl.setUsername(configuration.getServeurSmtpUsername());
@@ -210,7 +313,7 @@ public class GestionMail {
 		props.put("mail.smtp.timeout", configuration.getServeurSmtpTimeout());
 		props.put("mail.smtp.writetimeout", configuration.getServeurSmtpWriteTimeout());
 		props.put("mail.debug", configuration.getServeurSmtpDebug());
-		
+
 		LOGGER.info("Vérification des propriétés de l'eMailSender.");
 		LOGGER.info("mail.smtp.auth :"+props.getProperty("mail.smtp.auth"));
 		LOGGER.info("mail.smtp.starttls.enable :"+props.getProperty("mail.smtp.starttls.enable"));
@@ -225,7 +328,7 @@ public class GestionMail {
 		LOGGER.info("Password : "+eMailSenderImpl.getPassword());
 		LOGGER.info("Protocol : "+eMailSenderImpl.getProtocol());
 		LOGGER.info("Default Encoding : "+eMailSenderImpl.getDefaultEncoding());
-		
+
 		MimeMessage mimeMessage = eMailSenderImpl.createMimeMessage();
 		MimeMessageHelper mimeMessageHelper;
 		try {
@@ -237,7 +340,7 @@ public class GestionMail {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

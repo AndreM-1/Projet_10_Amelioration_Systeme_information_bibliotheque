@@ -102,7 +102,43 @@
 								</div>
 							</div>
 						</s:iterator>
-					</div>					
+					</div>		
+					
+					<h3 class="statut-pret">Réservation en cours</h3>
+					<s:if test="%{bReservationEnCours==true}">
+						<h4>Vous n'avez aucune réservation en cours pour le moment.</h4>
+					</s:if>
+					<div class="row" id="row-gdp-reservation-ec">
+						<s:iterator value="listReservationAppliWeb">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="gdp-reservation-ec">	
+								<!-- Les images doivent être responsives. Pour cela : 
+						     	- Il ne faut surtout pas leur imposer une taille.
+						     	- Les images doivent avoir les mêmes dimensions. C'est un pré-requis indispensable.
+						     	- Il faut par contre bien mettre l'image dans une balise div qui applique les classes de type col-*-*
+					     		- Il faut appliquer la classe img-responsive directement au niveau de l'image. -->
+								<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+									<img class="img-responsive" src="<s:property value="reservation.exemplaire.edition.photo.nomPhoto"/>" alt="Photo Couverture livre"/>
+								</div>
+								<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+									<h4 id="gdp-reservation-ec-titre"><s:property value="reservation.exemplaire.edition.ouvrage.titre"/></h4>				
+									<p id="gdp-reservation-ec-auteur"><em>Auteur : </em><s:property value="reservation.exemplaire.edition.ouvrage.auteur.prenom"/> <s:property value="reservation.exemplaire.edition.ouvrage.auteur.nom"/></p>
+									<p id="gdp-reservation-ec-editeur"><em>Edité par</em> <s:property value="reservation.exemplaire.edition.editeur.nomEditeur"/> le <s:property value="reservation.exemplaire.edition.dateParution"/></p>
+									<p id="gdp-reservation-ec-genre"><em>Genre :</em> <s:property value="reservation.exemplaire.edition.genre.genre"/></p>
+									<p id="gdp-reservation-ec-isbn"><em>ISBN :</em> <s:property value="reservation.exemplaire.edition.isbn"/></p>
+									<p id="gdp-reservation-ec-nb-pages"><em>Nombre de pages :</em> <s:property value="reservation.exemplaire.edition.nbPages"/> pages</p>
+									<p id="gdp-reservation-ec-date-retour"><em>Date de retour prévue la plus proche :</em> <s:property value="dateRetour"/> <s:property value="notificationDate"/></p>
+									<p id="gdp-reservation-ec-pos-liste"><em>Position dans la liste d'attente :</em> <s:property value="reservation.prioriteReservation"/></p>
+									<p>
+										<s:a action="annuler_reservation" class="btn btn-primary ">
+											<s:param name="bibliothequeId" value="reservation.exemplaire.bibliotheque.id"/>
+											<s:param name="editionId" value="reservation.exemplaire.edition.id"/>
+											Annuler la réservation
+										</s:a>
+									</p>	
+								</div>
+							</div>
+						</s:iterator>
+					</div>										
 					
 					<h3 class="statut-pret">Livres rendus</h3>
 					<s:if test="%{bEmpruntRendu==true}">

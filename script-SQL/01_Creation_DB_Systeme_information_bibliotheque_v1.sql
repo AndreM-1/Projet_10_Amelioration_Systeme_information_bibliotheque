@@ -117,7 +117,8 @@ ALTER SEQUENCE public.bibliotheque_id_seq OWNED BY public.bibliotheque.id;
 CREATE TABLE public.exemplaire (
                 bibliotheque_id INTEGER NOT NULL,
                 edition_id INTEGER NOT NULL,
-                nb_exemplaires INTEGER NOT NULL,
+                nb_exemplaires_init INTEGER NOT NULL,
+                nb_exemplaires_dispo INTEGER NOT NULL,
                 CONSTRAINT exemplaire_pk PRIMARY KEY (bibliotheque_id, edition_id)
 );
 
@@ -161,6 +162,26 @@ CREATE UNIQUE INDEX utilisateur_idx3
  ON public.utilisateur
  ( mot_de_passe_securise );
 
+CREATE SEQUENCE public.reservation_id_seq;
+
+CREATE TABLE public.reservation (
+                id INTEGER NOT NULL DEFAULT nextval('public.reservation_id_seq'),
+                date_reservation TIMESTAMP NOT NULL,
+                utilisateur_id INTEGER NOT NULL,
+                exemplaire_bibliotheque_id INTEGER NOT NULL,
+                exemplaire_edition_id INTEGER NOT NULL,
+                priorite_reservation INTEGER NOT NULL,
+                date_reception_mail DATE,
+                CONSTRAINT reservation_pk PRIMARY KEY (id)
+);
+
+
+ALTER SEQUENCE public.reservation_id_seq OWNED BY public.reservation.id;
+
+CREATE UNIQUE INDEX reservation_idx
+ ON public.reservation
+ ( utilisateur_id, exemplaire_edition_id );
+
 CREATE SEQUENCE public.emprunt_id_seq;
 
 CREATE TABLE public.emprunt (
@@ -181,11 +202,9 @@ CREATE TABLE public.emprunt (
 
 ALTER SEQUENCE public.emprunt_id_seq OWNED BY public.emprunt.id;
 
-
 CREATE UNIQUE INDEX emprunt_idx
  ON public.emprunt
  ( utilisateur_id, exemplaire_edition_id );
-
 
 ALTER TABLE public.ouvrage ADD CONSTRAINT auteur_ouvrage_fk
 FOREIGN KEY (auteur_id)
@@ -250,7 +269,21 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
+ALTER TABLE public.reservation ADD CONSTRAINT exemplaire_reservation_fk
+FOREIGN KEY (exemplaire_edition_id, exemplaire_bibliotheque_id)
+REFERENCES public.exemplaire (edition_id, bibliotheque_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
 ALTER TABLE public.emprunt ADD CONSTRAINT utilisateur_emprunt_fk
+FOREIGN KEY (utilisateur_id)
+REFERENCES public.utilisateur (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.reservation ADD CONSTRAINT utilisateur_reservation_fk
 FOREIGN KEY (utilisateur_id)
 REFERENCES public.utilisateur (id)
 ON DELETE NO ACTION

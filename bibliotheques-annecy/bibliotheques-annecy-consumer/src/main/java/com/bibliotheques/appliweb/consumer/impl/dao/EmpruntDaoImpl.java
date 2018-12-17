@@ -12,6 +12,7 @@ import com.bibliotheques.appliweb.consumer.contract.dao.EmpruntDao;
 import com.bibliotheques.appliweb.model.bean.edition.Emprunt;
 import com.bibliotheques.appliweb.model.exception.EmprunterEditionFault_Exception;
 import com.bibliotheques.appliweb.model.exception.GestionPretFault_Exception;
+import com.bibliotheques.appliweb.model.exception.GetListEmpruntFault_Exception;
 import com.bibliotheques.appliweb.model.exception.ProlongerEmpruntFault_Exception;
 
 @Named
@@ -55,5 +56,17 @@ public class EmpruntDaoImpl extends AbstractDaoImpl implements EmpruntDao{
 			LOGGER.info(e.getMessage());
 			throw new ProlongerEmpruntFault_Exception(e.getMessage());
 		}
+	}
+	
+	@Override
+	public List<Emprunt> getListEmprunt (int utilisateurId, int bibliothequeId, int editionId) throws GetListEmpruntFault_Exception{
+		LOGGER.info("Couche Consumer - Méthode getListEmprunt()");
+		try {
+			listEmprunt=getEditionService().getListEmprunt(utilisateurId, bibliothequeId, editionId);
+		} catch (GetListEmpruntFault_Exception e) {
+			LOGGER.info(e.getMessage());
+			throw new GetListEmpruntFault_Exception(e.getMessage());
+		}
+		return listEmprunt;
 	}
 }

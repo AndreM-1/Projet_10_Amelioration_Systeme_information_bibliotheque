@@ -13,8 +13,12 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.bibliotheques.appliweb.business.contract.ManagerFactory;
 import com.bibliotheques.appliweb.model.bean.edition.Emprunt;
+import com.bibliotheques.appliweb.model.bean.edition.Reservation;
+import com.bibliotheques.appliweb.model.bean.edition.ReservationAppliWeb;
 import com.bibliotheques.appliweb.model.bean.utilisateur.Utilisateur;
 import com.bibliotheques.appliweb.model.exception.GestionPretFault_Exception;
+import com.bibliotheques.appliweb.model.exception.GetListEmpruntFault_Exception;
+import com.bibliotheques.appliweb.model.exception.GetListReservationUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateCoordUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateMdpUtilisateurFault_Exception;
 import com.opensymphony.xwork2.ActionSupport;
@@ -57,11 +61,14 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 	private List<Emprunt> listEmpruntNonRendu=new ArrayList<>();
 	private List<Emprunt> listEmpruntEnCours=new ArrayList<>();
 	private List<Emprunt> listEmpruntRendu=new ArrayList<>();
+	private List<Reservation> listReservation;
+	private List<ReservationAppliWeb> listReservationAppliWeb=new ArrayList<>();
 	
 	private boolean bEmpruntNonRendu=false;
 	private boolean bEmpruntEnCours =false;
 	private boolean bEmpruntRendu =false;
-	
+	private boolean bReservationEnCours=false;
+
 	// ----- Eléments Struts
 	private Map<String, Object> session;
 
@@ -245,6 +252,14 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 	public void setbEmpruntRendu(boolean bEmpruntRendu) {
 		this.bEmpruntRendu = bEmpruntRendu;
 	}
+	
+	public boolean isbReservationEnCours() {
+		return bReservationEnCours;
+	}
+	
+	public List<ReservationAppliWeb> getListReservationAppliWeb() {
+		return listReservationAppliWeb;
+	}
 
 	@Override
 	public void setSession(Map<String, Object> pSession) {
@@ -381,10 +396,10 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 	}
 	
 	/**
-	 * Méthode permettant de visualiser les prêts effectués par un utilisateur
+	 * Méthode permettant de visualiser les prêts et réservations effectués par un utilisateur
 	 * @return success
 	 */
-	public String doGestionPret() {
+	public String doGestionPretReservation() {
 		LOGGER.info("GestionProfilUtilisateurAction - Méthode doGestionPret()");
 		
 		//Récupération de la variable de session relative à l'utilisateur.
@@ -392,8 +407,8 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 		id=vUtilisateurSession.getId();
 		LOGGER.info("Utilisateur Id : "+id);
 		try {
+			//Traitement pour les emprunts
 			listEmprunt=managerFactory.getEmpruntManager().gestionPret(id);
-			
 			for(Emprunt emprunt:listEmprunt) {
 				if(emprunt.getStatutEmprunt().getStatutEmprunt().equals("Non rendu à temps")) {
 					listEmpruntNonRendu.add(emprunt);
@@ -403,19 +418,15 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 					listEmpruntRendu.add(emprunt);
 				}
 			}
-			
 			if(listEmpruntNonRendu.size()==0) {
 				bEmpruntNonRendu=true;
-			}
-				
+			}		
 			if(listEmpruntEnCours.size()==0) {
 				bEmpruntEnCours=true;
-			}
-				
+			}	
 			if(listEmpruntRendu.size()==0) {
 				bEmpruntRendu=true;
-			}
-				
+			}	
 		} catch (GestionPretFault_Exception e) {
 			LOGGER.info(e.getMessage());
 			bEmpruntNonRendu=true;
@@ -423,6 +434,36 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 			bEmpruntRendu=true;
 		}
 		
+		//Traitement pour les réservations
+		try {
+			listReservation=managerFactory.getReservationManager().getListReservationUtilisateur(id);
+			for(Reservation vReservation:listReservation) {
+				ReservationAppliWeb reservationAppliWeb=new ReservationAppliWeb();
+				reservationAppliWeb.setReservation(vReservation);
+				if(vReservation.getDateReceptionMail()==null) {
+					List<Emprunt> vListEmprunt;
+					int bibliothequeId=vReservation.getExemplaire().getBibliotheque().getId();
+					int editionId=vReservation.getExemplaire().getEdition().getId();
+					try {
+						vListEmprunt=managerFactory.getEmpruntManager().getListEmprunt(-1,bibliothequeId, editionId);
+						reservationAppliWeb.setDateRetour(vListEmprunt.get(0).getDateDeFin());
+						if(vListEmprunt.get(0).getStatutEmprunt().getId()==2){
+							reservationAppliWeb.setNotificationDate("(En attente du retour de l'utilisateur)");	
+						}
+					} catch (GetListEmpruntFault_Exception e) {
+						LOGGER.info(e.getMessage());
+						reservationAppliWeb.setNotificationDate("La date sera prochainement réactualisée");	
+					}
+				}else {
+					reservationAppliWeb.setNotificationDate("Vous pouvez venir chercher votre livre préférée;)");	
+				}
+
+				listReservationAppliWeb.add(reservationAppliWeb);
+			}
+		} catch (GetListReservationUtilisateurFault_Exception e) {
+			LOGGER.info(e.getMessage());
+			bReservationEnCours=true;
+		}
 		return ActionSupport.SUCCESS;
 	}
 	

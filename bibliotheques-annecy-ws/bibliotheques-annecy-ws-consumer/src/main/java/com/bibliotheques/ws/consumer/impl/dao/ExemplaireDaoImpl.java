@@ -67,7 +67,7 @@ public class ExemplaireDaoImpl extends AbstractDaoImpl implements ExemplaireDao{
 	@Override
 	public void updateNbExemplaire(int bibliothequeId, int editionId) throws TechnicalException {
 		LOGGER.info("Web Service : EditionService - Couche Consumer - Méthode updateNbExemplaire()");
-		String vSQL ="UPDATE public.exemplaire SET nb_exemplaires=nb_exemplaires-1 WHERE bibliotheque_id ="+bibliothequeId+" AND edition_id ="+editionId;
+		String vSQL ="UPDATE public.exemplaire SET nb_exemplaires_dispo=nb_exemplaires_dispo-1 WHERE bibliotheque_id ="+bibliothequeId+" AND edition_id ="+editionId;
 		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource()); 
 		
 		try {

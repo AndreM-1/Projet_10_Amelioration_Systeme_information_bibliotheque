@@ -214,7 +214,181 @@
       		</xsd:sequence>
       	</xsd:complexType>
       </xsd:element>
-    </xsd:schema>
+      <xsd:element name="reserverEdition">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="utilisateurId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="bibliothequeId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="editionId" type="xsd:int" minOccurs="1" maxOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="reserverEditionResponse">
+      	<xsd:complexType>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="reserverEditionFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="faultMessageErreur"
+      				type="xsd:string" minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListEmprunt">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="utilisateurId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="bibliothequeId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="editionId" type="xsd:int" minOccurs="1" maxOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListEmpruntResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="emprunt" type="Q1:Emprunt" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListEmpruntFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="faultMessageErreur"
+      				type="xsd:string" minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListReservation">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="utilisateurId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="bibliothequeId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="editionId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="nbExemplairesInit" type="xsd:int" minOccurs="1" maxOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListReservationResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="reservation" type="Q1:Reservation" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListReservationFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="faultMessageErreur"
+      				type="xsd:string" minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListReservationUtilisateur">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="utilisateurId" type="xsd:int" minOccurs="1" maxOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListReservationUtilisateurResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="reservation" type="Q1:Reservation" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListReservationUtilisateurFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="faultMessageErreur"
+      				type="xsd:string" minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="annulerReservation">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="utilisateurId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="bibliothequeId" type="xsd:int"
+      				minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="editionId" type="xsd:int" minOccurs="1" maxOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="annulerReservationResponse">
+      	<xsd:complexType>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="annulerReservationFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="faultMessageErreur"
+      				type="xsd:string" minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="getListReservationUpdated">
+      	<xsd:complexType>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListReservationUpdatedResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="reservation" type="Q1:Reservation" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="getListReservationUpdatedFault">
+      	<xsd:complexType>
+   	  		<xsd:sequence>
+		      	<xsd:element name="faultMessageErreur"
+      				type="xsd:string" minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+	      	</xsd:sequence>
+      	</xsd:complexType>    
+      </xsd:element>
+      
+      
+        </xsd:schema>
   </wsdl:types>
   <wsdl:message name="getListEditionRequest">
     <wsdl:part element="tns:getListEdition" name="parameters"/>
@@ -285,6 +459,61 @@
   <wsdl:message name="getListEmpruntEnRetardFault">
   	<wsdl:part name="parameters" element="tns:getListEmpruntEnRetardFault"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="reserverEditionRequest">
+  	<wsdl:part name="parameters" element="tns:reserverEdition"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reserverEditionResponse">
+  	<wsdl:part name="parameters" element="tns:reserverEditionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reserverEditionFault">
+  	<wsdl:part name="parameters" element="tns:reserverEditionFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntRequest">
+  	<wsdl:part name="parameters" element="tns:getListEmprunt"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntResponse">
+  	<wsdl:part name="parameters" element="tns:getListEmpruntResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListEmpruntFault">
+  	<wsdl:part name="parameters" element="tns:getListEmpruntFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListReservationRequest">
+  	<wsdl:part name="parameters" element="tns:getListReservation"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListReservationResponse">
+  	<wsdl:part name="parameters" element="tns:getListReservationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListReservationFault">
+  	<wsdl:part name="parameters" element="tns:getListReservationFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListReservationUtilisateurRequest">
+  	<wsdl:part name="parameters" element="tns:getListReservationUtilisateur"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListReservationUtilisateurResponse">
+  	<wsdl:part name="parameters" element="tns:getListReservationUtilisateurResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListReservationUtilisateurFault">
+  	<wsdl:part name="parameters" element="tns:getListReservationUtilisateurFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="annulerReservationRequest">
+  	<wsdl:part name="parameters" element="tns:annulerReservation"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="annulerReservationResponse">
+  	<wsdl:part name="parameters" element="tns:annulerReservationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="annulerReservationFault">
+  	<wsdl:part name="parameters" element="tns:annulerReservationFault"></wsdl:part>
+  </wsdl:message>
+
+  <wsdl:message name="getListReservationUpdatedRequest">
+  	<wsdl:part name="parameters" element="tns:getListReservationUpdated"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListReservationUpdatedResponse">
+  	<wsdl:part name="parameters" element="tns:getListReservationUpdatedResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListReservationUpdatedFault">
+  	<wsdl:part name="fault" element="tns:getListReservationUpdatedFault"></wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="EditionService">
     <wsdl:operation name="getListEdition">
       <wsdl:input message="tns:getListEditionRequest"/>
@@ -324,6 +553,36 @@
     	<wsdl:input message="tns:getListEmpruntEnRetardRequest"></wsdl:input>
     	<wsdl:output message="tns:getListEmpruntEnRetardResponse"></wsdl:output>
             <wsdl:fault name="fault" message="tns:getListEmpruntEnRetardFault"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="reserverEdition">
+    	<wsdl:input message="tns:reserverEditionRequest"></wsdl:input>
+    	<wsdl:output message="tns:reserverEditionResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:reserverEditionFault"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="getListEmprunt">
+    	<wsdl:input message="tns:getListEmpruntRequest"></wsdl:input>
+    	<wsdl:output message="tns:getListEmpruntResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:getListEmpruntFault"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="getListReservation">
+    	<wsdl:input message="tns:getListReservationRequest"></wsdl:input>
+    	<wsdl:output message="tns:getListReservationResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:getListReservationFault"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="getListReservationUtilisateur">
+    	<wsdl:input message="tns:getListReservationUtilisateurRequest"></wsdl:input>
+    	<wsdl:output message="tns:getListReservationUtilisateurResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:getListReservationUtilisateurFault"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="annulerReservation">
+    	<wsdl:input message="tns:annulerReservationRequest"></wsdl:input>
+    	<wsdl:output message="tns:annulerReservationResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:annulerReservationFault"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="getListReservationUpdated">
+    	<wsdl:input message="tns:getListReservationUpdatedRequest"></wsdl:input>
+    	<wsdl:output message="tns:getListReservationUpdatedResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:getListReservationUpdatedFault"></wsdl:fault>
         </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EditionServiceSOAP" type="tns:EditionService">
@@ -411,6 +670,79 @@
   		</wsdl:fault>
   	</wsdl:operation>
   	<wsdl:operation name="getListEmpruntEnRetard">
+  		<soap:operation soapAction="" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+  			<soap:fault use="literal" name="fault" />
+  		</wsdl:fault>
+  	</wsdl:operation>
+  	<wsdl:operation name="reserverEdition">
+  		<soap:operation soapAction="" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+  			<soap:fault use="literal" name="fault" />
+  		</wsdl:fault>
+  	</wsdl:operation>
+  	<wsdl:operation name="getListEmprunt">
+  		<soap:operation soapAction="" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+  			<soap:fault use="literal" name="fault" />
+  		</wsdl:fault>
+  	</wsdl:operation>
+  	<wsdl:operation name="getListReservation">
+  		<soap:operation soapAction="" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+  			<soap:fault use="literal" name="fault" />
+  		</wsdl:fault>
+  	</wsdl:operation>
+  	<wsdl:operation name="getListReservationUtilisateur">
+  		<soap:operation soapAction="" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+  			<soap:fault use="literal" name="fault" />
+  		</wsdl:fault>
+  	</wsdl:operation>
+  	<wsdl:operation name="annulerReservation">
+  		<soap:operation soapAction="" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+  			<soap:fault use="literal" name="fault" />
+  		</wsdl:fault>
+  	</wsdl:operation>
+
+  	<wsdl:operation name="getListReservationUpdated">
   		<soap:operation soapAction="" />
   		<wsdl:input>
   			<soap:body use="literal" />

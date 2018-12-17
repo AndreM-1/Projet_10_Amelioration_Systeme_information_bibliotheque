@@ -155,7 +155,10 @@
     		<element name="edition" type="tns:Edition" minOccurs="1"
     			maxOccurs="1">
     		</element>
-    		<element name="nbExemplaires" type="int" minOccurs="1" maxOccurs="1"></element>
+    		<element name="nbExemplairesInit" type="int" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="nbExemplairesDispo" type="int" minOccurs="1" maxOccurs="1"></element>
     	</sequence>
     </complexType>
 
@@ -194,6 +197,25 @@
     			minOccurs="1" maxOccurs="1">
     		</element>
     		<element name="exemplaire" type="tns:Exemplaire" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Reservation">
+    	<sequence>
+    		<element name="id" type="int" minOccurs="1" maxOccurs="1"></element>
+    		<element name="dateReservation" type="dateTime"
+    			minOccurs="1" maxOccurs="1">
+    		</element>
+    		<element name="utilisateur" type="tns:Utilisateur"
+    			minOccurs="1" maxOccurs="1">
+    		</element>
+    		<element name="exemplaire" type="tns:Exemplaire"
+    			minOccurs="1" maxOccurs="1">
+    		</element>
+    		<element name="prioriteReservation" type="int" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="dateReceptionMail" type="date" minOccurs="0" maxOccurs="1"></element>
     	</sequence>
     </complexType>
 </schema>

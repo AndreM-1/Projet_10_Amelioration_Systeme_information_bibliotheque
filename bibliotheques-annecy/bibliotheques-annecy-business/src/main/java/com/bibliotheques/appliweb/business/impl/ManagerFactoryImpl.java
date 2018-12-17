@@ -7,6 +7,7 @@ import com.bibliotheques.appliweb.business.contract.ManagerFactory;
 import com.bibliotheques.appliweb.business.contract.manager.EditionManager;
 import com.bibliotheques.appliweb.business.contract.manager.EmpruntManager;
 import com.bibliotheques.appliweb.business.contract.manager.ExemplaireManager;
+import com.bibliotheques.appliweb.business.contract.manager.ReservationManager;
 import com.bibliotheques.appliweb.business.contract.manager.UtilisateurManager;
 
 
@@ -27,6 +28,9 @@ public class ManagerFactoryImpl implements ManagerFactory {
 	
 	@Inject
 	private EmpruntManager empruntManager;
+	
+	@Inject
+	private ReservationManager reservationManager;
 
 	@Override
 	public EditionManager getEditionManager() {
@@ -66,5 +70,15 @@ public class ManagerFactoryImpl implements ManagerFactory {
 	@Override
 	public void setEmpruntManager(EmpruntManager empruntManager) {
 		this.empruntManager = empruntManager;
+	}
+	
+	@Override
+	public ReservationManager getReservationManager() {
+		return reservationManager;
+	}
+
+	@Override
+	public void setReservationManager(ReservationManager reservationManager) {
+		this.reservationManager = reservationManager;
 	}
 }

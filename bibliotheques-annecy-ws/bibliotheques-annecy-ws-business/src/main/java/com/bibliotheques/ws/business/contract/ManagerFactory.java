@@ -3,6 +3,7 @@ package com.bibliotheques.ws.business.contract;
 import com.bibliotheques.ws.business.contract.manager.EditionManager;
 import com.bibliotheques.ws.business.contract.manager.EmpruntManager;
 import com.bibliotheques.ws.business.contract.manager.ExemplaireManager;
+import com.bibliotheques.ws.business.contract.manager.ReservationManager;
 import com.bibliotheques.ws.business.contract.manager.UtilisateurManager;
 
 /**
@@ -26,4 +27,8 @@ public interface ManagerFactory {
 	void setEmpruntManager(EmpruntManager empruntManager);
 
 	EmpruntManager getEmpruntManager();
+
+	void setReservationManager(ReservationManager reservationManager);
+
+	ReservationManager getReservationManager();
 }

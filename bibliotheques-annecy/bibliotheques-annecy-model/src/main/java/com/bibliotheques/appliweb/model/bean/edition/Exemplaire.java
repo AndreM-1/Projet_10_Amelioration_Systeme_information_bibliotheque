@@ -19,7 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="bibliotheque" type="{http://www.example.org/beans}Bibliotheque"/&gt;
  *         &lt;element name="edition" type="{http://www.example.org/beans}Edition"/&gt;
- *         &lt;element name="nbExemplaires" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="nbExemplairesInit" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="nbExemplairesDispo" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Exemplaire", propOrder = {
     "bibliotheque",
     "edition",
-    "nbExemplaires"
+    "nbExemplairesInit",
+    "nbExemplairesDispo"
 })
 public class Exemplaire {
 
@@ -40,7 +42,8 @@ public class Exemplaire {
     protected Bibliotheque bibliotheque;
     @XmlElement(required = true)
     protected Edition edition;
-    protected int nbExemplaires;
+    protected int nbExemplairesInit;
+    protected int nbExemplairesDispo;
 
     /**
      * Obtient la valeur de la propriété bibliotheque.
@@ -91,19 +94,35 @@ public class Exemplaire {
     }
 
     /**
-     * Obtient la valeur de la propriété nbExemplaires.
+     * Obtient la valeur de la propriété nbExemplairesInit.
      * 
      */
-    public int getNbExemplaires() {
-        return nbExemplaires;
+    public int getNbExemplairesInit() {
+        return nbExemplairesInit;
     }
 
     /**
-     * Définit la valeur de la propriété nbExemplaires.
+     * Définit la valeur de la propriété nbExemplairesInit.
      * 
      */
-    public void setNbExemplaires(int value) {
-        this.nbExemplaires = value;
+    public void setNbExemplairesInit(int value) {
+        this.nbExemplairesInit = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété nbExemplairesDispo.
+     * 
+     */
+    public int getNbExemplairesDispo() {
+        return nbExemplairesDispo;
+    }
+
+    /**
+     * Définit la valeur de la propriété nbExemplairesDispo.
+     * 
+     */
+    public void setNbExemplairesDispo(int value) {
+        this.nbExemplairesDispo = value;
     }
 
 }

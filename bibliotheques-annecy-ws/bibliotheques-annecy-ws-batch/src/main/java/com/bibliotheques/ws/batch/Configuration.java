@@ -21,6 +21,15 @@ public class Configuration {
 	
 	@Value("${mail.deuxieme.message}")
 	private String deuxiemeMessage;
+
+	@Value("${mail.reservation.titre}")
+	private String titreReservation;
+	
+	@Value("${mail.reservation.premier.message}")
+	private String premierMessageReservation;
+	
+	@Value("${mail.reservation.deuxieme.message}")
+	private String deuxiemeMessageReservation;
 	
 	@Value("${mail.conclusion}")
 	private String conclusion;
@@ -86,6 +95,18 @@ public class Configuration {
 
 	public String getDeuxiemeMessage() {
 		return deuxiemeMessage;
+	}
+	
+	public String getTitreReservation() {
+		return titreReservation;
+	}
+
+	public String getPremierMessageReservation() {
+		return premierMessageReservation;
+	}
+
+	public String getDeuxiemeMessageReservation() {
+		return deuxiemeMessageReservation;
 	}
 
 	public String getConclusion() {

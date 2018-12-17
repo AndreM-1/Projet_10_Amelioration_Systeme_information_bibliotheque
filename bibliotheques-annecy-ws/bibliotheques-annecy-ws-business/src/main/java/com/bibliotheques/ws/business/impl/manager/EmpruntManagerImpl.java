@@ -222,6 +222,30 @@ public class EmpruntManagerImpl extends AbstractManager implements EmpruntManage
 		return listEmprunt;
 	}
 	
+	@Override
+	public List<Emprunt> getListEmprunt(int utilisateurId,int bibliothequeId,int editionId) throws FunctionalException, NotFoundException{
+		LOGGER.info("Web Service : EditionService - Couche Business - Méthode getListEmprunt()");
+		
+		//On vérifie que l'utilisateur n'a pas déjà emprunté l'édition qu'il souhaite réserver.
+		//Vu que l'on a définit un index unique sur les colonnes utilisateur_id et exemplaire_edition_id,
+		//on n'a pas besoin du champ bibliothequeId.
+		try {
+			//Si l'utilisateur a déjà emprunté l'édition qu'il souhaite réserver, on lève une FunctionalException.
+			emprunt=getDaoFactory().getEmpruntDao().getEmprunt(utilisateurId, editionId);
+			throw new FunctionalException("Vous avez déjà emprunté cette édition dans une des bibliothèques de notre réseau.");
+		} catch (NotFoundException e) {
+			//Si l'utilisateur ne l'a pas déjà empruntée, on retourne la liste des emprunts.
+			LOGGER.info(e.getMessage());
+			try {
+				listEmprunt=getDaoFactory().getEmpruntDao().getListEmprunt(bibliothequeId,editionId);
+			} catch (NotFoundException e1) {
+				LOGGER.info(e1.getMessage());
+				throw new NotFoundException (e1.getMessage());
+			}	
+		}
+		return listEmprunt;
+	}
+	
 	/**
 	 * Méthode qui permet de convertir la durée de l'emprunt en jours.
 	 * @return La durée de l'emprunt en jours

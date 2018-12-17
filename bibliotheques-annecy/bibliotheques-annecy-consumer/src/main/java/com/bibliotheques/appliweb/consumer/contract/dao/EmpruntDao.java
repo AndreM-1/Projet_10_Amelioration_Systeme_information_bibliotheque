@@ -5,6 +5,7 @@ import java.util.List;
 import com.bibliotheques.appliweb.model.bean.edition.Emprunt;
 import com.bibliotheques.appliweb.model.exception.EmprunterEditionFault_Exception;
 import com.bibliotheques.appliweb.model.exception.GestionPretFault_Exception;
+import com.bibliotheques.appliweb.model.exception.GetListEmpruntFault_Exception;
 import com.bibliotheques.appliweb.model.exception.ProlongerEmpruntFault_Exception;
 
 /**
@@ -39,5 +40,16 @@ public interface EmpruntDao {
 	 * @throws ProlongerEmpruntFault_Exception
 	 */
 	void prolongerEmprunt(int utilisateurId, int bibliothequeId, int editionId) throws ProlongerEmpruntFault_Exception;
+
+	/**
+	 * Méthode permettant de renvoyer la liste des emprunts en cours ou non rendu à temps d'une édition dans une bibliothèque
+	 * si l'utilisateur ne l'a pas déjà emprunté.
+	 * @param utilisateurId : L'identifiant de l'utilisateur
+	 * @param bibliothequeId : L'identifiant de la bibliothèque
+	 * @param editionId : L'identifiant de l'édition
+	 * @return List
+	 * @throws GetListEmpruntFault_Exception
+	 */
+	List<Emprunt> getListEmprunt(int utilisateurId, int bibliothequeId, int editionId) throws GetListEmpruntFault_Exception;
 
 }
