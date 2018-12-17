@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="
+       	http://cxf.apache.org/transports/http/configuration 
+       	http://cxf.apache.org/schemas/configuration/http-conf.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+       	http://www.springframework.org/schema/jee
+       	http://www.springframework.org/schema/jee/spring-jee.xsd
+     	http://cxf.apache.org/jaxws
+        http://cxf.apache.org/schemas/jaxws.xsd">
+   
+    <!-- On va scanner les annotations dans tous les packages de base com.bibliotheques.ws -->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.bibliotheques.ws"/>
+
+   
+	<!-- Chargement du fichier properties contenant la configuration de la datasource vers db_myerp  -->
+    <bean id="dataSourceBibliothequeTestConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:/db-bibliotheques.properties"/>
+    </bean>
+	
+    <!-- Création de la datasource "dataSourceBibliotheque" -->
+    <bean id="dataSourceBibliotheque"
+          class="org.apache.commons.dbcp2.BasicDataSourceFactory"
+          factory-method="createDataSource"
+          destroy-method="close">
+        <constructor-arg ref="dataSourceBibliothequeTestConfiguration"/>
+    </bean>
+	
+    <bean id="txManagerBibliotheque" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSourceBibliotheque"/>
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.bibliotheques.ws.business.impl.manager.AbstractManager"/>		
+		<property name="targetMethod" value="setPlatformTransactionManager"/>
+		<property name="arguments">
+           <list>
+               <ref bean="txManagerBibliotheque"/>
+           </list>
+		</property>
+	</bean>	
+	
+	<!-- Manager Factory -->
+	<bean id="ManagerFactory" class="com.bibliotheques.ws.business.impl.ManagerFactoryImpl"/>
+	
+	
+    <!-- Chargement du fichier configTest.properties qui va permettre de récupérer la durée max de l'emprunt.-->  		
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/configTest.properties</value>
+			</list>
+		</property>
+		 <property name="ignoreUnresolvablePlaceholders" value="false"/>
+	</bean>   	
+	
+	<!-- Une fois que l'on a récupéré la valeur de la durée max de l'emprunt, on va la setter dans 
+	l'attribut correspondant de la classe AbstractManager. Pour cela, on utilise la classe 
+	MethodInvokingFactoryBean de Spring. -->
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.bibliotheques.ws.business.impl.manager.AbstractManager"/>		
+		<property name="targetMethod" value="setDureeMaxEmprunt"/>
+		<property name="arguments" value="${dureeMaxEmprunt}"/>
+	</bean>
+	
+	<!-- Dao Factory -->
+	<bean id="DaoFactory" class="com.bibliotheques.ws.consumer.impl.DaoFactoryImpl"/>
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.bibliotheques.ws.business.impl.manager.AbstractManager"/>		
+		<property name="targetMethod" value="setDaoFactory"/>
+		<property name="arguments">
+        	<list>
+                <ref bean="DaoFactory"/>
+            </list>
+		</property>
+	</bean>
+
+</beans>

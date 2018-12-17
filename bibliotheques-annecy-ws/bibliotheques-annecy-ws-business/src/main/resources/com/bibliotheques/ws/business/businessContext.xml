@@ -12,6 +12,16 @@
     	<property name="dataSource" ref="dataSourceBibliotheque"/>
 	</bean>
 	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.bibliotheques.ws.business.impl.manager.AbstractManager"/>		
+		<property name="targetMethod" value="setPlatformTransactionManager"/>
+		<property name="arguments">
+           <list>
+               <ref bean="txManagerBibliotheque"/>
+           </list>
+		</property>
+	</bean>	
+	
 	<!-- On va récupérer la valeur de la durée max de l'emprunt qui figure dans le fichier META-INF/context.xml et
 	la mettre dans l'attribut correspondant de la classe AbstractManager. Pour cela, on utilise la classe 
 	MethodInvokingFactoryBean de Spring. -->
@@ -20,6 +30,19 @@
 		<property name="targetMethod" value="setDureeMaxEmprunt"/>
 		<property name="arguments">
 			<jee:jndi-lookup jndi-name="java:comp/env/dureeMaxEmprunt" />
+		</property>
+	</bean>
+	
+	<!-- Dao Factory -->
+	<bean id="DaoFactory" class="com.bibliotheques.ws.consumer.impl.DaoFactoryImpl"/>
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.bibliotheques.ws.business.impl.manager.AbstractManager"/>		
+		<property name="targetMethod" value="setDaoFactory"/>
+		<property name="arguments">
+        	<list>
+                <ref bean="DaoFactory"/>
+            </list>
 		</property>
 	</bean>
 </beans>

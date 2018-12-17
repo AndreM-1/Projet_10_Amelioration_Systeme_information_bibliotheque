@@ -1,7 +1,5 @@
 package com.bibliotheques.ws.business.impl.manager;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -18,29 +16,26 @@ import com.bibliotheques.ws.consumer.contract.DaoFactory;
  */
 public abstract class AbstractManager {
 
-	@Inject
-    private DaoFactory daoFactory; 
+    private static DaoFactory daoFactory; 
 	
-	@Inject
-	@Named("txManagerBibliotheque")
-	private PlatformTransactionManager platformTransactionManager;
+	private static PlatformTransactionManager platformTransactionManager;
 	
 	private static String dureeMaxEmprunt;
 
-	protected DaoFactory getDaoFactory() {
+	protected static DaoFactory getDaoFactory() {
 		return daoFactory; 
 	}
 
-	public void setDaoFactory(DaoFactory daoFactory) {
-		this.daoFactory = daoFactory;
+	public static void setDaoFactory(DaoFactory daoFactory) {
+		AbstractManager.daoFactory = daoFactory;
 	}
 	
-	public PlatformTransactionManager getPlatformTransactionManager() {
+	public static PlatformTransactionManager getPlatformTransactionManager() {
 		return platformTransactionManager;
 	}
 
-	public void setPlatformTransactionManager(PlatformTransactionManager platformTransactionManager) {
-		this.platformTransactionManager = platformTransactionManager;
+	public static void setPlatformTransactionManager(PlatformTransactionManager platformTransactionManager) {
+		AbstractManager.platformTransactionManager = platformTransactionManager;
 	}
 	
 	 public static String getDureeMaxEmprunt() {
