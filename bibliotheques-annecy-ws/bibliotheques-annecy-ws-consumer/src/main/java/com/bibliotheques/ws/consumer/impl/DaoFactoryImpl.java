@@ -1,7 +1,6 @@
 package com.bibliotheques.ws.consumer.impl;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import com.bibliotheques.ws.consumer.contract.DaoFactory;
 import com.bibliotheques.ws.consumer.contract.dao.EditeurDao;
@@ -17,7 +16,6 @@ import com.bibliotheques.ws.consumer.contract.dao.UtilisateurDao;
 /**
  * Implémentation de la {@link DaoFactory}
  */
-@Named
 public class DaoFactoryImpl implements DaoFactory{
 	
 	@Inject

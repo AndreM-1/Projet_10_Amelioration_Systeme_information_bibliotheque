@@ -161,7 +161,7 @@ public class EmpruntManagerImpl extends AbstractManager implements EmpruntManage
 		TransactionStatus vTransactionStatus= getPlatformTransactionManager().getTransaction(new DefaultTransactionDefinition());
 
 		try {
-			listEmprunt=getDaoFactory().getEmpruntDao(). getListEmpruntAvtUpd();
+			listEmprunt=getDaoFactory().getEmpruntDao().getListEmpruntAvtUpd(); 
 		} catch (NotFoundException e1) {
 			LOGGER.info(e1.getMessage());
 			getPlatformTransactionManager().rollback(vTransactionStatus);
