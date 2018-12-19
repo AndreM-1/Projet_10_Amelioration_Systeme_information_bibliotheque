@@ -55,14 +55,13 @@ public interface ReservationManager {
 	 * @throws TechnicalException
 	 */
 	void annulerReservation(int utilisateurId, int bibliothequeId, int editionId) throws TechnicalException;
-
+	
 	/**
 	 * Méthode permettant de renvoyer la liste de l'ensemble des réservations effectué sur le réseau de bibliothèque.
 	 * @return List
 	 * @throws NotFoundException
 	 */
 	List<Reservation> getListAllReservation() throws NotFoundException;
-
 	
 	/**
 	 * Méthode permettant de mettre à jour la table reservation et renvoyant une liste de réservation relatifs 

@@ -98,6 +98,12 @@
 				<version>2.23.0</version>
 				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.197</version>
+				<scope>test</scope>
+			</dependency>
 			
 			<!-- API de validation de Bean (JSR 380).
 			On va privilégier la JSR 380 qui est plus récente que la JSR 303 -->

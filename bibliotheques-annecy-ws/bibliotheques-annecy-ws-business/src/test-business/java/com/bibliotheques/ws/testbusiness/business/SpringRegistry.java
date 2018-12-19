@@ -6,8 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import com.bibliotheques.ws.business.contract.ManagerFactory;
+import com.bibliotheques.ws.consumer.contract.DaoFactory;
 
 
 /**
@@ -79,7 +81,6 @@ public final class SpringRegistry {
 
     /**
      * Renvoie l'instance de {@link ManagerFactory} de l'application
-     *
      * @return {@link ManagerFactory}
      */
     public static ManagerFactory getManagerFactory() {
@@ -87,12 +88,28 @@ public final class SpringRegistry {
     }
 
 
-    
     /**
      * Renvoie l'instance de {@link DataSource} de l'application
      * @return {@link DataSource}
      */
     public static DataSource getDataSourceTest() {
     	return (DataSource) SpringRegistry.getBean("dataSourceBibliotheque");
+    }
+    
+    /**
+     * Renvoie l'instance de {@link PlatformTransactionManager} de l'application
+     * @return {@link PlatformTransactionManager}
+     */
+    public static PlatformTransactionManager getPlatformTransactionManager() {
+    	return (PlatformTransactionManager) SpringRegistry.getBean("txManagerBibliotheque");
+    }
+    
+    
+    /**
+     * Renvoie l'instance de {@link DaoFactory} de l'application
+     * @return {@link DaoFactory}
+     */
+    public static DaoFactory getDaoFactory() {
+        return (DaoFactory) SpringRegistry.getBean("DaoFactory");
     }
 }

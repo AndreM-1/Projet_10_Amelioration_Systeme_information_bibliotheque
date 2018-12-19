@@ -273,6 +273,7 @@ public class ReservationManagerImpl extends AbstractManager implements Reservati
 		//On récupère la liste des emprunts rendus à la bibliothèque le jour d'avant.
 		try {
 			listEmprunt = getDaoFactory().getEmpruntDao().getListEmprunt(vDateJourPrecedent, statutEmpruntId);
+			LOGGER.info("Taille liste emprunt : "+listEmprunt.size());
 		} catch (NotFoundException e) {
 			//Dans ce cas là, si personne n'a restitué d'emprunt à la bibliothèque, rien à faire.
 			LOGGER.info(e.getMessage());
@@ -322,6 +323,7 @@ public class ReservationManagerImpl extends AbstractManager implements Reservati
 		else
 			return listReservationUpdated;
 	}
+	
 
 	@Override
 	public List<Reservation> getListAllReservation() throws NotFoundException {
