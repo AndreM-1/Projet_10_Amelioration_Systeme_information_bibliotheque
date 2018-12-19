@@ -64,6 +64,7 @@ public class TestIntegration extends BusinessTestCase{
 
 		//On remplit les tables de la base de données avec les données initiales du jeu de démo.
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		populator.setSqlScriptEncoding("UTF-8");
 		try {
 			populator.addScripts(new ClassPathResource("02_Insertion_donnees_DB_Systeme_information_bibliotheque_TI_v1.sql"));
 			populator.execute(getDataSourceTest());
@@ -102,6 +103,7 @@ public class TestIntegration extends BusinessTestCase{
 
 		//On remplit les tables de la base de données avec les données initiales du jeu de démo.
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		populator.setSqlScriptEncoding("UTF-8");
 		try {
 			populator.addScripts(new ClassPathResource("02_Insertion_donnees_DB_Systeme_information_bibliotheque_v1.sql"));
 			populator.execute(getDataSourceTest());
