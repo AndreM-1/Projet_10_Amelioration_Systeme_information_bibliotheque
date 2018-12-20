@@ -435,19 +435,19 @@ VALUES
 -- *********************************************************************
 -- utilisateur
 -- *********************************************************************
-INSERT INTO public.utilisateur(civilite,nom,prenom,pseudo,adresse_mail,salt,mot_de_passe_securise,telephone,date_naissance,adresse,code_postal,ville,pays) 
+INSERT INTO public.utilisateur(civilite,nom,prenom,pseudo,adresse_mail,salt,mot_de_passe_securise,telephone,date_naissance,adresse,code_postal,ville,pays,mail_rappel_pret) 
 VALUES
 -- Mot de passe non sécurisé :M0tp@SAdM83!!
-('Monsieur', 'Monnier','André','André M.','andre_monnier@yahoo.fr','duWHFkUYaDVcIY2F52OFhYM08rSp2U','ukdUT1hmMrcHbEC2lFb5/3CoeH1hSJyhWlslAs6k0GU=','07-74-13-52-09','1983-09-03','667 Chemin de sur la ville','74340','ANNECY','France'),
+('Monsieur', 'Monnier','André','André M.','andre_monnier@yahoo.fr','duWHFkUYaDVcIY2F52OFhYM08rSp2U','ukdUT1hmMrcHbEC2lFb5/3CoeH1hSJyhWlslAs6k0GU=','07-74-13-52-09','1983-09-03','667 Chemin de sur la ville','74340','ANNECY','France',true),
 
 -- Mot de passe non sécurisé :M@rt1R@778?
-('Monsieur', 'Durand','Martin','Martin D','andre.monnier@hotmail.fr','nwhMGwRv5k1HTLIGjmrdyQsoBSYmcb','96MJCGUsI6yzRM53HIugWIF/s1E5ykiQ+GIe1BXi8XM=','06-31-47-36-82','1982-10-03','1 AVENUE BERTHOLLET','74000','ANNECY','France'),
+('Monsieur', 'Durand','Martin','Martin D','andre.monnier@hotmail.fr','nwhMGwRv5k1HTLIGjmrdyQsoBSYmcb','96MJCGUsI6yzRM53HIugWIF/s1E5ykiQ+GIe1BXi8XM=','06-31-47-36-82','1982-10-03','1 AVENUE BERTHOLLET','74000','ANNECY','France',true),
 
 -- Mot de passe non sécurisé :GEsc@L@Dais?
-('Monsieur', 'Gallet','Romuald','Romu G.','romuald.gallet@yahoo.fr','lLGSalPUNp8LaK5YezAzvGiuqvH5Va','QYWhASzYFe0L1TYrKNMovzj9hQ5fLfEaYlqkjP5iKFc=',NULL,NULL,NULL,NULL,NULL,'France'),
+('Monsieur', 'Gallet','Romuald','Romu G.','romuald.gallet@yahoo.fr','lLGSalPUNp8LaK5YezAzvGiuqvH5Va','QYWhASzYFe0L1TYrKNMovzj9hQ5fLfEaYlqkjP5iKFc=',NULL,NULL,NULL,NULL,NULL,'France',true),
 
 -- Mot de passe non sécurisé :oli3vier4!
-('Monsieur', 'Lockla','Olivier','OF','vifierlockla@gmail.com','7tUIJCF58zl3zEbo5qDDjoN8yCn77c','nWABl2PGos+lblFFaPU1vAARDgLA9779NAtImeHomA4=',NULL,'1943-10-03',NULL,NULL,'Strasbourg','France');
+('Monsieur', 'Lockla','Olivier','OF','vifierlockla@gmail.com','7tUIJCF58zl3zEbo5qDDjoN8yCn77c','nWABl2PGos+lblFFaPU1vAARDgLA9779NAtImeHomA4=',NULL,'1943-10-03',NULL,NULL,'Strasbourg','France',true);
 
 -- *********************************************************************
 -- emprunt
