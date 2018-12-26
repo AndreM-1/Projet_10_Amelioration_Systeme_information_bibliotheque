@@ -60,4 +60,11 @@ public interface EmpruntManager {
 	 * @throws NotFoundException
 	 */
 	List<Emprunt> getListEmprunt(int utilisateurId, int bibliothequeId, int editionId) throws FunctionalException, NotFoundException;
+
+	/**
+	 * Méthode permettant de renvoyer la liste des emprunts compris dans l'intervalle de dates souhaitées.
+	 * @return List
+	 * @throws NotFoundException
+	 */
+	List<Emprunt> getListRappelEmpruntEnCours() throws NotFoundException;
 }

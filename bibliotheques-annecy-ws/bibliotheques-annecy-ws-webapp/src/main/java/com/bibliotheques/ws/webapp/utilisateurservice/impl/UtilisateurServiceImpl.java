@@ -11,6 +11,7 @@ import com.bibliotheques.ws.business.contract.ManagerFactory;
 import com.bibliotheques.ws.model.bean.utilisateur.Utilisateur;
 import com.bibliotheques.ws.model.exception.FunctionalException;
 import com.bibliotheques.ws.model.exception.NotFoundException;
+import com.bibliotheques.ws.model.exception.TechnicalException;
 import com.bibliotheques.ws.webapp.utilisateurservice.generated.AuthentifierUtilisateurFault;
 import com.bibliotheques.ws.webapp.utilisateurservice.generated.AuthentifierUtilisateurFault_Exception;
 import com.bibliotheques.ws.webapp.utilisateurservice.generated.CreerCompteUtilisateurFault;
@@ -19,6 +20,8 @@ import com.bibliotheques.ws.webapp.utilisateurservice.generated.UpdateCoordUtili
 import com.bibliotheques.ws.webapp.utilisateurservice.generated.UpdateCoordUtilisateurFault_Exception;
 import com.bibliotheques.ws.webapp.utilisateurservice.generated.UpdateMdpUtilisateurFault;
 import com.bibliotheques.ws.webapp.utilisateurservice.generated.UpdateMdpUtilisateurFault_Exception;
+import com.bibliotheques.ws.webapp.utilisateurservice.generated.UpdateParametresUtilisateurFault;
+import com.bibliotheques.ws.webapp.utilisateurservice.generated.UpdateParametresUtilisateurFault_Exception;
 import com.bibliotheques.ws.webapp.utilisateurservice.generated.UtilisateurService;
 
 public class UtilisateurServiceImpl implements UtilisateurService {
@@ -137,6 +140,22 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			UpdateMdpUtilisateurFault updateMdpUtilisateurFault=new UpdateMdpUtilisateurFault();
 			updateMdpUtilisateurFault.setFaultMessageErreur(vFEx.getMessage());
 			throw new UpdateMdpUtilisateurFault_Exception(vFEx.getMessage(),updateMdpUtilisateurFault);
+		}
+	}
+
+	@Override
+	public void updateParametresUtilisateur(int id, boolean mailRappelPret)
+			throws UpdateParametresUtilisateurFault_Exception {
+		
+		LOGGER.info("Web service - updateParametresUtilisateur()");
+		
+		try {
+			managerFactory.getUtilisateurManager().updateParametresUtilisateur(id, mailRappelPret);
+		} catch (TechnicalException e) {
+			LOGGER.info(e.getMessage());
+			UpdateParametresUtilisateurFault updateParametresUtilisateurFault=new UpdateParametresUtilisateurFault();
+			updateParametresUtilisateurFault.setFaultMessageErreur(e.getMessage());
+			throw new UpdateParametresUtilisateurFault_Exception(e.getMessage(),updateParametresUtilisateurFault);
 		}
 	}
 }

@@ -18,6 +18,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.bibliotheques.ws.model.bean.edition.Emprunt;
 import com.bibliotheques.ws.model.bean.edition.Reservation;
+import com.bibliotheques.ws.model.bean.utilisateur.Utilisateur;
 import com.bibliotheques.ws.model.exception.TechnicalException;
 
 /**
@@ -116,8 +117,8 @@ public class TestIntegration extends BusinessTestCase{
 
 	/**
 	 * Méthode qui permet de tester la lecture de la base de données, i.e les méthodes getListEmpruntEnRetard(), 
-	 * getListEmprunt(int utilisateurId,int bibliothequeId,int editionId),getListReservation(int utilisateurId, int bibliothequeId, int editionId,int nbExemplairesInit)
-	 * et getListReservationUtilisateur(int utilisateurId).
+	 * getListEmprunt(int utilisateurId,int bibliothequeId,int editionId),getListReservation(int utilisateurId, int bibliothequeId, int editionId,int nbExemplairesInit),
+	 * getListReservationUtilisateur(int utilisateurId) et getListRappelEmpruntEnCours().
 	 * @throws Exception
 	 */
 	@Test
@@ -130,9 +131,9 @@ public class TestIntegration extends BusinessTestCase{
 		int utilisateurId=1;
 		int bibliothequeId=2;
 		int editionId=32;
-		List<Emprunt> vListEmprunt=getManagerFactory().getEmpruntManager().getListEmprunt(utilisateurId, bibliothequeId, editionId);
-		assertNotNull("La liste d'emprunt ne doit pas être nul.",vListEmprunt);
-		assertEquals("La taille de la liste d'emprunt est erronée.",1,vListEmprunt.size());
+		List<Emprunt> vListEmpruntBDD=getManagerFactory().getEmpruntManager().getListEmprunt(utilisateurId, bibliothequeId, editionId);
+		assertNotNull("La liste d'emprunt ne doit pas être nul.",vListEmpruntBDD);
+		assertEquals("La taille de la liste d'emprunt est erronée.",1,vListEmpruntBDD.size());
 
 		utilisateurId=2;
 		bibliothequeId=1;
@@ -154,7 +155,10 @@ public class TestIntegration extends BusinessTestCase{
 		List<Reservation> vListReservationUtilisateurBDD=getManagerFactory().getReservationManager().getListReservationUtilisateur(utilisateurId);
 		assertNotNull("La liste de réservation ne doit pas être nul.",vListReservationUtilisateurBDD);
 		assertEquals("La taille de la liste de réservation est erronée.",4,vListReservationUtilisateurBDD.size());
-
+		
+		vListEmpruntBDD=getManagerFactory().getEmpruntManager().getListRappelEmpruntEnCours();
+		assertNotNull("La liste d'emprunt ne doit pas être nul.",vListEmpruntBDD);
+		assertEquals("La taille de la liste d'emprunt est erronée.",6,vListEmpruntBDD.size());
 	}
 	
 	/**
@@ -220,7 +224,7 @@ public class TestIntegration extends BusinessTestCase{
 	 * @throws Exception
 	 */
 	@Test
-	public void getListReservationUpdatedRetourEmprunt() throws Exception{
+	public void testGetListReservationUpdatedRetourEmprunt() throws Exception{
 		List<Reservation> vListReservationBDD=getManagerFactory().getReservationManager().getListReservationUpdatedRetourEmprunt();
 		assertNotNull("La liste de réservation ne doit pas être nul.",vListReservationBDD);
 		assertEquals("La taille de la liste de réservation est erronée.",1,vListReservationBDD.size());
@@ -228,5 +232,24 @@ public class TestIntegration extends BusinessTestCase{
 		vListReservationBDD=getManagerFactory().getReservationManager().getListAllReservation();
 		assertNotNull("La liste de réservation ne doit pas être nul.",vListReservationBDD);
 		assertEquals("La taille de la liste de réservation est erronée.",7,vListReservationBDD.size()); 
+	}
+	
+	/**
+	 * Test d'intégration de la méthode updateParametresUtilisateur(int id, boolean mailRappelPret) dans les cas suivants :
+	 *  - Modification du champ "mail_rappel_pret" à false en base de données pour l'utilisateur d'id 1. On récupère cet utilisateur à partir de son adresseMail/motDePasse
+	 *  et on vérifie que la modification a bien été effectuée.
+	 *  - Modification du champ "mail_rappel_pret" à true en base de données pour l'utilisateur d'id 1. On récupère cet utilisateur à partir de son adresseMail/motDePasse
+	 *  et on vérifie que la modification a bien été effectuée.
+	 * @throws Exception
+	 */
+	@Test
+	public void testUpdateParametresUtilisateur() throws Exception{
+		getManagerFactory().getUtilisateurManager().updateParametresUtilisateur(1, false); 
+		Utilisateur vUtilisateurBDD=getManagerFactory().getUtilisateurManager().getUtilisateur("andre_monnier@yahoo.fr", "M0tp@SAdM83!!");
+		assertEquals("La valeur de l'attribut mailRappelPret est erronée.",false,vUtilisateurBDD.isMailRappelPret()); 
+		
+		getManagerFactory().getUtilisateurManager().updateParametresUtilisateur(1, true);
+		vUtilisateurBDD=getManagerFactory().getUtilisateurManager().getUtilisateur("andre_monnier@yahoo.fr", "M0tp@SAdM83!!");
+		assertEquals("La valeur de l'attribut mailRappelPret est erronée.",true,vUtilisateurBDD.isMailRappelPret()); 	
 	}
 }

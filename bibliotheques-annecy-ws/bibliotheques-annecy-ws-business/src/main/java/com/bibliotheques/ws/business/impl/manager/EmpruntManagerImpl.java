@@ -246,6 +246,22 @@ public class EmpruntManagerImpl extends AbstractManager implements EmpruntManage
 		return listEmprunt;
 	}
 	
+	@Override
+	public List<Emprunt> getListRappelEmpruntEnCours() throws NotFoundException{
+		LOGGER.info("Web Service : EditionService - Couche Business - Méthode getListRappelEmpruntEnCours()");
+		
+		Calendar vCalDateMax=Calendar.getInstance();
+		vCalDateMax.add(Calendar.DATE, 5);
+		Date dateMax=vCalDateMax.getTime();
+		try {
+			listEmprunt=getDaoFactory().getEmpruntDao().getListRappelEmpruntEnCours(new Date(), dateMax);
+		} catch (NotFoundException e) {
+			LOGGER.info(e.getMessage());
+			throw new NotFoundException (e.getMessage());
+		}
+		return listEmprunt;
+	}
+	
 	/**
 	 * Méthode qui permet de convertir la durée de l'emprunt en jours.
 	 * @return La durée de l'emprunt en jours

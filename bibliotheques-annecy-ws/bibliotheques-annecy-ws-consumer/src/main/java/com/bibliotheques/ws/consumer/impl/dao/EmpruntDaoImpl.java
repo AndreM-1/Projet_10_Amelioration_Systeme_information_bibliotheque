@@ -204,5 +204,19 @@ public class EmpruntDaoImpl extends AbstractDaoImpl implements EmpruntDao {
 			throw new NotFoundException("Aucun emprunt correspondant à la date et au statut demandés.");
 	}
 	
-	
+	@Override
+	public List<Emprunt> getListRappelEmpruntEnCours(Date dateDuJour, Date dateMax) throws NotFoundException{
+		LOGGER.info("Web Service : EditionService - Couche Consumer - Méthode getListRappelEmpruntEnCours()");
+		String vSQL ="SELECT * FROM public.emprunt WHERE date_de_fin>=? AND date_de_fin<? AND statut_emprunt_id IN (1,2)";
+		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource()); 
+		
+		RowMapper<Emprunt> vRowMapper=new EmpruntRM(utilisateurDao,statutEmpruntDao,exemplaireDao);
+		List<Emprunt> vListEmprunt=vJdbcTemplate.query(vSQL, vRowMapper,dateDuJour,dateMax);
+		
+		if(vListEmprunt.size()!=0){
+			return vListEmprunt;
+		}
+		else
+			throw new NotFoundException("Aucun emprunt n'arrivant à expiration dans 5 jours ou moins!!!");
+	}
 }

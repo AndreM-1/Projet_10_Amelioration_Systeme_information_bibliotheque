@@ -8,6 +8,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -20,6 +21,7 @@ import com.bibliotheques.ws.consumer.impl.rowmapper.utilisateur.UtilisateurRM;
 import com.bibliotheques.ws.model.bean.utilisateur.Utilisateur;
 import com.bibliotheques.ws.model.exception.FunctionalException;
 import com.bibliotheques.ws.model.exception.NotFoundException;
+import com.bibliotheques.ws.model.exception.TechnicalException;
 
 @Named
 public class UtilisateurDaoImpl extends AbstractDaoImpl implements UtilisateurDao{
@@ -66,8 +68,8 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl implements UtilisateurDa
 	public void insertUtilisateur(Utilisateur utilisateur) throws FunctionalException{
 		
 		//En procédant ainsi, on évite les problèmes d'injection SQL. Pas besoin de requête préparée dans ce cas.
-		String vSQL="INSERT INTO public.utilisateur(civilite,nom,prenom,pseudo,adresse_mail,salt,mot_de_passe_securise,pays) VALUES "
-				+ "(:civilite,:nom,:prenom,:pseudo,:adresseMail,:salt,:motDePasseSecurise,:pays)";	
+		String vSQL="INSERT INTO public.utilisateur(civilite,nom,prenom,pseudo,adresse_mail,salt,mot_de_passe_securise,pays,mail_rappel_pret) VALUES "
+				+ "(:civilite,:nom,:prenom,:pseudo,:adresseMail,:salt,:motDePasseSecurise,:pays,:mailRappelPret)";	
 		SqlParameterSource vParams=new BeanPropertySqlParameterSource(utilisateur);
 		NamedParameterJdbcTemplate vJdbcTemplate=new NamedParameterJdbcTemplate(getDataSource());
 
@@ -124,4 +126,19 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl implements UtilisateurDa
 		vJdbcTemplate.update(vSQL,vParams);
 	}
 	
+	@Override
+	public void updateParametresUtilisateur(int id, boolean mailRappelPret) throws TechnicalException {
+		LOGGER.info("Web Service : UtilisateurService - Couche Consumer - Méthode updateParametresUtilisateur");
+		
+		//ATTENTION, il faut bien procéder ainsi en utilisant une requête préparée pour éviter les problèmes d'injection SQL même si le cas ne devrait
+		//pas se présenter ici.
+		String vSQL="UPDATE public.utilisateur SET mail_rappel_pret=? WHERE id=?";
+		JdbcTemplate vJdbcTemplate=new JdbcTemplate(getDataSource());
+		
+		try {
+			vJdbcTemplate.update(vSQL,mailRappelPret,id);
+		} catch (DataAccessException e) {
+			throw new TechnicalException("Erreur technique lors de l'accès en base de données.");
+		}
+	}
 }

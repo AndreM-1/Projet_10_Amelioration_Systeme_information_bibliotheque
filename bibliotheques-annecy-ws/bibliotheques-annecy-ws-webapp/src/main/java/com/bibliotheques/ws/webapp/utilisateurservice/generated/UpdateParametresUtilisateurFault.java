@@ -1,5 +1,5 @@
 
-package com.bibliotheques.appliweb.model.exception;
+package com.bibliotheques.ws.webapp.utilisateurservice.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "faultMessageErreur"
 })
-@XmlRootElement(name = "getListAllReservationFault")
-public class GetListAllReservationFault {
+@XmlRootElement(name = "updateParametresUtilisateurFault")
+public class UpdateParametresUtilisateurFault {
 
     @XmlElement(required = true)
     protected String faultMessageErreur;

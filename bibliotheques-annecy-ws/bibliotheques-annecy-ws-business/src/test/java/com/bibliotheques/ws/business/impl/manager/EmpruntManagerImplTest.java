@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.bibliotheques.ws.business.contract.manager.EmpruntManager;
 import com.bibliotheques.ws.consumer.contract.DaoFactory;
 import com.bibliotheques.ws.consumer.contract.dao.EmpruntDao;
 import com.bibliotheques.ws.model.bean.edition.Bibliotheque;
@@ -40,7 +42,7 @@ public class EmpruntManagerImplTest {
 	private static TransactionStatus transactionStatusMock=mock(TransactionStatus.class);
 	private static DefaultTransactionDefinition defaultTransactionDefinitionMock=mock(DefaultTransactionDefinition.class);
 	private static EmpruntDao empruntDaoMock=mock(EmpruntDao.class);
-	private EmpruntManagerImpl empruntManagerImpl=new EmpruntManagerImpl();
+	private EmpruntManager empruntManagerImpl=new EmpruntManagerImpl();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -303,5 +305,80 @@ public class EmpruntManagerImplTest {
 		.thenThrow(new NotFoundException("Aucun emprunt pour l'édition concernée dans l'ensemble du réseau de bibliothèques!!!"));
 		
 		empruntManagerImpl.getListEmprunt(vUtilisateur1.getId(), vBibliotheque1.getId(), vEdition1.getId());
+	}
+	
+	/**
+	 * Test de la méthode getListRappelEmpruntEnCours() avec une liste de 2 éléments dont la date d'expiration est de 5 jours ou moins.
+	 * @throws Exception
+	 */
+	@Test
+	public void getListRappelEmpruntEnCoursCase1() throws Exception{
+		List<Emprunt> vListEmprunt=new ArrayList<>(); 
+
+		Emprunt vEmprunt1=new Emprunt(); 
+		vEmprunt1.setId(1);
+		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.NOVEMBER,26);
+		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
+		vEmprunt1.setDateDeDebut(vXGCDateDebut1);
+
+		GregorianCalendar vGregCalDateFin1=new GregorianCalendar(2018,Calendar.DECEMBER,24);
+		XMLGregorianCalendar vXGCDateFin1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin1);
+		vEmprunt1.setDateDeFin(vXGCDateFin1);
+
+		vEmprunt1.setProlongation(true);
+
+		Utilisateur vUtilisateur1=new Utilisateur();
+		vUtilisateur1.setId(1);
+		vEmprunt1.setUtilisateur(vUtilisateur1);
+
+		StatutEmprunt vStatutEmprunt=new StatutEmprunt();
+		vStatutEmprunt.setId(1);
+		vStatutEmprunt.setStatutEmprunt("En cours");
+		vEmprunt1.setStatutEmprunt(vStatutEmprunt);
+
+		Exemplaire vExemplaire1=new Exemplaire();
+		Bibliotheque vBibliotheque1= new Bibliotheque();
+		vBibliotheque1.setId(1);
+		vExemplaire1.setBibliotheque(vBibliotheque1);
+		Edition vEdition1=new Edition();
+		vEdition1.setId(1);
+		vExemplaire1.setEdition(vEdition1);
+		vEmprunt1.setExemplaire(vExemplaire1);
+
+		vListEmprunt.add(vEmprunt1);
+
+		Emprunt vEmprunt2=new Emprunt();
+		vEmprunt2.setId(2);
+		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.NOVEMBER,30);
+		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
+		vEmprunt2.setDateDeDebut(vXGCDateDebut2);
+
+		GregorianCalendar vGregCalDateFin2=new GregorianCalendar(2018,Calendar.DECEMBER,28);
+		XMLGregorianCalendar vXGCDateFin2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin2);
+		vEmprunt2.setDateDeFin(vXGCDateFin2);
+
+		vEmprunt2.setProlongation(true);
+		vEmprunt2.setUtilisateur(vUtilisateur1);
+		vEmprunt2.setStatutEmprunt(vStatutEmprunt);
+
+		Exemplaire vExemplaire2=new Exemplaire();
+		vExemplaire2.setBibliotheque(vBibliotheque1);
+		Edition vEdition2=new Edition();
+		vEdition2.setId(3);
+		vExemplaire2.setEdition(vEdition2);
+		vEmprunt2.setExemplaire(vExemplaire2);
+
+		vListEmprunt.add(vEmprunt2);
+		
+		Calendar vCalDateDuJour=Calendar.getInstance();
+		Date dateDuJour=vCalDateDuJour.getTime();
+		
+		Calendar vCalDateMax=Calendar.getInstance();
+		vCalDateMax.add(Calendar.DATE, 5);
+		Date dateMax=vCalDateMax.getTime();
+		
+		when(empruntDaoMock.getListRappelEmpruntEnCours(dateDuJour, dateMax)).thenReturn(vListEmprunt);
+		
+		empruntManagerImpl.getListRappelEmpruntEnCours();
 	}
 }

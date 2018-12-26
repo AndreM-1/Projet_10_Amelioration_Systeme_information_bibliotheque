@@ -33,6 +33,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="codePostal" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="ville" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="pays" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="mailRappelPret" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -56,7 +57,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "adresse",
     "codePostal",
     "ville",
-    "pays"
+    "pays",
+    "mailRappelPret"
 })
 public class Utilisateur {
 
@@ -82,6 +84,7 @@ public class Utilisateur {
     protected String codePostal;
     protected String ville;
     protected String pays;
+    protected boolean mailRappelPret;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -409,6 +412,22 @@ public class Utilisateur {
      */
     public void setPays(String value) {
         this.pays = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété mailRappelPret.
+     * 
+     */
+    public boolean isMailRappelPret() {
+        return mailRappelPret;
+    }
+
+    /**
+     * Définit la valeur de la propriété mailRappelPret.
+     * 
+     */
+    public void setMailRappelPret(boolean value) {
+        this.mailRappelPret = value;
     }
 
 }

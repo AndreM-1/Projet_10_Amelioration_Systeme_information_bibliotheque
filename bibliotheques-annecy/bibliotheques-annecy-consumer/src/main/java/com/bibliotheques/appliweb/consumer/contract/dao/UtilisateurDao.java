@@ -7,6 +7,7 @@ import com.bibliotheques.appliweb.model.exception.AuthentifierUtilisateurFault_E
 import com.bibliotheques.appliweb.model.exception.CreerCompteUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateCoordUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateMdpUtilisateurFault_Exception;
+import com.bibliotheques.appliweb.model.exception.UpdateParametresUtilisateurFault_Exception;
 
 /**
  * Interface UtilisateurDao
@@ -70,5 +71,14 @@ public interface UtilisateurDao {
 	 */
 	void updateMdpUtilisateur(int id, String ancienMotDePasse, String nouveauMotDePasse, String confirmationNouveauMotDePasse)
 			throws UpdateMdpUtilisateurFault_Exception;
+
+	/**
+	 * Méthode permettant de mettre à jour les paramètres de l'utilisateur. Pour l'instant, un seul paramètre est présent, celui permettant
+	 * d'activer ou de désactiver le mail de rappel pour les prêts arrivant bientôt à expiration.
+	 * @param id : L'identifiant de l'utilisateur
+	 * @param mailRappelPret : Une variable de type booléenne permettant d'activer ou de désactiver le mail de rappel pour les prêts arrivant bientôt à expiration
+	 * @throws UpdateParametresUtilisateurFault_Exception
+	 */
+	void updateParametresUtilisateur(int id, boolean mailRappelPret) throws UpdateParametresUtilisateurFault_Exception;
 
 }

@@ -17,13 +17,14 @@
 					<nav id="nav-profil-utilisateur">
 						<ul>
 							<li><s:a action="page_utilisateur_coord">Mes coordonnées</s:a></li>
-							<li><s:a action="page_utilisateur_mdp">Modifier mon mot de passe</s:a></li>
-							<li><s:a action="page_utilisateur_gdp" id="gestion-prets">Gestion des prêts</s:a></li>
+							<li><s:a action="page_utilisateur_mdp">Mon mot de passe</s:a></li>
+							<li><s:a action="page_utilisateur_gdp" id="gestion-prets">Gestion prêts/réservations</s:a></li>
+							<li><s:a action="page_utilisateur_param">Paramètres</s:a></li>
 						</ul>
 					</nav>
 			
 					<!-- Section permettant à l'utilisateur de visualiser les prêts effectutés -->
-					<h3 class="statut-pret">Livres à rendre ou à prolonger</h3>
+					<h3 class="statut-pret">Livres à rendre</h3>
 					<s:if test="%{bEmpruntNonRendu==true}">
 						<h4>Vous n'avez aucun livre à rendre.</h4>
 					</s:if>

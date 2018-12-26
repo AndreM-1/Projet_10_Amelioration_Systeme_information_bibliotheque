@@ -1,5 +1,5 @@
 
-package com.bibliotheques.appliweb.consumer.generated.editionservice;
+package com.bibliotheques.ws.webapp.editionservice.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,8 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "getListAllReservation")
-public class GetListAllReservation {
+@XmlRootElement(name = "getListRappelEmpruntEnCours")
+public class GetListRappelEmpruntEnCours {
 
 
 }

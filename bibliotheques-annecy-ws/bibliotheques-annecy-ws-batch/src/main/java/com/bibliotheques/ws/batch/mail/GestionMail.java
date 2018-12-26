@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import com.bibliotheques.ws.batch.Configuration;
 import com.bibliotheques.ws.batch.generated.editionservice.EditionService;
 import com.bibliotheques.ws.batch.generated.editionservice.GetListEmpruntEnRetardFault_Exception;
+import com.bibliotheques.ws.batch.generated.editionservice.GetListRappelEmpruntEnCoursFault_Exception;
 import com.bibliotheques.ws.batch.generated.editionservice.GetListReservationUpdatedFault_Exception;
 import com.bibliotheques.ws.model.bean.edition.Emprunt;
 import com.bibliotheques.ws.model.bean.edition.Reservation;
@@ -45,6 +46,8 @@ public class GestionMail {
 	private JavaMailSenderImpl eMailSenderImpl=new JavaMailSenderImpl();
 
 	private List<Emprunt> listEmpruntEnRetard;
+
+	private List<Emprunt> listEmprunt;
 
 	private List<Reservation> listReservation;
 
@@ -217,14 +220,14 @@ public class GestionMail {
 				mail.setTo(vUtilisateur.getAdresseMail());
 				//Objet du mail.
 				mail.setSubject(configuration.getTitreReservation());
-				
+
 				//Construction du contenu du mail avec des balises HTML
 				String contenuMail="<html><body>";
 				contenuMail+="Bonjour "+vUtilisateur.getCivilite()+" "+vUtilisateur.getPrenom()+" "+vUtilisateur.getNom()+",";
 				contenuMail+="<p>";
 				contenuMail+=configuration.getPremierMessageReservation();
 				contenuMail+="</p>";
-				
+
 				int vUtilisateurId=vUtilisateur.getId();
 				for(Reservation vReservation:listReservation) {
 					if(vReservation.getUtilisateur().getId()==vUtilisateurId) {
@@ -233,7 +236,7 @@ public class GestionMail {
 						LOGGER.info("ISBN : "+vReservation.getExemplaire().getEdition().getIsbn());
 						LOGGER.info("Auteur : "+vReservation.getExemplaire().getEdition().getOuvrage().getAuteur().getPrenom()+" "+vReservation.getExemplaire().getEdition().getOuvrage().getAuteur().getNom());
 						LOGGER.info("Editeur : "+vReservation.getExemplaire().getEdition().getEditeur().getNomEditeur());
-	
+
 						contenuMail+="<p>";
 						contenuMail+="Intitulé de l'ouvrage : ";
 						contenuMail+=vReservation.getExemplaire().getEdition().getOuvrage().getTitre()+" ";
@@ -269,6 +272,111 @@ public class GestionMail {
 			//Soit il n'y a aucun mail à envoyer (pas de mail dépassé de 48H dans la table reservation, exemplaires rendus non réservés, pas d'exemplaires rendus J-1, etc...)
 			//Ou une erreur technique lors de l'accès en base de données.
 			//Dans ces cas là, on n'envoie pas de mails.
+			LOGGER.info(e.getMessage());
+		}
+	}
+
+	/**
+	 * Méthode permettant d'envoyer des mails aux utilisateurs pour leur indiquer leurs prêts arrivant à expiration dans 5 jours ou moins.
+	 */
+	@Scheduled(cron = "${mail.cron}")
+	public void sendMailRappel() {
+		//Définition du DateFormat pour l'affichage de la date d'envoie du mail.
+		DateFormat dfEnvoiMailReservation = new SimpleDateFormat("dd/MM/yyyy HH mm ss SSS");
+		LOGGER.info("--------------------------------------------");	
+		LOGGER.info("Entrée dans la méthode d'envoi des mails le "+dfEnvoiMailReservation.format(new Date()));
+		LOGGER.info("--------------------------------------------");
+
+		//Appel au web service.
+		JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+		factory.setAddress(configuration.getAdresseEditionService());
+		factory.setServiceClass(EditionService.class);
+		editionService=(EditionService)factory.create();
+
+		try {
+			//On récupère la liste des emprunts arrivant à expiration dans 5 jours ou moins.
+			listEmprunt=editionService.getListRappelEmpruntEnCours();
+			LOGGER.info("Taille liste Emprunt arrivant à expiration dans 5 jours ou moins : "+listEmprunt.size());
+
+			//A partir de là, on récupère les utilisateurs concernés.
+			listUtilisateur=new ArrayList<>();
+			int utilisateurId=-1;
+			for(Emprunt emprunt:listEmprunt) {
+				if(emprunt.getUtilisateur().getId()!=utilisateurId&&emprunt.getUtilisateur().isMailRappelPret()) {
+					listUtilisateur.add(emprunt.getUtilisateur());
+					utilisateurId=emprunt.getUtilisateur().getId();
+				}
+			}
+			LOGGER.info("Taille liste utilisateur : "+listUtilisateur.size());
+
+			//On va envoyer un mail avec la liste de tous les livres non rendus à temps par utilisateur.
+			for(Utilisateur vUtilisateur:listUtilisateur) {
+				LOGGER.info("--------------------------------------------");
+				LOGGER.info("Nom : "+vUtilisateur.getNom());
+				LOGGER.info("Prénom : "+vUtilisateur.getPrenom());
+				LOGGER.info("Adresse Mail :"+vUtilisateur.getAdresseMail());
+				//Instanciation du bean mail.
+				Mail mail=new Mail();
+				//Adresse mail du destinataire.
+				mail.setTo(vUtilisateur.getAdresseMail());
+				//Objet du mail.
+				mail.setSubject(configuration.getTitreRappel());
+
+				//Construction du contenu du mail avec des balises HTML
+				String contenuMail="<html><body>";
+				contenuMail+="Bonjour "+vUtilisateur.getCivilite()+" "+vUtilisateur.getPrenom()+" "+vUtilisateur.getNom()+",";
+				contenuMail+="<p>";
+				contenuMail+=configuration.getPremierMessageRappel();
+				contenuMail+="</p>";
+
+				//Définition du DateFormat pour l'affichage des dates dans le mail.
+				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+				int vUtilisateurId=vUtilisateur.getId();
+				for(Emprunt emprunt:listEmprunt) {
+					if(emprunt.getUtilisateur().getId()==vUtilisateurId) {
+						LOGGER.info("ISBN : "+emprunt.getExemplaire().getEdition().getIsbn());
+						LOGGER.info("Titre : "+emprunt.getExemplaire().getEdition().getOuvrage().getTitre());
+						LOGGER.info("Auteur : "+emprunt.getExemplaire().getEdition().getOuvrage().getAuteur().getPrenom()+" "+emprunt.getExemplaire().getEdition().getOuvrage().getAuteur().getNom());
+						LOGGER.info("Editeur : "+emprunt.getExemplaire().getEdition().getEditeur().getNomEditeur());
+						LOGGER.info("Période de l'emprunt : "+emprunt.getDateDeDebut()+" - "+emprunt.getDateDeFin());
+						contenuMail+="<p>";
+						contenuMail+="Intitulé de l'ouvrage : ";
+						contenuMail+=emprunt.getExemplaire().getEdition().getOuvrage().getTitre()+" ";
+						contenuMail+="<br/>";
+						contenuMail+="ISBN : ";
+						contenuMail+=emprunt.getExemplaire().getEdition().getIsbn()+" ";
+						contenuMail+="<br/>";
+						contenuMail+="Auteur : ";
+						contenuMail+=emprunt.getExemplaire().getEdition().getOuvrage().getAuteur().getPrenom()+" "+emprunt.getExemplaire().getEdition().getOuvrage().getAuteur().getNom()+" ";
+						contenuMail+="<br/>";
+						contenuMail+="Editeur : ";
+						contenuMail+=emprunt.getExemplaire().getEdition().getEditeur().getNomEditeur()+" ";
+						contenuMail+="<br/>";
+						contenuMail+="Période de l'emprunt : ";
+						contenuMail+="Du ";
+						contenuMail+=df.format(emprunt.getDateDeDebut().toGregorianCalendar().getTime());
+						contenuMail+=" au ";
+						contenuMail+=df.format(emprunt.getDateDeFin().toGregorianCalendar().getTime());
+						contenuMail+="</p>";
+					}
+				}	
+				contenuMail+="<p>";
+				contenuMail+=configuration.getDeuxiemeMessageRappel();
+				contenuMail+="</p>";
+				contenuMail+="<p>";
+				contenuMail+=configuration.getConclusion();
+				contenuMail+="</p>";
+				contenuMail+="<p>";
+				contenuMail+=configuration.getSignature();
+				contenuMail+="</p>";
+				contenuMail+="</body></html>";
+				mail.setBody(contenuMail);
+				this.sendMimeMessage(mail);	
+			}
+		} catch (GetListRappelEmpruntEnCoursFault_Exception e) {
+			//Dans ce cas là, aucun emprunt n'arrive à expiration dans moins de 5 jours. 
+			//on n'envoie pas de mails.
 			LOGGER.info(e.getMessage());
 		}
 	}

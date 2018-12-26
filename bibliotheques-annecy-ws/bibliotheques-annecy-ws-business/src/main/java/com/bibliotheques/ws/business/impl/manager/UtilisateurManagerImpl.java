@@ -17,6 +17,7 @@ import com.bibliotheques.ws.business.passwordutils.PasswordUtils;
 import com.bibliotheques.ws.model.bean.utilisateur.Utilisateur;
 import com.bibliotheques.ws.model.exception.FunctionalException;
 import com.bibliotheques.ws.model.exception.NotFoundException;
+import com.bibliotheques.ws.model.exception.TechnicalException;
 
 @Named
 public class UtilisateurManagerImpl extends AbstractManager implements UtilisateurManager {
@@ -122,6 +123,7 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
 		utilisateur.setSalt(salt);
 		utilisateur.setMotDePasseSecurise(mySecurePassword);	
 		utilisateur.setPays("France");
+		utilisateur.setMailRappelPret(true);
 	
 		//Appel à la DaoFactory
 		getDaoFactory().getUtilisateurDao().insertUtilisateur(utilisateur);
@@ -265,9 +267,27 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
 		utilisateur.setMotDePasseSecurise(mySecurePassword);
 		
 		//Appel à la DaoFactory
-		getDaoFactory().getUtilisateurDao(). updateMdpUtilisateur(utilisateur);
+		getDaoFactory().getUtilisateurDao().updateMdpUtilisateur(utilisateur);
 		
 		getPlatformTransactionManager().commit(vTransactionStatus);
+	}
+	
+	@Override
+	public void updateParametresUtilisateur(int id, boolean mailRappelPret) throws TechnicalException {
+		LOGGER.info("Web Service : UtilisateurService - Couche Business - Méthode updateParametresUtilisateur");
+		
+		//Utilisation d'un TransactionStatus. On a besoin de lever une TechnicalException,
+		//ce qui n'est pas possible avec l'utilisation d'une classe anonyme du transaction template.
+		TransactionStatus vTransactionStatus= getPlatformTransactionManager().getTransaction(new DefaultTransactionDefinition());
+		
+		try {
+			getDaoFactory().getUtilisateurDao().updateParametresUtilisateur(id, mailRappelPret);
+			getPlatformTransactionManager().commit(vTransactionStatus);
+		} catch (TechnicalException e) {
+			LOGGER.info(e.getMessage());
+			getPlatformTransactionManager().rollback(vTransactionStatus);
+			throw new TechnicalException(e.getMessage());
+		}
 	}
 	
 }

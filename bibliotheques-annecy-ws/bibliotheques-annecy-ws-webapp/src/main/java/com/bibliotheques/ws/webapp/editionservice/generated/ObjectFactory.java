@@ -357,4 +357,28 @@ public class ObjectFactory {
         return new GetListReservationUpdatedFault();
     }
 
+    /**
+     * Create an instance of {@link GetListRappelEmpruntEnCours }
+     * 
+     */
+    public GetListRappelEmpruntEnCours createGetListRappelEmpruntEnCours() {
+        return new GetListRappelEmpruntEnCours();
+    }
+
+    /**
+     * Create an instance of {@link GetListRappelEmpruntEnCoursResponse }
+     * 
+     */
+    public GetListRappelEmpruntEnCoursResponse createGetListRappelEmpruntEnCoursResponse() {
+        return new GetListRappelEmpruntEnCoursResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListRappelEmpruntEnCoursFault }
+     * 
+     */
+    public GetListRappelEmpruntEnCoursFault createGetListRappelEmpruntEnCoursFault() {
+        return new GetListRappelEmpruntEnCoursFault();
+    }
+
 }

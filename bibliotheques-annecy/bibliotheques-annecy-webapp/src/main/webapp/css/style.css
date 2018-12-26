@@ -252,12 +252,12 @@ section{
     border-bottom: 4px solid #181818;
 }
 
-#form-utilisateur-coord,#form-utilisateur-mdp{
+#form-utilisateur-coord,#form-utilisateur-mdp,#form-utilisateur-param{
 	margin-bottom:10px;
 }
 
 
-#mes-coordonnees, #mon-mot-de-passe, #gestion-prets{
+#mes-coordonnees, #mon-mot-de-passe, #gestion-prets, #mes-parametres{
 	border-bottom: 4px solid #181818;	
 }
 
@@ -284,20 +284,32 @@ section{
 	#nav-profil-utilisateur a:hover{
 		 border-bottom: 3px solid #181818;
 	}
-	#mes-coordonnees, #mon-mot-de-passe, #gestion-prets{
+	#mes-coordonnees, #mon-mot-de-passe, #gestion-prets, #mes-parametres{
 	border-bottom: 3px solid #181818;	
 	}
 }
 
-@media all and (max-width: 610px){
+@media all and (min-width: 540px) and (max-width: 610px){
 	#nav-profil-utilisateur a{
 		font-size: 1em;
 	}
 	#nav-profil-utilisateur a:hover{
 		 border-bottom: 2px solid #181818;
 	}
-	#mes-coordonnees, #mon-mot-de-passe, #gestion-prets{
+	#mes-coordonnees, #mon-mot-de-passe, #gestion-prets, #mes-parametres{
 	border-bottom: 2px solid #181818;	
+	}
+}
+
+@media all and (max-width: 540px){
+	#nav-profil-utilisateur a{
+		font-size: 0.8em;
+	}
+	#nav-profil-utilisateur a:hover{
+		 border-bottom: 1px solid #181818;
+	}
+	#mes-coordonnees, #mon-mot-de-passe, #gestion-prets, #mes-parametres{
+	border-bottom: 1px solid #181818;	
 	}
 }
 

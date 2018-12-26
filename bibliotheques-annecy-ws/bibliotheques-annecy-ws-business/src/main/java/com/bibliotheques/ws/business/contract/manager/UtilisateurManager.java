@@ -5,6 +5,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import com.bibliotheques.ws.model.bean.utilisateur.Utilisateur;
 import com.bibliotheques.ws.model.exception.FunctionalException;
 import com.bibliotheques.ws.model.exception.NotFoundException;
+import com.bibliotheques.ws.model.exception.TechnicalException;
 
 /**
  * Interface UtilisateurManager
@@ -67,5 +68,14 @@ public interface UtilisateurManager {
 	 * @throws NotFoundException
 	 */
 	void updateMdpUtilisateur(int id, String ancienMdp, String nouveauMdp, String confirmationNouveauMdp) throws FunctionalException,NotFoundException;
+
+	/**
+	 * Méthode permettant de mettre à jour les paramètres de l'utilisateur. Pour l'instant, un seul paramètre est présent, celui permettant
+	 * d'activer ou de désactiver le mail de rappel pour les prêts arrivant bientôt à expiration.
+	 * @param id : L'identifiant de l'utilisateur
+	 * @param mailRappelPret : Une variable de type booléenne permettant d'activer ou de désactiver le mail de rappel pour les prêts arrivant bientôt à expiration
+	 * @throws TechnicalException
+	 */
+	void updateParametresUtilisateur(int id, boolean mailRappelPret) throws TechnicalException;
 
 }

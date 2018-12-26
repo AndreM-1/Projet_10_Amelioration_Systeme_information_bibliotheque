@@ -7,6 +7,7 @@ import com.bibliotheques.appliweb.model.exception.AuthentifierUtilisateurFault;
 import com.bibliotheques.appliweb.model.exception.CreerCompteUtilisateurFault;
 import com.bibliotheques.appliweb.model.exception.UpdateCoordUtilisateurFault;
 import com.bibliotheques.appliweb.model.exception.UpdateMdpUtilisateurFault;
+import com.bibliotheques.appliweb.model.exception.UpdateParametresUtilisateurFault;
 
 
 /**
@@ -128,6 +129,30 @@ public class ObjectFactory {
      */
     public UpdateMdpUtilisateurFault createUpdateMdpUtilisateurFault() {
         return new UpdateMdpUtilisateurFault();
+    }
+
+    /**
+     * Create an instance of {@link UpdateParametresUtilisateur }
+     * 
+     */
+    public UpdateParametresUtilisateur createUpdateParametresUtilisateur() {
+        return new UpdateParametresUtilisateur();
+    }
+
+    /**
+     * Create an instance of {@link UpdateParametresUtilisateurResponse }
+     * 
+     */
+    public UpdateParametresUtilisateurResponse createUpdateParametresUtilisateurResponse() {
+        return new UpdateParametresUtilisateurResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateParametresUtilisateurFault }
+     * 
+     */
+    public UpdateParametresUtilisateurFault createUpdateParametresUtilisateurFault() {
+        return new UpdateParametresUtilisateurFault();
     }
 
 }

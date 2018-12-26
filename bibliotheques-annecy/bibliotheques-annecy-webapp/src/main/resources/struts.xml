@@ -89,6 +89,15 @@
 			<result name="success">/jsp/utilisateur/utilisateurgdp.jsp</result>
 		</action>		
 		
+		<!-- Action "page_utilisateur_param" -->
+		<action name="page_utilisateur_param" class="com.bibliotheques.appliweb.webapp.action.GestionProfilUtilisateurAction"  method="doUpdateParam">
+			<interceptor-ref name="AuthenticatedStack" />
+			<result name="refus-acces-page-profil-emprunt" type="redirectAction">connexion</result>
+			<result name="input">/jsp/utilisateur/utilisateurparam.jsp</result>
+			<result name="success">/jsp/utilisateur/utilisateurparam.jsp</result>
+			<result name="error">/jsp/erreur.jsp</result>
+		</action>
+		
 		<!-- Action "page_detail_edition" -->
 		<action name="page_detail_edition" class="com.bibliotheques.appliweb.webapp.action.GestionEditionAction" method="doDetail">
 			<result name="success">/jsp/edition/detailedition.jsp</result>

@@ -17,8 +17,9 @@
 					<nav id="nav-profil-utilisateur">
 						<ul>
 							<li><s:a action="page_utilisateur_coord" id="mes-coordonnees">Mes coordonnées</s:a></li>
-							<li><s:a action="page_utilisateur_mdp">Modifier mon mot de passe</s:a></li>
-							<li><s:a action="page_utilisateur_gdp">Gestion des prêts</s:a></li>
+							<li><s:a action="page_utilisateur_mdp">Mon mot de passe</s:a></li>
+							<li><s:a action="page_utilisateur_gdp">Gestion prêts/réservations</s:a></li>
+							<li><s:a action="page_utilisateur_param">Paramètres</s:a></li>
 						</ul>
 					</nav>
 					<s:actionerror/>
