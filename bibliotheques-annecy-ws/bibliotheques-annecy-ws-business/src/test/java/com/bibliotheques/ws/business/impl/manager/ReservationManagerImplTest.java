@@ -67,9 +67,9 @@ public class ReservationManagerImplTest {
 	public void getListReservationCase1() throws Exception{
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,17);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -103,9 +103,10 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,17);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		vGregCalDateReservation1.add(Calendar.DATE,-1);
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -126,9 +127,9 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation2=new Reservation();
 		vReservation2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,18);
-		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
-		vReservation2.setDateReservation(vXGCDateDebut2);
+		GregorianCalendar vGregCalDateReservation2=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation2);
+		vReservation2.setDateReservation(vXGCDateReservation2);
 
 		Utilisateur vUtilisateur2=new Utilisateur();
 		vUtilisateur2.setId(2);
@@ -161,9 +162,10 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,17);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		vGregCalDateReservation1.add(Calendar.DATE,-1);
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -184,9 +186,9 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation2=new Reservation();
 		vReservation2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,18);
-		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
-		vReservation2.setDateReservation(vXGCDateDebut2);
+		GregorianCalendar vGregCalDateReservation2=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation2);
+		vReservation2.setDateReservation(vXGCDateReservation2);
 
 		Utilisateur vUtilisateur2=new Utilisateur();
 		vUtilisateur2.setId(2);
@@ -214,27 +216,13 @@ public class ReservationManagerImplTest {
 	 */
 	@Test
 	public void getListReservationCase4() throws Exception{
-		Reservation vReservation1=new Reservation();
-		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,17);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
-
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
-		vReservation1.setUtilisateur(vUtilisateur1);
-
-		Exemplaire vExemplaire1=new Exemplaire();
 		Bibliotheque vBibliotheque1= new Bibliotheque();
 		vBibliotheque1.setId(1);
-		vExemplaire1.setBibliotheque(vBibliotheque1);
 		Edition vEdition1=new Edition();
 		vEdition1.setId(1);
-		vExemplaire1.setEdition(vEdition1);
-		vReservation1.setExemplaire(vExemplaire1);
-
-		vReservation1.setPrioriteReservation(1);
-
+	
 		int nbExemplairesInit=1;
 
 		when(reservationDaoMock.getListReservation(vBibliotheque1.getId(),vEdition1.getId()))
@@ -253,27 +241,13 @@ public class ReservationManagerImplTest {
 	 */
 	@Test
 	public void reserverEditionCase1() throws Exception{
-		Reservation vReservation1=new Reservation();
-		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,17);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
-
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
-		vReservation1.setUtilisateur(vUtilisateur1);
-
-		Exemplaire vExemplaire1=new Exemplaire();
 		Bibliotheque vBibliotheque1= new Bibliotheque();
 		vBibliotheque1.setId(1);
-		vExemplaire1.setBibliotheque(vBibliotheque1);
 		Edition vEdition1=new Edition();
 		vEdition1.setId(1);
-		vExemplaire1.setEdition(vEdition1);
-		vReservation1.setExemplaire(vExemplaire1);
-
-		vReservation1.setPrioriteReservation(1);
-		
+	
 		when(reservationDaoMock.getListReservation(vBibliotheque1.getId(), vEdition1.getId()))
 		.thenThrow(new NotFoundException("Aucun réservation pour l'édition concernée dans l'ensemble du réseau de bibliothèques!!!"));
 		
@@ -290,9 +264,9 @@ public class ReservationManagerImplTest {
 		
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,17);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -326,9 +300,9 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,17);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -349,9 +323,9 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation2=new Reservation();
 		vReservation2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,18);
-		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
-		vReservation2.setDateReservation(vXGCDateDebut2);
+		GregorianCalendar vGregCalDateReservation2=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation2);
+		vReservation2.setDateReservation(vXGCDateReservation2);
 
 		vReservation2.setUtilisateur(vUtilisateur1);
 		
@@ -395,9 +369,10 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,17);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		vGregCalDateReservation1.add(Calendar.DATE,-1);
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -418,9 +393,9 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation2=new Reservation();
 		vReservation2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,18);
-		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
-		vReservation2.setDateReservation(vXGCDateDebut2);
+		GregorianCalendar vGregCalDateReservation2=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation2);
+		vReservation2.setDateReservation(vXGCDateReservation2);
 
 		Utilisateur vUtilisateur2=new Utilisateur();
 		vUtilisateur2.setId(2);
@@ -439,7 +414,10 @@ public class ReservationManagerImplTest {
 	}
 	
 	/**
-	 * Test de la méthode getListReservationUpdated() dans le cas nominal.
+	 * Test de la méthode getListReservationUpdated() dans le cas nominal :
+	 *  -	2 utilisateurs ont réservé le même exemplaire.
+	 *  -	Un utilisateur a reçu un mail à J-2 pour venir emprunter l'exemplaire qu'il a réservé, mais il n'est pas venu l'emprunter.
+	 *  -	L'autre utilisateur reçoit un mail à son tour.
 	 * @throws Exception
 	 */
 	@Test
@@ -448,9 +426,10 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,10);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		vGregCalDateReservation1.add(Calendar.DATE,-8);
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -467,7 +446,8 @@ public class ReservationManagerImplTest {
 
 		vReservation1.setPrioriteReservation(1);
 		
-		GregorianCalendar vGregCalDateRecepMail1=new GregorianCalendar(2018,Calendar.DECEMBER,16);
+		GregorianCalendar vGregCalDateRecepMail1=new GregorianCalendar();
+		vGregCalDateRecepMail1.add(Calendar.DATE,-2);
 		XMLGregorianCalendar vXGCDateRecepMail1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateRecepMail1);
 		vReservation1.setDateReceptionMail(vXGCDateRecepMail1);
 
@@ -475,9 +455,10 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation2=new Reservation();
 		vReservation2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,11);
-		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
-		vReservation2.setDateReservation(vXGCDateDebut2);
+		GregorianCalendar vGregCalDateReservation2=new GregorianCalendar();
+		vGregCalDateReservation2.add(Calendar.DATE,-7);
+		XMLGregorianCalendar vXGCDateReservation2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation2);
+		vReservation2.setDateReservation(vXGCDateReservation2);
 
 		Utilisateur vUtilisateur2=new Utilisateur();
 		vUtilisateur2.setId(2);
@@ -510,9 +491,9 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,10);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -533,9 +514,9 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation2=new Reservation();
 		vReservation2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,11);
-		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
-		vReservation2.setDateReservation(vXGCDateDebut2);
+		GregorianCalendar vGregCalDateReservation2=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation2);
+		vReservation2.setDateReservation(vXGCDateReservation2);
 
 		Utilisateur vUtilisateur2=new Utilisateur();
 		vUtilisateur2.setId(2);
@@ -578,9 +559,10 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,10);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		vGregCalDateReservation1.add(Calendar.DATE,-8);
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -594,9 +576,10 @@ public class ReservationManagerImplTest {
 		
 		Reservation vReservation2=new Reservation();
 		vReservation2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,11);
-		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
-		vReservation2.setDateReservation(vXGCDateDebut2);
+		GregorianCalendar vGregCalDateReservation2=new GregorianCalendar();
+		vGregCalDateReservation2.add(Calendar.DATE,-7);
+		XMLGregorianCalendar vXGCDateReservation2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation2);
+		vReservation2.setDateReservation(vXGCDateReservation2);
 
 		Utilisateur vUtilisateur2=new Utilisateur();
 		vUtilisateur2.setId(2);
@@ -632,9 +615,9 @@ public class ReservationManagerImplTest {
 
 		Reservation vReservation1=new Reservation();
 		vReservation1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,10);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vReservation1.setDateReservation(vXGCDateDebut1);
+		GregorianCalendar vGregCalDateReservation1=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation1);
+		vReservation1.setDateReservation(vXGCDateReservation1);
 
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
@@ -655,9 +638,9 @@ public class ReservationManagerImplTest {
 		
 		Reservation vReservation2=new Reservation();
 		vReservation2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,11);
-		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
-		vReservation2.setDateReservation(vXGCDateDebut2);
+		GregorianCalendar vGregCalDateReservation2=new GregorianCalendar();
+		XMLGregorianCalendar vXGCDateReservation2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateReservation2);
+		vReservation2.setDateReservation(vXGCDateReservation2);
 
 		Utilisateur vUtilisateur2=new Utilisateur();
 		vUtilisateur2.setId(2);

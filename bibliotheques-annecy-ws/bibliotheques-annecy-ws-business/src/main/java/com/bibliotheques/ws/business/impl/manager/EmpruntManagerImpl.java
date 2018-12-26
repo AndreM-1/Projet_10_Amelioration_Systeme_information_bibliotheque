@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.transaction.TransactionStatus;
@@ -250,11 +251,18 @@ public class EmpruntManagerImpl extends AbstractManager implements EmpruntManage
 	public List<Emprunt> getListRappelEmpruntEnCours() throws NotFoundException{
 		LOGGER.info("Web Service : EditionService - Couche Business - Méthode getListRappelEmpruntEnCours()");
 		
+		//ATTENTION, il faut bien tronquer les dates pour faciliter les tests unitaires pour les méthodes prenant des dates comme paramètres.
+		Date dateDuJour=new Date();
+		dateDuJour = DateUtils.truncate(dateDuJour, Calendar.DATE);
+		
 		Calendar vCalDateMax=Calendar.getInstance();
 		vCalDateMax.add(Calendar.DATE, 5);
 		Date dateMax=vCalDateMax.getTime();
+		dateMax = DateUtils.truncate(dateMax, Calendar.DATE);
+		
 		try {
-			listEmprunt=getDaoFactory().getEmpruntDao().getListRappelEmpruntEnCours(new Date(), dateMax);
+			listEmprunt=getDaoFactory().getEmpruntDao().getListRappelEmpruntEnCours(dateDuJour, dateMax);
+			LOGGER.info("Taille liste emprunt : "+listEmprunt.size());
 		} catch (NotFoundException e) {
 			LOGGER.info(e.getMessage());
 			throw new NotFoundException (e.getMessage());

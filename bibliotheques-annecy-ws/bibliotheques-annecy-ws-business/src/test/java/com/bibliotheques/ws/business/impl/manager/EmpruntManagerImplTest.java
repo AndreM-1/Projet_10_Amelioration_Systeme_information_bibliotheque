@@ -12,6 +12,7 @@ import java.util.List;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -58,16 +59,18 @@ public class EmpruntManagerImplTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void getListEmpruntEnRetardCase1() throws Exception { 
+	public void getListEmpruntEnRetardCase1() throws Exception {  
 		List<Emprunt> vListEmprunt=new ArrayList<>(); 
 
 		Emprunt vEmprunt1=new Emprunt(); 
 		vEmprunt1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.NOVEMBER,15);
+		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar();
+		vGregCalDateDebut1.add(Calendar.DATE, -29);
 		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
 		vEmprunt1.setDateDeDebut(vXGCDateDebut1);
 
-		GregorianCalendar vGregCalDateFin1=new GregorianCalendar(2018,Calendar.DECEMBER,13);
+		GregorianCalendar vGregCalDateFin1=new GregorianCalendar();
+		vGregCalDateFin1.add(Calendar.DATE, -1);
 		XMLGregorianCalendar vXGCDateFin1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin1);
 		vEmprunt1.setDateDeFin(vXGCDateFin1);
 
@@ -95,13 +98,14 @@ public class EmpruntManagerImplTest {
 
 		Emprunt vEmprunt2=new Emprunt();
 		vEmprunt2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.DECEMBER,14);
+		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar();
 		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
 		vEmprunt2.setDateDeDebut(vXGCDateDebut2);
 
-		GregorianCalendar vGregCalDateFin2=new GregorianCalendar(2019,Calendar.JANUARY,11);
+		GregorianCalendar vGregCalDateFin2=new GregorianCalendar(); 
+		vGregCalDateFin2.add(Calendar.DATE,28);
 		XMLGregorianCalendar vXGCDateFin2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin2);
-		vEmprunt2.setDateDeFin(vXGCDateFin2);
+		vEmprunt2.setDateDeFin(vXGCDateFin2); 
 
 		vEmprunt2.setProlongation(true);
 		vEmprunt2.setUtilisateur(vUtilisateur1);
@@ -131,11 +135,12 @@ public class EmpruntManagerImplTest {
 
 		Emprunt vEmprunt1=new Emprunt();
 		vEmprunt1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,15);
+		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar();
 		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
 		vEmprunt1.setDateDeDebut(vXGCDateDebut1);
 
-		GregorianCalendar vGregCalDateFin1=new GregorianCalendar(2019,Calendar.JANUARY,12);
+		GregorianCalendar vGregCalDateFin1=new GregorianCalendar();
+		vGregCalDateFin1.add(Calendar.DATE,28);
 		XMLGregorianCalendar vXGCDateFin1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin1);
 		vEmprunt1.setDateDeFin(vXGCDateFin1);
 
@@ -187,11 +192,12 @@ public class EmpruntManagerImplTest {
 	public void getListEmpruntCase1() throws Exception{
 		Emprunt vEmprunt1=new Emprunt();
 		vEmprunt1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,15);
+		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar();
 		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
 		vEmprunt1.setDateDeDebut(vXGCDateDebut1);
 
-		GregorianCalendar vGregCalDateFin1=new GregorianCalendar(2019,Calendar.JANUARY,12);
+		GregorianCalendar vGregCalDateFin1=new GregorianCalendar();
+		vGregCalDateFin1.add(Calendar.DATE,28);
 		XMLGregorianCalendar vXGCDateFin1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin1);
 		vEmprunt1.setDateDeFin(vXGCDateFin1);
 
@@ -227,37 +233,13 @@ public class EmpruntManagerImplTest {
 	 */
 	@Test
 	public void getListEmpruntCase2() throws Exception{
-		Emprunt vEmprunt1=new Emprunt();
-		vEmprunt1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,15);
-		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
-		vEmprunt1.setDateDeDebut(vXGCDateDebut1);
-
-		GregorianCalendar vGregCalDateFin1=new GregorianCalendar(2019,Calendar.JANUARY,12);
-		XMLGregorianCalendar vXGCDateFin1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin1);
-		vEmprunt1.setDateDeFin(vXGCDateFin1);
-
-		vEmprunt1.setProlongation(true);
-
 		Utilisateur vUtilisateur1=new Utilisateur();
 		vUtilisateur1.setId(1);
-		vEmprunt1.setUtilisateur(vUtilisateur1);
-
-		StatutEmprunt vStatutEmprunt=new StatutEmprunt();
-		vStatutEmprunt.setId(1);
-		vStatutEmprunt.setStatutEmprunt("En cours");
-
-		vEmprunt1.setStatutEmprunt(vStatutEmprunt);
-
-		Exemplaire vExemplaire1=new Exemplaire();
 		Bibliotheque vBibliotheque1= new Bibliotheque();
 		vBibliotheque1.setId(1);
-		vExemplaire1.setBibliotheque(vBibliotheque1);
 		Edition vEdition1=new Edition();
 		vEdition1.setId(1);
-		vExemplaire1.setEdition(vEdition1);
-		vEmprunt1.setExemplaire(vExemplaire1);
-
+	
 		when(empruntDaoMock.getEmprunt(vUtilisateur1.getId(),vEdition1.getId())).thenThrow(new NotFoundException("Aucun emprunt trouvé en BDD."));
 		empruntManagerImpl.getListEmprunt(vUtilisateur1.getId(), vBibliotheque1.getId(), vEdition1.getId());
 	}
@@ -272,11 +254,12 @@ public class EmpruntManagerImplTest {
 	public void getListEmpruntCase3() throws Exception{
 		Emprunt vEmprunt1=new Emprunt();
 		vEmprunt1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.DECEMBER,15);
+		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar();
 		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
 		vEmprunt1.setDateDeDebut(vXGCDateDebut1);
 
-		GregorianCalendar vGregCalDateFin1=new GregorianCalendar(2019,Calendar.JANUARY,12);
+		GregorianCalendar vGregCalDateFin1=new GregorianCalendar();
+		vGregCalDateFin1.add(Calendar.DATE,28);
 		XMLGregorianCalendar vXGCDateFin1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin1);
 		vEmprunt1.setDateDeFin(vXGCDateFin1);
 
@@ -317,11 +300,12 @@ public class EmpruntManagerImplTest {
 
 		Emprunt vEmprunt1=new Emprunt(); 
 		vEmprunt1.setId(1);
-		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(2018,Calendar.NOVEMBER,26);
+		GregorianCalendar vGregCalDateDebut1=new GregorianCalendar(); 
+		vGregCalDateDebut1.add(Calendar.DATE,-28);
 		XMLGregorianCalendar vXGCDateDebut1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut1);
 		vEmprunt1.setDateDeDebut(vXGCDateDebut1);
 
-		GregorianCalendar vGregCalDateFin1=new GregorianCalendar(2018,Calendar.DECEMBER,24);
+		GregorianCalendar vGregCalDateFin1=new GregorianCalendar();
 		XMLGregorianCalendar vXGCDateFin1=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin1);
 		vEmprunt1.setDateDeFin(vXGCDateFin1);
 
@@ -349,11 +333,13 @@ public class EmpruntManagerImplTest {
 
 		Emprunt vEmprunt2=new Emprunt();
 		vEmprunt2.setId(2);
-		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar(2018,Calendar.NOVEMBER,30);
+		GregorianCalendar vGregCalDateDebut2=new GregorianCalendar();
+		vGregCalDateDebut2.add(Calendar.DATE,-24);
 		XMLGregorianCalendar vXGCDateDebut2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateDebut2);
 		vEmprunt2.setDateDeDebut(vXGCDateDebut2);
 
-		GregorianCalendar vGregCalDateFin2=new GregorianCalendar(2018,Calendar.DECEMBER,28);
+		GregorianCalendar vGregCalDateFin2=new GregorianCalendar();
+		vGregCalDateFin2.add(Calendar.DATE,4);
 		XMLGregorianCalendar vXGCDateFin2=DatatypeFactory.newInstance().newXMLGregorianCalendar(vGregCalDateFin2);
 		vEmprunt2.setDateDeFin(vXGCDateFin2);
 
@@ -370,15 +356,37 @@ public class EmpruntManagerImplTest {
 
 		vListEmprunt.add(vEmprunt2);
 		
-		Calendar vCalDateDuJour=Calendar.getInstance();
-		Date dateDuJour=vCalDateDuJour.getTime();
+		Date dateDuJour=new Date();
+		dateDuJour = DateUtils.truncate(dateDuJour, Calendar.DATE);
 		
 		Calendar vCalDateMax=Calendar.getInstance();
 		vCalDateMax.add(Calendar.DATE, 5);
 		Date dateMax=vCalDateMax.getTime();
+		dateMax = DateUtils.truncate(dateMax, Calendar.DATE);
 		
 		when(empruntDaoMock.getListRappelEmpruntEnCours(dateDuJour, dateMax)).thenReturn(vListEmprunt);
 		
 		empruntManagerImpl.getListRappelEmpruntEnCours();
+	}
+	
+	/**
+	 * Test de la méthode getListRappelEmpruntEnCours() dans le cas où aucun emprunt n'arrive à expiration dans 5 jours ou moins.
+	 * On s'attend à lever une exception de type {@link NotFoundException}
+	 * @throws Exception
+	 */
+	@Test(expected = NotFoundException.class)
+	public void getListRappelEmpruntEnCoursCase2() throws Exception{
+		Date dateDuJour=new Date();
+		dateDuJour = DateUtils.truncate(dateDuJour, Calendar.DATE);
+		
+		Calendar vCalDateMax=Calendar.getInstance();
+		vCalDateMax.add(Calendar.DATE, 5);
+		Date dateMax=vCalDateMax.getTime();
+		dateMax = DateUtils.truncate(dateMax, Calendar.DATE);
+		
+		when(empruntDaoMock.getListRappelEmpruntEnCours(dateDuJour, dateMax))
+		.thenThrow(new NotFoundException("Aucun emprunt n'arrivant à expiration dans 5 jours ou moins!!!"));
+		
+		empruntManagerImpl.getListRappelEmpruntEnCours();	
 	}
 }
