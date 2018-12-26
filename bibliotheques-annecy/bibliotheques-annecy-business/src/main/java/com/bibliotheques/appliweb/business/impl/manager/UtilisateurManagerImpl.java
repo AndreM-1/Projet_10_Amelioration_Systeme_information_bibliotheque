@@ -12,6 +12,7 @@ import com.bibliotheques.appliweb.model.exception.AuthentifierUtilisateurFault_E
 import com.bibliotheques.appliweb.model.exception.CreerCompteUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateCoordUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateMdpUtilisateurFault_Exception;
+import com.bibliotheques.appliweb.model.exception.UpdateParametresUtilisateurFault_Exception;
 
 
 @Named
@@ -77,4 +78,17 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
 			throw new UpdateMdpUtilisateurFault_Exception (e.getMessage());
 		}
 	}
+	
+	@Override
+	public void updateParametresUtilisateur(int id, boolean mailRappelPret) throws UpdateParametresUtilisateurFault_Exception{
+		LOGGER.info("Couche Business - Méthode updateParametresUtilisateur()");
+		
+		try {
+			getDaoFactory().getUtilisateurDao().updateParametresUtilisateur(id, mailRappelPret);
+		} catch (UpdateParametresUtilisateurFault_Exception e) {
+			LOGGER.info(e.getMessage());
+			throw new UpdateParametresUtilisateurFault_Exception(e.getMessage());
+		}
+	}
+	
 }

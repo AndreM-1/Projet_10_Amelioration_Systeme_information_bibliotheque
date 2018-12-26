@@ -76,8 +76,9 @@
     		</element>
     		<element maxOccurs="1" minOccurs="1" name="prenom" type="string">
     		</element>
-            <element maxOccurs="1" minOccurs="1" name="pseudo" type="string"/>
-            <element maxOccurs="1" minOccurs="1" name="adresseMail" type="string">
+    		<element maxOccurs="1" minOccurs="1" name="pseudo" type="string">
+    		</element>
+    		<element maxOccurs="1" minOccurs="1" name="adresseMail" type="string">
     		</element>
     		<element maxOccurs="1" minOccurs="1" name="salt" type="string">
     		</element>
@@ -95,6 +96,7 @@
     		</element>
     		<element maxOccurs="1" minOccurs="0" name="pays" type="string">
     		</element>
+    		<element maxOccurs="1" minOccurs="1" name="mailRappelPret" type="boolean"/>
     	</sequence>
     </complexType>
 

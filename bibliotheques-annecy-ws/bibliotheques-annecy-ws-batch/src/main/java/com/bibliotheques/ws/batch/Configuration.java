@@ -31,6 +31,15 @@ public class Configuration {
 	@Value("${mail.reservation.deuxieme.message}")
 	private String deuxiemeMessageReservation;
 	
+	@Value("${mail.rappel.titre}")
+	private String titreRappel;
+	
+	@Value("${mail.rappel.premier.message}")
+	private String premierMessageRappel;
+	
+	@Value("${mail.rappel.deuxieme.message}")
+	private String deuxiemeMessageRappel;
+	
 	@Value("${mail.conclusion}")
 	private String conclusion;
 	
@@ -107,6 +116,18 @@ public class Configuration {
 
 	public String getDeuxiemeMessageReservation() {
 		return deuxiemeMessageReservation;
+	}
+	
+	public String getTitreRappel() {
+		return titreRappel;
+	}
+
+	public String getPremierMessageRappel() {
+		return premierMessageRappel;
+	}
+
+	public String getDeuxiemeMessageRappel() {
+		return deuxiemeMessageRappel;
 	}
 
 	public String getConclusion() {

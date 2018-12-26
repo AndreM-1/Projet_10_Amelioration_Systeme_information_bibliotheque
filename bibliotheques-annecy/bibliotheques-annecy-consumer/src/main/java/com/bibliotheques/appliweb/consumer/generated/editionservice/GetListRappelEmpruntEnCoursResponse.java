@@ -9,7 +9,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import com.bibliotheques.appliweb.model.bean.edition.Reservation;
+import com.bibliotheques.appliweb.model.bean.edition.Emprunt;
+
 
 
 /**
@@ -22,7 +23,7 @@ import com.bibliotheques.appliweb.model.bean.edition.Reservation;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="reservation" type="{http://www.example.org/beans}Reservation" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="emprunt" type="{http://www.example.org/beans}Emprunt" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -33,41 +34,41 @@ import com.bibliotheques.appliweb.model.bean.edition.Reservation;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "reservation"
+    "emprunt"
 })
-@XmlRootElement(name = "getListAllReservationResponse")
-public class GetListAllReservationResponse {
+@XmlRootElement(name = "getListRappelEmpruntEnCoursResponse")
+public class GetListRappelEmpruntEnCoursResponse {
 
     @XmlElement(required = true)
-    protected List<Reservation> reservation;
+    protected List<Emprunt> emprunt;
 
     /**
-     * Gets the value of the reservation property.
+     * Gets the value of the emprunt property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the reservation property.
+     * This is why there is not a <CODE>set</CODE> method for the emprunt property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getReservation().add(newItem);
+     *    getEmprunt().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Reservation }
+     * {@link Emprunt }
      * 
      * 
      */
-    public List<Reservation> getReservation() {
-        if (reservation == null) {
-            reservation = new ArrayList<Reservation>();
+    public List<Emprunt> getEmprunt() {
+        if (emprunt == null) {
+            emprunt = new ArrayList<Emprunt>();
         }
-        return this.reservation;
+        return this.emprunt;
     }
 
 }

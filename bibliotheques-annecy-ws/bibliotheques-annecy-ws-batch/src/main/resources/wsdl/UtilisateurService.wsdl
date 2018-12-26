@@ -238,19 +238,69 @@
     </xsd:complexType>
       
   </xsd:element>
+      
+  <xsd:element name="updateParametresUtilisateur">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:int">
+      			</xsd:element>
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="mailRappelPret" type="xsd:boolean"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="updateParametresUtilisateurResponse">
+      	
+    <xsd:complexType>
+
+      	</xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="updateParametresUtilisateurFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
     
 </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="updateCoordUtilisateurRequest">
+    <wsdl:part element="tns:updateCoordUtilisateur" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authentifierUtilisateurRequest">
+    <wsdl:part element="tns:authentifierUtilisateur" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateParametresUtilisateurRequest">
+    <wsdl:part element="tns:updateParametresUtilisateur" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="authentifierUtilisateurResponse">
     <wsdl:part element="tns:authentifierUtilisateurResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="creerCompteUtilisateurResponse">
     <wsdl:part element="tns:creerCompteUtilisateurResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="updateCoordUtilisateurRequest">
-    <wsdl:part element="tns:updateCoordUtilisateur" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="updateMdpUtilisateurRequest">
@@ -265,8 +315,8 @@
     <wsdl:part element="tns:updateMdpUtilisateurResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="authentifierUtilisateurRequest">
-    <wsdl:part element="tns:authentifierUtilisateur" name="parameters">
+  <wsdl:message name="updateParametresUtilisateurResponse">
+    <wsdl:part element="tns:updateParametresUtilisateurResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="creerCompteUtilisateurFault">
@@ -287,6 +337,10 @@
   </wsdl:message>
   <wsdl:message name="updateCoordUtilisateurResponse">
     <wsdl:part element="tns:updateCoordUtilisateurResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateParametresUtilisateurFault">
+    <wsdl:part element="tns:updateParametresUtilisateurFault" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="UtilisateurService">
@@ -320,6 +374,14 @@
       <wsdl:output message="tns:updateMdpUtilisateurResponse">
     </wsdl:output>
       <wsdl:fault message="tns:updateMdpUtilisateurFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateParametresUtilisateur">
+      <wsdl:input message="tns:updateParametresUtilisateurRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:updateParametresUtilisateurResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:updateParametresUtilisateurFault" name="fault">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
@@ -359,6 +421,18 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="updateMdpUtilisateur">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateParametresUtilisateur">
       <soap:operation soapAction=""/>
       <wsdl:input>
         <soap:body use="literal"/>
@@ -410,6 +484,18 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="updateMdpUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateParametresUtilisateur">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input>
         <soap:body use="literal"/>

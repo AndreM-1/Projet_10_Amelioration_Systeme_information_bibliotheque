@@ -125,4 +125,28 @@ public class ObjectFactory {
         return new UpdateMdpUtilisateurFault();
     }
 
+    /**
+     * Create an instance of {@link UpdateParametresUtilisateur }
+     * 
+     */
+    public UpdateParametresUtilisateur createUpdateParametresUtilisateur() {
+        return new UpdateParametresUtilisateur();
+    }
+
+    /**
+     * Create an instance of {@link UpdateParametresUtilisateurResponse }
+     * 
+     */
+    public UpdateParametresUtilisateurResponse createUpdateParametresUtilisateurResponse() {
+        return new UpdateParametresUtilisateurResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateParametresUtilisateurFault }
+     * 
+     */
+    public UpdateParametresUtilisateurFault createUpdateParametresUtilisateurFault() {
+        return new UpdateParametresUtilisateurFault();
+    }
+
 }

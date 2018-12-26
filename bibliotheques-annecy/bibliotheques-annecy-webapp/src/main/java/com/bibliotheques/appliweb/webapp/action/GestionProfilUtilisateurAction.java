@@ -21,6 +21,7 @@ import com.bibliotheques.appliweb.model.exception.GetListEmpruntFault_Exception;
 import com.bibliotheques.appliweb.model.exception.GetListReservationUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateCoordUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateMdpUtilisateurFault_Exception;
+import com.bibliotheques.appliweb.model.exception.UpdateParametresUtilisateurFault_Exception;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -68,7 +69,9 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 	private boolean bEmpruntEnCours =false;
 	private boolean bEmpruntRendu =false;
 	private boolean bReservationEnCours=false;
-
+	
+	private boolean mailRappelPret;
+	
 	// ----- Eléments Struts
 	private Map<String, Object> session;
 
@@ -259,6 +262,14 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 	
 	public List<ReservationAppliWeb> getListReservationAppliWeb() {
 		return listReservationAppliWeb;
+	}
+	
+	public boolean isMailRappelPret() {
+		return mailRappelPret;
+	}
+
+	public void setMailRappelPret(boolean mailRappelPret) {
+		this.mailRappelPret = mailRappelPret;
 	}
 
 	@Override
@@ -465,6 +476,41 @@ public class GestionProfilUtilisateurAction extends ActionSupport implements Ses
 			bReservationEnCours=true;
 		}
 		return ActionSupport.SUCCESS;
+	}
+	
+	/**
+	 * Méthode permettant de mettre à jour les paramètres d'un {@link Utilisateur}
+	 * @return input / success /error
+	 */
+	public String doUpdateParam() {
+		LOGGER.info("GestionProfilUtilisateurAction - Méthode doUpdateParam()");
+		String vResult;
+		
+		//Récupération de la variable de session relative à l'utilisateur.
+		Utilisateur vUtilisateurSession= (Utilisateur)this.session.get("user");
+		if(!validationFormulaire) {
+			//Récupération des attributs id et mailRappelPret de la variable de session relative à l'utilisateur.
+			id=vUtilisateurSession.getId();
+			mailRappelPret=vUtilisateurSession.isMailRappelPret();
+			validationFormulaire=true;
+			vResult=ActionSupport.INPUT;
+		}else {
+			//Appel au web service.
+			LOGGER.info("Utilisateur Id : "+id);
+			LOGGER.info("Mail de rappel prêt : "+mailRappelPret);
+			try {
+				managerFactory.getUtilisateurManager().updateParametresUtilisateur(id, mailRappelPret);
+				
+				//En cas de succès, on met à jour les attributs de la variable de session pour être cohérent avec la base de données.
+				vUtilisateurSession.setMailRappelPret(mailRappelPret);
+				vResult=ActionSupport.SUCCESS;	
+			} catch (UpdateParametresUtilisateurFault_Exception e) {
+				LOGGER.info(e.getMessage());
+				this.addActionError(e.getMessage());
+				vResult=ActionSupport.ERROR;
+			}	
+		}
+		return vResult;	
 	}
 	
 }

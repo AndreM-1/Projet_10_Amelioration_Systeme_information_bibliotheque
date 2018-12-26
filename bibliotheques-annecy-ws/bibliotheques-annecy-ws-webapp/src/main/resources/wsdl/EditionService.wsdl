@@ -386,9 +386,31 @@
 	      	</xsd:sequence>
       	</xsd:complexType>    
       </xsd:element>
-      
-      
-        </xsd:schema>
+
+
+      <xsd:element name="getListRappelEmpruntEnCours">
+      	<xsd:complexType>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListRappelEmpruntEnCoursResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="emprunt" type="Q1:Emprunt" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getListRappelEmpruntEnCoursFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="faultMessageErreur"
+      				type="xsd:string" minOccurs="1" maxOccurs="1">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
   </wsdl:types>
   <wsdl:message name="getListEditionRequest">
     <wsdl:part element="tns:getListEdition" name="parameters"/>
@@ -514,6 +536,15 @@
   <wsdl:message name="getListReservationUpdatedFault">
   	<wsdl:part name="fault" element="tns:getListReservationUpdatedFault"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getListRappelEmpruntEnCoursRequest">
+  	<wsdl:part name="parameters" element="tns:getListRappelEmpruntEnCours"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListRappelEmpruntEnCoursResponse">
+  	<wsdl:part name="parameters" element="tns:getListRappelEmpruntEnCoursResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListRappelEmpruntEnCoursFault">
+  	<wsdl:part name="parameters" element="tns:getListRappelEmpruntEnCoursFault"></wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="EditionService">
     <wsdl:operation name="getListEdition">
       <wsdl:input message="tns:getListEditionRequest"/>
@@ -583,6 +614,11 @@
     	<wsdl:input message="tns:getListReservationUpdatedRequest"></wsdl:input>
     	<wsdl:output message="tns:getListReservationUpdatedResponse"></wsdl:output>
             <wsdl:fault name="fault" message="tns:getListReservationUpdatedFault"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="getListRappelEmpruntEnCours">
+    	<wsdl:input message="tns:getListRappelEmpruntEnCoursRequest"></wsdl:input>
+    	<wsdl:output message="tns:getListRappelEmpruntEnCoursResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:getListRappelEmpruntEnCoursFault"></wsdl:fault>
         </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EditionServiceSOAP" type="tns:EditionService">
@@ -744,6 +780,19 @@
 
   	<wsdl:operation name="getListReservationUpdated">
   		<soap:operation soapAction="" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+  			<soap:fault use="literal" name="fault" />
+  		</wsdl:fault>
+  	</wsdl:operation>
+  	<wsdl:operation name="getListRappelEmpruntEnCours">
+  		<soap:operation
+  			soapAction="" />
   		<wsdl:input>
   			<soap:body use="literal" />
   		</wsdl:input>

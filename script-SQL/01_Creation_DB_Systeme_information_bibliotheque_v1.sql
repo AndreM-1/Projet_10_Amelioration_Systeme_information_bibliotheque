@@ -140,6 +140,7 @@ CREATE TABLE public.utilisateur (
                 code_postal CHAR(5),
                 ville VARCHAR(100),
                 pays CHAR(6) NOT NULL,
+                mail_rappel_pret BOOLEAN NOT NULL,
                 CONSTRAINT utilisateur_pk PRIMARY KEY (id)
 );
 

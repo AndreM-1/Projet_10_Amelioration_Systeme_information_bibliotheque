@@ -12,6 +12,7 @@ import com.bibliotheques.appliweb.model.exception.AuthentifierUtilisateurFault_E
 import com.bibliotheques.appliweb.model.exception.CreerCompteUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateCoordUtilisateurFault_Exception;
 import com.bibliotheques.appliweb.model.exception.UpdateMdpUtilisateurFault_Exception;
+import com.bibliotheques.appliweb.model.exception.UpdateParametresUtilisateurFault_Exception;
 
 @Named
 public class UtilisateurDaoImpl extends AbstractDaoImpl implements UtilisateurDao {
@@ -72,6 +73,17 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl implements UtilisateurDa
 		} catch (UpdateMdpUtilisateurFault_Exception e) {
 			LOGGER.info(e.getMessage());
 			throw new UpdateMdpUtilisateurFault_Exception (e.getMessage());
+		}
+	}
+	
+	@Override
+	public void updateParametresUtilisateur(int id, boolean mailRappelPret) throws UpdateParametresUtilisateurFault_Exception {
+		LOGGER.info("Couche Consumer - Méthode updateParametresUtilisateur()");
+		try {
+			getUtilisateurService().updateParametresUtilisateur(id, mailRappelPret);
+		} catch (UpdateParametresUtilisateurFault_Exception e) {
+			LOGGER.info(e.getMessage());
+			throw new UpdateParametresUtilisateurFault_Exception(e.getMessage());
 		}
 	}
 }

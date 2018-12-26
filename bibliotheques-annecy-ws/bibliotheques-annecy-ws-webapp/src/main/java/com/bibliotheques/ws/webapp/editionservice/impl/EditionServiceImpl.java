@@ -29,6 +29,8 @@ import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListEmpruntFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListExemplaireFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListExemplaireFault_Exception;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListRappelEmpruntEnCoursFault;
+import com.bibliotheques.ws.webapp.editionservice.generated.GetListRappelEmpruntEnCoursFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationFault;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationFault_Exception;
 import com.bibliotheques.ws.webapp.editionservice.generated.GetListReservationUpdatedFault;
@@ -303,5 +305,20 @@ public class EditionServiceImpl implements EditionService{
 		}else {
 			return listReservation;
 		}
+	}
+
+	@Override
+	public List<Emprunt> getListRappelEmpruntEnCours() throws GetListRappelEmpruntEnCoursFault_Exception {
+		LOGGER.info("Web Service : EditionService - Couche Webapp - getListRappelEmpruntEnCours()");
+		listEmprunt=new ArrayList<>();
+		try {
+			listEmprunt=managerFactory.getEmpruntManager().getListRappelEmpruntEnCours();
+		} catch (NotFoundException e) {
+			LOGGER.info(e.getMessage());
+			GetListRappelEmpruntEnCoursFault getListRappelEmpruntEnCoursFault=new GetListRappelEmpruntEnCoursFault();
+			getListRappelEmpruntEnCoursFault.setFaultMessageErreur(e.getMessage());
+			throw new GetListRappelEmpruntEnCoursFault_Exception(e.getMessage(),getListRappelEmpruntEnCoursFault);
+		}
+		return listEmprunt;
 	}
 }

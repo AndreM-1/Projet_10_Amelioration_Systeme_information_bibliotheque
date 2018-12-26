@@ -113,4 +113,13 @@ public interface EmpruntDao {
 	 */
 	List<Emprunt> getListEmprunt(Date dateDeRetourEffective, int statutEmpruntId) throws NotFoundException;
 
+	/**
+	 * Méthode permettant de renvoyer la liste des emprunts compris dans l'intervalle de dates souhaitées.
+	 * @param dateDuJour : La date du jour
+	 * @param dateMax : La date de fin max que l'emprunt ne doit pas dépassé.
+	 * @return List
+	 * @throws NotFoundException
+	 */
+	List<Emprunt> getListRappelEmpruntEnCours(Date dateDuJour, Date dateMax) throws NotFoundException;
+
 }

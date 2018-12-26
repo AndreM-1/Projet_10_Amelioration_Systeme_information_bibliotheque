@@ -56,6 +56,7 @@ public class UtilisateurRM implements RowMapper<Utilisateur>{
 		vUtilisateur.setCodePostal(pRS.getString("code_postal"));
 		vUtilisateur.setVille(pRS.getString("ville"));
 		vUtilisateur.setPays(pRS.getString("pays"));
+		vUtilisateur.setMailRappelPret(pRS.getBoolean("mail_rappel_pret"));
 		return vUtilisateur;
 	}
 }

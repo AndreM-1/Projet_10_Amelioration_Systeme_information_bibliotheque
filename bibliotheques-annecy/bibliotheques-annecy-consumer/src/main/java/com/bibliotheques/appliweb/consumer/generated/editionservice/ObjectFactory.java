@@ -6,11 +6,12 @@ import javax.xml.bind.annotation.XmlRegistry;
 import com.bibliotheques.appliweb.model.exception.AnnulerReservationFault;
 import com.bibliotheques.appliweb.model.exception.EmprunterEditionFault;
 import com.bibliotheques.appliweb.model.exception.GestionPretFault;
-import com.bibliotheques.appliweb.model.exception.GetListAllReservationFault;
 import com.bibliotheques.appliweb.model.exception.GetListEmpruntEnRetardFault;
 import com.bibliotheques.appliweb.model.exception.GetListEmpruntFault;
 import com.bibliotheques.appliweb.model.exception.GetListExemplaireFault;
+import com.bibliotheques.appliweb.model.exception.GetListRappelEmpruntEnCoursFault;
 import com.bibliotheques.appliweb.model.exception.GetListReservationFault;
+import com.bibliotheques.appliweb.model.exception.GetListReservationUpdatedFault;
 import com.bibliotheques.appliweb.model.exception.GetListReservationUtilisateurFault;
 import com.bibliotheques.appliweb.model.exception.ProlongerEmpruntFault;
 import com.bibliotheques.appliweb.model.exception.RechercheAvanceeEditionFault;
@@ -202,7 +203,7 @@ public class ObjectFactory {
     public ProlongerEmpruntFault createProlongerEmpruntFault() {
         return new ProlongerEmpruntFault();
     }
-    
+
     /**
      * Create an instance of {@link GetListEmpruntEnRetard }
      * 
@@ -348,27 +349,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetListAllReservation }
+     * Create an instance of {@link GetListReservationUpdated }
      * 
      */
-    public GetListAllReservation createGetListAllReservation() {
-        return new GetListAllReservation();
+    public GetListReservationUpdated createGetListReservationUpdated() {
+        return new GetListReservationUpdated();
     }
 
     /**
-     * Create an instance of {@link GetListAllReservationResponse }
+     * Create an instance of {@link GetListReservationUpdatedResponse }
      * 
      */
-    public GetListAllReservationResponse createGetListAllReservationResponse() {
-        return new GetListAllReservationResponse();
+    public GetListReservationUpdatedResponse createGetListReservationUpdatedResponse() {
+        return new GetListReservationUpdatedResponse();
     }
 
     /**
-     * Create an instance of {@link GetListAllReservationFault }
+     * Create an instance of {@link GetListReservationUpdatedFault }
      * 
      */
-    public GetListAllReservationFault createGetListAllReservationFault() {
-        return new GetListAllReservationFault();
+    public GetListReservationUpdatedFault createGetListReservationUpdatedFault() {
+        return new GetListReservationUpdatedFault();
+    }
+
+    /**
+     * Create an instance of {@link GetListRappelEmpruntEnCours }
+     * 
+     */
+    public GetListRappelEmpruntEnCours createGetListRappelEmpruntEnCours() {
+        return new GetListRappelEmpruntEnCours();
+    }
+
+    /**
+     * Create an instance of {@link GetListRappelEmpruntEnCoursResponse }
+     * 
+     */
+    public GetListRappelEmpruntEnCoursResponse createGetListRappelEmpruntEnCoursResponse() {
+        return new GetListRappelEmpruntEnCoursResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListRappelEmpruntEnCoursFault }
+     * 
+     */
+    public GetListRappelEmpruntEnCoursFault createGetListRappelEmpruntEnCoursFault() {
+        return new GetListRappelEmpruntEnCoursFault();
     }
 
 }

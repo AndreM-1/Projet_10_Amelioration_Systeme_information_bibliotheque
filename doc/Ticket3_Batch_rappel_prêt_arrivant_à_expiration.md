@@ -1,0 +1,9 @@
+### Qualification : Nouvelle fonctionnalité
+
+### Analyse de la demande :
+
+-   Au niveau de la base de données, il faudrait ajouter une colonne de type booléenne dans la table utilisateur que l'on pourrait nommer "mail_rappel_pret" qui sera à true par défaut. Il faudra évidemment ajouter l'attribut correspondant pour le bean Utilisateur.
+-   Au niveau du web service UtilisateurServiceImpl, on pourra ajouter un nouveau web service que l'on nommera "updateParametresUtilisateur". Il faudra également mettre à jour le web service existant qui permet de créer un compte utilisateur pour setter la colonne "mail_rappel_pret" à true lors de la création du compte.
+-   Au niveau du web service EditionServiceImpl, on pourra ajouter un nouveau web service que l'on nommera "getListRappelEmpruntEnCours" qui comportera tous les emprunts en cours qui vérifient la condition suivante :  date_de_fin(du prêt) - 5 < date du jour <= date_de_fin(du prêt)
+-   Au niveau de l'appli web, plus précisément au niveau du profil de l'utilisateur, on ajoutera une section "Paramètres" avec une option du type "checkbox" qui permet d'envoyer un mail de rappel à l'utilisateur 5 jours calendaires avant la fin du prêt. Cette option sera activée par défaut pour tous les utilisateurs lors de la mise en production. L'utilisateur pourra bien évidemment décocher cette option s'il le souhaite.
+-   Des mises à jour seront à effectuer au niveau du module batch pour prendre en compte le mail de rappel à envoyer à l'utilisateur. Ce mail contiendra la liste des prêts en cours qui arrivent à expiration dans 5 jours ou moins avec la date d’expiration associée à chaque prêt.

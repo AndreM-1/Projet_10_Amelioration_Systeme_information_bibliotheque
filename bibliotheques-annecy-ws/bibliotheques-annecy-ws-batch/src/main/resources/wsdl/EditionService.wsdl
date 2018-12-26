@@ -642,9 +642,48 @@
     </xsd:complexType>    
       
   </xsd:element>
+
+
       
+  <xsd:element name="getListRappelEmpruntEnCours">
+      	
+    <xsd:complexType>
+
+      	</xsd:complexType>
       
-        
+  </xsd:element>
+      
+  <xsd:element name="getListRappelEmpruntEnCoursResponse">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="unbounded" minOccurs="1" name="emprunt" type="Q1:Emprunt"/>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+      
+  <xsd:element name="getListRappelEmpruntEnCoursFault">
+      	
+    <xsd:complexType>
+      		
+      <xsd:sequence>
+
+      			
+        <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string">
+      			</xsd:element>
+      		
+      </xsd:sequence>
+      	
+    </xsd:complexType>
+      
+  </xsd:element>
+    
 </xsd:schema>
   </wsdl:types>
   <wsdl:message name="getListEmpruntRequest">
@@ -693,6 +732,10 @@
   </wsdl:message>
   <wsdl:message name="getListExemplaireRequest">
     <wsdl:part element="tns:getListExemplaire" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListRappelEmpruntEnCoursRequest">
+    <wsdl:part element="tns:getListRappelEmpruntEnCours" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getListEmpruntEnRetardRequest">
@@ -767,12 +810,20 @@
     <wsdl:part element="tns:getListExemplaireResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getListRappelEmpruntEnCoursResponse">
+    <wsdl:part element="tns:getListRappelEmpruntEnCoursResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getListReservationResponse">
     <wsdl:part element="tns:getListReservationResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="gestionPretResponse">
     <wsdl:part element="tns:gestionPretResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListRappelEmpruntEnCoursFault">
+    <wsdl:part element="tns:getListRappelEmpruntEnCoursFault" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="gestionPretRequest">
@@ -920,6 +971,14 @@
       <wsdl:output message="tns:getListReservationUpdatedResponse">
     </wsdl:output>
       <wsdl:fault message="tns:getListReservationUpdatedFault" name="fault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getListRappelEmpruntEnCours">
+      <wsdl:input message="tns:getListRappelEmpruntEnCoursRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getListRappelEmpruntEnCoursResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:getListRappelEmpruntEnCoursFault" name="fault">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
@@ -1090,6 +1149,18 @@
         <soap:fault name="fault" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getListRappelEmpruntEnCours">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="EditionServiceSOAP" type="tns:EditionService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -1247,6 +1318,18 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getListReservationUpdated">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getListRappelEmpruntEnCours">
       <soap:operation soapAction=""/>
       <wsdl:input>
         <soap:body use="literal"/>
