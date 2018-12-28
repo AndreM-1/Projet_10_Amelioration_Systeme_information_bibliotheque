@@ -1,5 +1,447 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="7fd5e679-6c3d-4d6b-9888-0d1673343efc" activeEnvironment="Default" name="UtilisateurServiceP10" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="69596d50-7173-4035-b785-0815faddde55" wsaVersion="NONE" name="UtilisateurServiceSoapBinding" type="wsdl" bindingName="{http://www.example.org/UtilisateurService/}UtilisateurServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur</con:endpoint></con:endpoints><con:operation id="1db89619-93c1-46e6-ac0d-3d78b82d01e7" isOneWay="false" action="" name="authentifierUtilisateur" bindingOperationName="authentifierUtilisateur" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8415e442-c5eb-4aaa-882a-9a7b0187cfb2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:util="http://www.example.org/UtilisateurService/">\r
+<con:soapui-project id="7fd5e679-6c3d-4d6b-9888-0d1673343efc" activeEnvironment="Default" name="UtilisateurServiceP10" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="69596d50-7173-4035-b785-0815faddde55" wsaVersion="NONE" name="UtilisateurServiceSoapBinding" type="wsdl" bindingName="{http://www.example.org/UtilisateurService/}UtilisateurServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur?wsdl"><con:part><con:url>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="UtilisateurService" targetNamespace="http://www.example.org/UtilisateurService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.org/UtilisateurService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/UtilisateurService/" xmlns:Q1="http://www.example.org/beans">
+      <xsd:import namespace="http://www.example.org/beans" schemaLocation="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur?xsd=../beans.xsd"/>
+      <xsd:element name="authentifierUtilisateur">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="adresseMail" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="motDePasse" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authentifierUtilisateurResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="utilisateur" type="Q1:Utilisateur"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="creerCompteUtilisateur">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="civilite" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="nom" type="xsd:string"></xsd:element>
+            <xsd:element minOccurs="1" name="prenom" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="pseudo" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="adresseMail" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="motDePasse" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="confirmationMotDePasse" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="conditionsUtilisation" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="creerCompteUtilisateurResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="utilisateur" type="Q1:Utilisateur"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateCoordUtilisateur">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:int"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="civilite" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="nom" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="prenom" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="pseudo" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="adresseMail" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="telephone" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="dateNaissance" type="xsd:date"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="adresse" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="codePostal" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ville" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="pays" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateCoordUtilisateurResponse">
+        <xsd:complexType></xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateMdpUtilisateur">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:int"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ancienMdp" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="nouveauMdp" type="xsd:string"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="confirmationNouveauMdp" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateMdpUtilisateurResponse">
+        <xsd:complexType></xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authentifierUtilisateurFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="creerCompteUtilisateurFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateCoordUtilisateurFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateMdpUtilisateurFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateParametresUtilisateur">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:int"></xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="mailRappelPret" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateParametresUtilisateurResponse">
+        <xsd:complexType></xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateParametresUtilisateurFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="faultMessageErreur" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="updateCoordUtilisateurRequest">
+    <wsdl:part element="tns:updateCoordUtilisateur" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authentifierUtilisateurRequest">
+    <wsdl:part element="tns:authentifierUtilisateur" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateParametresUtilisateurRequest">
+    <wsdl:part element="tns:updateParametresUtilisateur" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authentifierUtilisateurResponse">
+    <wsdl:part element="tns:authentifierUtilisateurResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creerCompteUtilisateurResponse">
+    <wsdl:part element="tns:creerCompteUtilisateurResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMdpUtilisateurRequest">
+    <wsdl:part element="tns:updateMdpUtilisateur" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCoordUtilisateurFault">
+    <wsdl:part element="tns:updateCoordUtilisateurFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMdpUtilisateurResponse">
+    <wsdl:part element="tns:updateMdpUtilisateurResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateParametresUtilisateurResponse">
+    <wsdl:part element="tns:updateParametresUtilisateurResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creerCompteUtilisateurFault">
+    <wsdl:part element="tns:creerCompteUtilisateurFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMdpUtilisateurFault">
+    <wsdl:part element="tns:updateMdpUtilisateurFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authentifierUtilisateurFault">
+    <wsdl:part element="tns:authentifierUtilisateurFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creerCompteUtilisateurRequest">
+    <wsdl:part element="tns:creerCompteUtilisateur" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCoordUtilisateurResponse">
+    <wsdl:part element="tns:updateCoordUtilisateurResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateParametresUtilisateurFault">
+    <wsdl:part element="tns:updateParametresUtilisateurFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UtilisateurService">
+    <wsdl:operation name="authentifierUtilisateur">
+      <wsdl:input message="tns:authentifierUtilisateurRequest"></wsdl:input>
+      <wsdl:output message="tns:authentifierUtilisateurResponse"></wsdl:output>
+      <wsdl:fault message="tns:authentifierUtilisateurFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creerCompteUtilisateur">
+      <wsdl:input message="tns:creerCompteUtilisateurRequest"></wsdl:input>
+      <wsdl:output message="tns:creerCompteUtilisateurResponse"></wsdl:output>
+      <wsdl:fault message="tns:creerCompteUtilisateurFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateCoordUtilisateur">
+      <wsdl:input message="tns:updateCoordUtilisateurRequest"></wsdl:input>
+      <wsdl:output message="tns:updateCoordUtilisateurResponse"></wsdl:output>
+      <wsdl:fault message="tns:updateCoordUtilisateurFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateMdpUtilisateur">
+      <wsdl:input message="tns:updateMdpUtilisateurRequest"></wsdl:input>
+      <wsdl:output message="tns:updateMdpUtilisateurResponse"></wsdl:output>
+      <wsdl:fault message="tns:updateMdpUtilisateurFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateParametresUtilisateur">
+      <wsdl:input message="tns:updateParametresUtilisateurRequest"></wsdl:input>
+      <wsdl:output message="tns:updateParametresUtilisateurResponse"></wsdl:output>
+      <wsdl:fault message="tns:updateParametresUtilisateurFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UtilisateurServiceSOAP" type="tns:UtilisateurService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="authentifierUtilisateur">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="creerCompteUtilisateur">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateCoordUtilisateur">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateMdpUtilisateur">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateParametresUtilisateur">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UtilisateurServiceSoapBinding" type="tns:UtilisateurService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="authentifierUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creerCompteUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateCoordUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateMdpUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateParametresUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UtilisateurServiceService">
+    <wsdl:port binding="tns:UtilisateurServiceSoapBinding" name="UtilisateurServicePort">
+      <soap:address location="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="UtilisateurService">
+    <wsdl:port binding="tns:UtilisateurServiceSOAP" name="UtilisateurServiceSOAP">
+      <soap:address location="http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur?xsd=../beans.xsd</con:url><con:content><![CDATA[<schema elementFormDefault="qualified" targetNamespace="http://www.example.org/beans" xmlns:tns="http://www.example.org/beans" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="Edition">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="isbn" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="dateParution" type="date"></element>
+      <element maxOccurs="1" minOccurs="1" name="nbPages" type="int"></element>
+      <element maxOccurs="1" minOccurs="1" name="format" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="ouvrage" type="tns:Ouvrage"></element>
+      <element maxOccurs="1" minOccurs="1" name="photo" type="tns:Photo"></element>
+      <element maxOccurs="1" minOccurs="1" name="editeur" type="tns:Editeur"></element>
+      <element maxOccurs="1" minOccurs="1" name="genre" type="tns:Genre"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Editeur">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="nomEditeur" type="string"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Photo">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="nomPhoto" type="string"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Ouvrage">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="titre" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="resume" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="auteur" type="tns:Auteur"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Auteur">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="nom" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="prenom" type="string"></element>
+    </sequence>
+  </complexType>
+  <complexType name="Genre">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="genre" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="Utilisateur">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="civilite" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="nom" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="prenom" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="pseudo" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="adresseMail" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="salt" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="motDePasseSecurise" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="telephone" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="dateNaissance" type="date"></element>
+      <element maxOccurs="1" minOccurs="0" name="adresse" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="codePostal" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="ville" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="pays" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="mailRappelPret" type="boolean"/>
+    </sequence>
+  </complexType>
+  <complexType name="Bibliotheque">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="nomBibliotheque" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="telephone" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="adresse" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="codePostal" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="ville" type="string"></element>
+      <element maxOccurs="1" minOccurs="1" name="pays" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="Exemplaire">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="bibliotheque" type="tns:Bibliotheque"></element>
+      <element maxOccurs="1" minOccurs="1" name="edition" type="tns:Edition"></element>
+      <element maxOccurs="1" minOccurs="1" name="nbExemplairesInit" type="int"></element>
+      <element maxOccurs="1" minOccurs="1" name="nbExemplairesDispo" type="int"/>
+    </sequence>
+  </complexType>
+  <complexType name="StatutEmprunt">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="statutEmprunt" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="Emprunt">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="dateDeDebut" type="date"></element>
+      <element maxOccurs="1" minOccurs="1" name="dateDeFin" type="date"></element>
+      <element maxOccurs="1" minOccurs="1" name="prolongation" type="boolean"></element>
+      <element maxOccurs="1" minOccurs="0" name="dateDeProlongation" type="date"></element>
+      <element maxOccurs="1" minOccurs="0" name="dureeProlongation" type="string"></element>
+      <element maxOccurs="1" minOccurs="0" name="dateDeRetourEffective" type="date"></element>
+      <element maxOccurs="1" minOccurs="1" name="utilisateur" type="tns:Utilisateur"></element>
+      <element maxOccurs="1" minOccurs="1" name="statutEmprunt" type="tns:StatutEmprunt"></element>
+      <element maxOccurs="1" minOccurs="1" name="exemplaire" type="tns:Exemplaire"/>
+    </sequence>
+  </complexType>
+  <complexType name="Reservation">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="id" type="int"/>
+      <element maxOccurs="1" minOccurs="1" name="dateReservation" type="dateTime"></element>
+      <element maxOccurs="1" minOccurs="1" name="utilisateur" type="tns:Utilisateur"></element>
+      <element maxOccurs="1" minOccurs="1" name="exemplaire" type="tns:Exemplaire"></element>
+      <element maxOccurs="1" minOccurs="1" name="prioriteReservation" type="int"></element>
+      <element maxOccurs="1" minOccurs="0" name="dateReceptionMail" type="date"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur</con:endpoint></con:endpoints><con:operation id="1db89619-93c1-46e6-ac0d-3d78b82d01e7" isOneWay="false" action="" name="authentifierUtilisateur" bindingOperationName="authentifierUtilisateur" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8415e442-c5eb-4aaa-882a-9a7b0187cfb2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/utilisateur</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:util="http://www.example.org/UtilisateurService/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <util:authentifierUtilisateur>\r

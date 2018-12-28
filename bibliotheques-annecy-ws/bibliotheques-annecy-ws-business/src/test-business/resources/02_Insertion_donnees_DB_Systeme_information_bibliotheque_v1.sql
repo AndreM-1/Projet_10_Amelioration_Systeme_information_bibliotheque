@@ -455,10 +455,10 @@ VALUES
 INSERT INTO public.emprunt(date_de_debut,date_de_fin,prolongation,date_de_prolongation,duree_prolongation,date_de_retour_effective,utilisateur_id,statut_emprunt_id,
 exemplaire_bibliotheque_id,exemplaire_edition_id)
 VALUES
-('2018-11-28','2018-12-26',true,NULL,NULL,NULL,1,1,1,1),
-('2018-11-28','2018-12-26',true,NULL,NULL,NULL,1,1,1,3),
-('2018-11-28','2018-12-26',true,NULL,NULL,NULL,1,1,1,6),
-('2018-11-01','2018-12-27',false,'2018-11-23','4 semaines',NULL,1,1,1,11),
+('2018-12-21','2019-01-18',true,NULL,NULL,NULL,1,1,1,1),
+('2018-12-21','2019-01-18',true,NULL,NULL,NULL,1,1,1,3),
+('2018-12-21','2019-01-18',true,NULL,NULL,NULL,1,1,1,6),
+('2018-11-24','2019-01-19',false,'2018-12-22','4 semaines',NULL,1,1,1,11),
 ('2018-11-01','2018-11-29',false,NULL,NULL,NULL,1,2,2,9),
 ('2018-09-19','2018-10-17',false,NULL,NULL,NULL,1,2,1,8),
 ('2018-09-19','2018-11-14',false,'2018-10-16','4 semaines',NULL,1,2,1,10),
@@ -466,23 +466,23 @@ VALUES
 ('2018-09-03','2018-10-01',true,NULL,NULL,'2018-09-18',1,3,1,17),
 ('2018-09-03','2018-10-01',true,NULL,NULL,'2018-10-03',1,3,1,31),
 ('2018-10-04','2018-11-29',false,'2018-11-01','4 semaines','2018-11-23',1,3,1,34),
-('2018-11-30','2018-12-28',true,NULL,NULL,NULL,2,1,2,32),
-('2018-12-03','2018-12-31',true,NULL,NULL,NULL,2,1,4,36),
+('2018-12-24','2019-01-21',true,NULL,NULL,NULL,2,1,2,32),
+('2018-12-27','2019-01-24',true,NULL,NULL,NULL,2,1,4,36),
 ('2018-11-01','2018-11-29',false,NULL,NULL,NULL,2,2,2,9),
-('2018-11-01','2018-12-27',false,'2018-11-29','4 semaines',NULL,2,1,4,35),
+('2018-11-24','2019-01-19',false,'2018-12-22','4 semaines',NULL,2,1,4,35),
 ('2018-09-12','2018-11-07',false,'2018-10-08','4 semaines',NULL,2,2,2,22),
 ('2018-11-05','2018-12-03',false,NULL,NULL,NULL,3,2,4,35),
-('2018-12-08','2019-01-05',true,NULL,NULL,NULL,3,1,1,11);
+('2019-01-03','2019-01-31',true,NULL,NULL,NULL,3,1,1,11);
 
 -- *********************************************************************
 -- reservation
 -- *********************************************************************
 INSERT INTO public.reservation(date_reservation,utilisateur_id,exemplaire_bibliotheque_id,exemplaire_edition_id,priorite_reservation,date_reception_mail)
 VALUES
-('2018-12-03 08:10:25',1,2,22,1,NULL),
-('2018-12-03 22:12:26',3,2,22,2,NULL),
-('2018-12-04 07:20:26',3,2,32,1,NULL),
-('2018-12-04 08:20:26',1,2,32,2,NULL),
-('2018-12-05 11:59:26',3,4,36,1,NULL),
-('2018-12-05 23:59:25',1,4,36,2,NULL),
-('2018-12-06 10:10:25',1,4,35,1,NULL);
+('2018-12-26 08:10:25',1,2,22,1,NULL),
+('2018-12-26 22:12:26',3,2,22,2,NULL),
+('2018-12-27 07:20:26',3,2,32,1,NULL),
+('2018-12-27 08:20:26',1,2,32,2,NULL),
+('2018-12-28 11:59:26',3,4,36,1,NULL),
+('2018-12-28 23:59:25',1,4,36,2,NULL),
+('2018-12-29 10:10:25',1,4,35,1,NULL);

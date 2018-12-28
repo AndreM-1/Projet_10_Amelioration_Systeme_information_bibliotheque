@@ -118,7 +118,8 @@ public class TestIntegration extends BusinessTestCase{
 	/**
 	 * Méthode qui permet de tester la lecture de la base de données, i.e les méthodes getListEmpruntEnRetard(), 
 	 * getListEmprunt(int utilisateurId,int bibliothequeId,int editionId),getListReservation(int utilisateurId, int bibliothequeId, int editionId,int nbExemplairesInit),
-	 * getListReservationUtilisateur(int utilisateurId) et getListRappelEmpruntEnCours().
+	 * getListReservationUtilisateur(int utilisateurId) et getListRappelEmpruntEnCours(). Pour tester cette dernière méthode, on se place dans les conditions suivantes : 
+	 * l'emprunt (1,11) arrive à expiration dans moins de 5 jours.
 	 * @throws Exception
 	 */
 	@Test
@@ -158,7 +159,7 @@ public class TestIntegration extends BusinessTestCase{
 		
 		vListEmpruntBDD=getManagerFactory().getEmpruntManager().getListRappelEmpruntEnCours();
 		assertNotNull("La liste d'emprunt ne doit pas être nul.",vListEmpruntBDD);
-		assertEquals("La taille de la liste d'emprunt est erronée.",6,vListEmpruntBDD.size());
+		assertEquals("La taille de la liste d'emprunt est erronée.",1,vListEmpruntBDD.size());
 	}
 	
 	/**
