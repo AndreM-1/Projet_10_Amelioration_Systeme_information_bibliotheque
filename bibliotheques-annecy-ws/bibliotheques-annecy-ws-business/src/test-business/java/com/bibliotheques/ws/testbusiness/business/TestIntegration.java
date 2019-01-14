@@ -63,7 +63,7 @@ public class TestIntegration extends BusinessTestCase{
 			}
 		}
 
-		//On remplit les tables de la base de données avec les données initiales du jeu de démo.
+		//On remplit les tables de la base de données avec un jeu de données de démo pour les tests d'intégration.
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
 		populator.setSqlScriptEncoding("UTF-8");
 		try {
@@ -102,7 +102,7 @@ public class TestIntegration extends BusinessTestCase{
 			}
 		}
 
-		//On remplit les tables de la base de données avec les données initiales du jeu de démo.
+		//On remplit les tables de la base de données avec le jeu de données initiales de démo.
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
 		populator.setSqlScriptEncoding("UTF-8");
 		try {
@@ -159,7 +159,7 @@ public class TestIntegration extends BusinessTestCase{
 		
 		vListEmpruntBDD=getManagerFactory().getEmpruntManager().getListRappelEmpruntEnCours();
 		assertNotNull("La liste d'emprunt ne doit pas être nul.",vListEmpruntBDD);
-		assertEquals("La taille de la liste d'emprunt est erronée.",1,vListEmpruntBDD.size());
+		assertEquals("La taille de la liste d'emprunt est erronée.",6,vListEmpruntBDD.size());
 	}
 	
 	/**
@@ -205,7 +205,7 @@ public class TestIntegration extends BusinessTestCase{
 	/**
 	 * Test d'intégration de la méthode getListReservationUpdated(). On se place dans les conditions suivantes :
 	 * Le délai de 48H pour venir chercher l'emprunt est passé pour 2 utilisateurs. Les 2 lignes de réservation correspondantes
-	 * vont donc être supprimées, et ces 2 utilisateurs vont recevoir un mail.
+	 * vont donc être supprimées, et 2 utilisateurs vont recevoir un mail.
 	 * @throws Exception
 	 */
 	@Test

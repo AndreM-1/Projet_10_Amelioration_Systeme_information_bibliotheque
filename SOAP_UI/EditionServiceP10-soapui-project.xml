@@ -2107,16 +2107,16 @@
       <element maxOccurs="1" minOccurs="0" name="dateReceptionMail" type="date"/>
     </sequence>
   </complexType>
-</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint></con:endpoints><con:operation id="4d5e5652-e02b-4719-8dd2-51898b2a1e3c" isOneWay="false" action="" name="annulerReservation" bindingOperationName="annulerReservation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fb6f39e2-97d7-4a58-b211-2e27652273ee" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint></con:endpoints><con:operation id="4d5e5652-e02b-4719-8dd2-51898b2a1e3c" isOneWay="false" action="" name="annulerReservation" bindingOperationName="annulerReservation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fb6f39e2-97d7-4a58-b211-2e27652273ee" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <edit:annulerReservation>\r
-         <utilisateurId>?</utilisateurId>\r
-         <bibliothequeId>?</bibliothequeId>\r
-         <editionId>?</editionId>\r
+         <utilisateurId>1</utilisateurId>\r
+         <bibliothequeId>1</bibliothequeId>\r
+         <editionId>1</editionId>\r
       </edit:annulerReservation>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/annulerReservationRequest"/></con:call></con:operation><con:operation id="abba8dd5-930c-4d3b-a01f-aa8c645b9f72" isOneWay="false" action="" name="emprunterEdition" bindingOperationName="emprunterEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5008abb2-ac2d-4197-8d78-724ccf66c608" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/annulerReservationRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="abba8dd5-930c-4d3b-a01f-aa8c645b9f72" isOneWay="false" action="" name="emprunterEdition" bindingOperationName="emprunterEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5008abb2-ac2d-4197-8d78-724ccf66c608" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <edit:emprunterEdition>\r
@@ -2180,14 +2180,14 @@
    <soapenv:Body>\r
       <edit:getListReservationUpdated/>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListReservationUpdatedRequest"/></con:call></con:operation><con:operation id="ae1949d1-92ef-41b8-83e7-dd536c04b013" isOneWay="false" action="" name="getListReservationUtilisateur" bindingOperationName="getListReservationUtilisateur" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4b218d2b-9463-41ed-8179-be9f6a5f58f0" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListReservationUpdatedRequest"/></con:call></con:operation><con:operation id="ae1949d1-92ef-41b8-83e7-dd536c04b013" isOneWay="false" action="" name="getListReservationUtilisateur" bindingOperationName="getListReservationUtilisateur" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4b218d2b-9463-41ed-8179-be9f6a5f58f0" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <edit:getListReservationUtilisateur>\r
-         <utilisateurId>?</utilisateurId>\r
+         <utilisateurId>1</utilisateurId>\r
       </edit:getListReservationUtilisateur>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListReservationUtilisateurRequest"/></con:call></con:operation><con:operation id="624ecaf7-7367-4774-9265-08edf14b584a" isOneWay="false" action="" name="prolongerEmprunt" bindingOperationName="prolongerEmprunt" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2cf88931-8582-40ee-9572-cfd4ceff0196" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/getListReservationUtilisateurRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="624ecaf7-7367-4774-9265-08edf14b584a" isOneWay="false" action="" name="prolongerEmprunt" bindingOperationName="prolongerEmprunt" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2cf88931-8582-40ee-9572-cfd4ceff0196" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <edit:prolongerEmprunt>\r
@@ -2214,13 +2214,13 @@
          <titre>?</titre>\r
       </edit:rechercheEdition>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/rechercheEditionRequest"/></con:call></con:operation><con:operation id="72e7f094-08fc-4eb2-a53e-1d93b4916b1f" isOneWay="false" action="" name="reserverEdition" bindingOperationName="reserverEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="455d7135-5065-4d4c-bf8a-32bb7b8a77c2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/rechercheEditionRequest"/></con:call></con:operation><con:operation id="72e7f094-08fc-4eb2-a53e-1d93b4916b1f" isOneWay="false" action="" name="reserverEdition" bindingOperationName="reserverEdition" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="455d7135-5065-4d4c-bf8a-32bb7b8a77c2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/bibliotheques-annecy-ws-webapp/ws/edition</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edit="http://www.example.org/EditionService/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <edit:reserverEdition>\r
-         <utilisateurId>?</utilisateurId>\r
-         <bibliothequeId>?</bibliothequeId>\r
-         <editionId>?</editionId>\r
+         <utilisateurId>1</utilisateurId>\r
+         <bibliothequeId>1</bibliothequeId>\r
+         <editionId>1</editionId>\r
       </edit:reserverEdition>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/reserverEditionRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/EditionService/EditionService/reserverEditionRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
